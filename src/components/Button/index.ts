@@ -31,6 +31,7 @@ const variableStyle: any = {
         border-radius: 0.75rem;
         padding: 0.75rem;
         box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        width: 100%;
 
         &:hover{
             background-color: #ebe8e8;
@@ -44,6 +45,7 @@ const variableStyle: any = {
         border-radius: 0.75rem;
         padding: 0.75rem;
         box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        width: 100%;
 
         &:hover{
             background-color: #ebe8e8;
