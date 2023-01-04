@@ -15,7 +15,7 @@ export const Global = createGlobalStyle`
 
     :root{
         --color-grey-0: #f4f4f4;
-        --font-button: font-family: 'Seymour One', sans-serif;
+        --font-button: 'Seymour One', sans-serif;
     }
 
     body{

@@ -23,10 +23,8 @@ interface iErrorsInput{
 }
 
 export interface iButtonProps{
-    width: string,
-    radius: string,
-    padding: string,
+    width?: string,
+    padding?: string,
     styleButton: string,
-    fontSize: string,
-    fontWeight: string
+    fontSize?: string
 }
