@@ -38,6 +38,7 @@ export const Button = styled.button<iButtonProps>`
 
     font-size: ${({ fontSize }) => fontSize};
     font-weight: ${({ fontWeight }) => fontWeight};
+    font-family: var(--font-button);
     border: none;
     width: ${({ width }) => width};
     border-radius: ${({ radius }) => radius};
