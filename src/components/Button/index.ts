@@ -67,6 +67,7 @@ const variablePadding: any = {
 
 export const Button = styled.button<iButtonProps>`
 
+    max-width: 100%;
     font-weight: 400;
     font-family: var(--font-button);
     border: none;
