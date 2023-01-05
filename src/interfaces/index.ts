@@ -28,3 +28,16 @@ export interface iButtonProps{
     styleButton: string,
     fontSize?: string
 }
+
+export interface iCardMyProductProps{
+    image: string,
+    name: string,
+    price: number,
+    id: number
+}
+
+export interface iCardHistoryBuy{
+    image: string,
+    name: string,
+    price: number
+}
