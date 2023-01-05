@@ -27,3 +27,10 @@ export interface iButtonProps {
   fontSize: string;
   fontWeight: string;
 }
+
+export interface iButtonProps {
+  width?: string;
+  padding?: string;
+  styleButton: string;
+  fontSize?: string;
+}
