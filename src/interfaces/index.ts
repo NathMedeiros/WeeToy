@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import React, { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 
 export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -19,9 +19,13 @@ export interface iInputStyleProps {
 //     type: string
 // }
 
-export interface iButtonProps{
-    width?: string,
-    padding?: string,
-    styleButton: string,
-    fontSize?: string
+export interface iButtonProps {
+  width?: string;
+  padding?: string;
+  styleButton: string;
+  fontSize?: string;
+}
+
+export interface iUserPage {
+  children: React.ReactNode;
 }
