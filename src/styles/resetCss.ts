@@ -22,10 +22,11 @@ export const ResetCss = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
         box-sizing: border-box;
+        font-family: "Inter", sans-serif;
     }
 
     ol, ul {
         list-style: none;
     }
 
-`
+`;
