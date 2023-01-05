@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import child from "../../assets/child.png";
 import login from "../../assets/logoLogin.png";
 import logoRegister from "../../assets/logoRegister.png";
@@ -7,10 +8,18 @@ import { ModalContext } from "../../context/ModalContext";
 import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
+import { loginSchema } from "../../schema/loginSchema";
 
 export function Login() {
-  const { register, handleSubmit } = useForm();
-  const { closeModal } = useContext(ModalContext);
+  const { closeLogin } = useContext(ModalContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
   return (
     <Div>
@@ -21,7 +30,7 @@ export function Login() {
       />
       <section className="form-section">
         <img src={login} alt="logo do login" />
-        <span onClick={closeModal}>x</span>
+        <span onClick={closeLogin}>x</span>
         <form>
           <Input
             id="email"
@@ -32,6 +41,8 @@ export function Login() {
             width="100%"
             {...register("email")}
           />
+          <p>{errors.email?.message}</p>
+
           <Input
             id="password"
             placeholder=""
@@ -41,6 +52,8 @@ export function Login() {
             width="100%"
             {...register("password")}
           />
+          <p>{errors.password?.message}</p>
+
           <button type="submit">Entrar</button>
         </form>
         <button type="button">Cadastre-se</button>
@@ -50,6 +63,8 @@ export function Login() {
 }
 
 export function Register() {
+  const { closeRegister } = useContext(ModalContext);
+
   const {
     register,
     handleSubmit,
@@ -57,7 +72,6 @@ export function Register() {
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
-  const { closeModal } = useContext(ModalContext);
 
   return (
     <Div>
@@ -68,7 +82,7 @@ export function Register() {
       />
       <section className="form-section">
         <img src={logoRegister} alt="logo do cadastro" />
-        <span onClick={closeModal}>x</span>
+        <span onClick={closeRegister}>x</span>
         <form>
           <Input
             id="name"
@@ -119,14 +133,4 @@ export function Register() {
       </section>
     </Div>
   );
-}
-function yupResolver(
-  registerSchema: any
-):
-  | import("react-hook-form").Resolver<
-      import("react-hook-form").FieldValues,
-      any
-    >
-  | undefined {
-  throw new Error("Function not implemented.");
 }
