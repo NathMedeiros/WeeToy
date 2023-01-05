@@ -33,6 +33,12 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
+export interface iCardProductProps {
+  name: string;
+  price: number;
+  img: string;
+}
+
 export interface iCardMyProductProps {
   image: string;
   name: string;

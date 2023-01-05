@@ -40,12 +40,20 @@ export const HomeStyled = styled.div`
         max-width: 813px;
         color: #fff;
         font-size: var(--size-1);
-        font-family: 'Seymour One', sans-serif;
+        font-family: var(--font-button);
     }
 
     .sectionList{
         padding: 30px 10px;
         background-color: rgba(74,189,172,0.4);
+    }
+
+    .listProducts{
+        margin: 0 auto;
+        max-width: 1400px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 70px;
     }
 
     @media (max-width: 620px){

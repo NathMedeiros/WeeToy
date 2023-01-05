@@ -8,12 +8,7 @@ import { ModalContext } from "../../context/ModalContext";
 import { modalPosition } from "../../components/Modal/modal";
 import { Register } from "../../components/Modal";
 
-Modal.setAppElement("#root");
-
 export function Home() {
-  const { openRegister, closeRegister, registerOpen } =
-    useContext(ModalContext);
-
   return (
     <HomeStyled>
       <Header />
@@ -26,27 +21,14 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              <Button
-                width="fit-content"
-                padding="small"
-                styleButton="style1"
-                fontSize="1.688rem"
-                onClick={openRegister}
-              >
+              <Button padding="small" styleButton="style1" fontSize="1.688rem">
                 Cadastre-se
               </Button>
-              <Modal
-                isOpen={registerOpen}
-                onRequestClose={closeRegister}
-                style={modalPosition}
-              >
-                <Register />
-              </Modal>
             </div>
           </div>
         </section>
         <section className="sectionList">
-          <ul></ul>
+          <ul className="listProducts"></ul>
         </section>
       </main>
     </HomeStyled>
