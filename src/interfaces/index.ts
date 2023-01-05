@@ -13,6 +13,13 @@ export interface iInputStyleProps {
   width: string;
 }
 
+export interface iFormModal {
+  email: string;
+  password: string;
+  confirmPass?: string;
+  name?: string;
+}
+
 // interface iErrorsInput{
 //     message: string,
 //     ref: InputHTMLAttributes<HTMLInputElement>,
