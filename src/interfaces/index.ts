@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import React, { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 
 export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -31,4 +31,20 @@ export interface iFormModal {
   password: string;
   confirmPass?: string;
   name?: string;
+}
+
+export interface iCardMyProductProps {
+  image: string;
+  name: string;
+  price: number;
+  id: number;
+}
+
+export interface iCardHistoryBuy {
+  image: string;
+  name: string;
+  price: number;
+}
+export interface iUserPage {
+  children: React.ReactNode;
 }
