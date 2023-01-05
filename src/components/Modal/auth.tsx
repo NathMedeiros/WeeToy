@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import child from "../../assets/child.png";
 import login from "../../assets/logoLogin.png";
 import logoRegister from "../../assets/logoRegister.png";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../context/AuthContext";
 import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
