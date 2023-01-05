@@ -14,13 +14,13 @@ export function Home (){
                     <div className="divTextButtonRegister">
                         <div className="divContent">
                             <p className="textHome">Brinquedos quase novos ou nunca usados procurando um novo dono. Compre online e receba em sua casa.</p>
-                            <Button width="fit-content" radius="5px" padding="small" styleButton="style1" fontSize="1.688rem" fontWeight="400">Cadastre-se</Button>
+                            <Button width="fit-content" padding="small" styleButton="style1" fontSize="1.688rem">Cadastre-se</Button>
                         </div>
                     </div>
                 </section>
                 <section className="sectionList">
-                    <ul>
-
+                    <ul className="listProducts">
+                        
                     </ul>
                 </section>
             </main>

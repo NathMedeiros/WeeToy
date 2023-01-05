@@ -25,3 +25,10 @@ export interface iButtonProps{
     styleButton: string,
     fontSize?: string
 }
+
+
+export interface iCardProductProps{
+  name: string,
+  price: number,
+  img: string
+}

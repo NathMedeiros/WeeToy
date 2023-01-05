@@ -9,7 +9,7 @@ export const Global = createGlobalStyle`
         --color-primary: #4abdac;
         --color-grey-0: #f4f4f4;
 
-        --font-button: font-family: 'Seymour One', sans-serif;
+        --font-button: 'Seymour One', sans-serif;
         --size-1: 1.688rem;
 
     }
@@ -18,6 +18,10 @@ export const Global = createGlobalStyle`
         font-family: 'Inter', sans-serif;
         width: 100%;
         min-height: 100vh;
+    }
+
+    button{
+        cursor: pointer;
     }
 
 `
