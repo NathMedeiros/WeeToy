@@ -19,8 +19,8 @@ export function Home (){
                     </div>
                 </section>
                 <section className="sectionList">
-                    <ul>
-
+                    <ul className="listProducts">
+                        
                     </ul>
                 </section>
             </main>
