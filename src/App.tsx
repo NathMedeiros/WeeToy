@@ -1,5 +1,7 @@
-import { ModalProvider } from "./context/ModalContext";
-import { Home } from "./pages/Home";
+import { useContext } from "react";
+import Modal from "react-modal";
+import { Login, Register } from "./components/Modal";
+import { ModalContext } from "./context/ModalContext";
 import { UserPage } from "./pages/UserPage";
 import { Global } from "./styles/global";
 import { ResetCss } from "./styles/resetCss";
@@ -7,15 +9,11 @@ import { ResetCss } from "./styles/resetCss";
 function App() {
   return (
     <>
-      <ModalProvider>
-        <Global />
-        <ResetCss />
-        <Home />
-        <Global />
-        <UserPage>
-          <></>
-        </UserPage>
-      </ModalProvider>
+      <Global />
+      <ResetCss />
+      <UserPage>
+        <></>
+      </UserPage>
     </>
   );
 }
