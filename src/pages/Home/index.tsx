@@ -1,8 +1,8 @@
-import { Header } from "../../components/Header"
-import {HomeStyled} from "./styled"
+import { Header } from "../../components/Header";
+import { HomeStyled } from "./styled";
 
-import imageChild from "./../../assets/imageChild.png"
-import { Button } from "../../components/Button"
+import imageChild from "./../../assets/imageChild.png";
+import { Button } from "../../components/Button/style";
 
 export function Home (){
     return (
@@ -14,7 +14,7 @@ export function Home (){
                     <div className="divTextButtonRegister">
                         <div className="divContent">
                             <p className="textHome">Brinquedos quase novos ou nunca usados procurando um novo dono. Compre online e receba em sua casa.</p>
-                            <Button width="fit-content" padding="small" styleButton="style1" fontSize="1.688rem">Cadastre-se</Button>
+                            <Button padding="small" styleButton="style1" fontSize="1.688rem">Cadastre-se</Button>
                         </div>
                     </div>
                 </section>

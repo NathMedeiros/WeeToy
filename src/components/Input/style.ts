@@ -16,8 +16,9 @@ export const InputStyle = styled.fieldset<iInputStyleProps>`
 
     & > label {
       font-size: 0.85rem;
-      font-weight: 400;
+      font-weight: 500;
       color: #000;
+      font-family: "Inter", sans-serif;
     }
 
     & > input {
@@ -27,7 +28,7 @@ export const InputStyle = styled.fieldset<iInputStyleProps>`
       background-color: #fff;
       border-radius: 0.5rem;
       border: none;
-      padding: 0.5rem 0.75rem;
+      padding: 0.75rem 0.75rem;
     }
   }
 
