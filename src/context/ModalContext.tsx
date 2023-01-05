@@ -1,31 +1,64 @@
 import { createContext, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 export interface iModalProps {
   children: React.ReactNode;
 }
 
 export interface iModalContext {
-  openModal: () => void;
-  closeModal: () => void;
-  isOpen: boolean;
+  openRegister: () => void;
+  closeRegister: () => void;
+  openLogin: () => void;
+  closeLogin: () => void;
+  registerOpen: boolean;
+  loginOpen: boolean;
+}
+
+export interface iData {
+  email: string;
+  password: string;
+  name: string;
+  confirmPass?: string;
 }
 
 export const ModalContext = createContext({} as iModalContext);
 
 export function ModalProvider({ children }: iModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
+  function openRegister() {
+    setRegisterOpen(true);
   }
 
-  function closeModal() {
-    setIsOpen(false);
+  function closeRegister() {
+    setRegisterOpen(false);
+  }
+
+  function openLogin() {
+    setLoginOpen(true);
+  }
+
+  function closeLogin() {
+    setLoginOpen(false);
   }
 
   return (
-    <ModalContext.Provider value={{ openModal, closeModal, isOpen }}>
-      {children}
-    </ModalContext.Provider>
+    <>
+      <ModalContext.Provider
+        value={{
+          openRegister,
+          closeRegister,
+          registerOpen,
+          openLogin,
+          closeLogin,
+          loginOpen,
+        }}
+      >
+        {children}
+      </ModalContext.Provider>
+
+      <Outlet />
+    </>
   );
 }

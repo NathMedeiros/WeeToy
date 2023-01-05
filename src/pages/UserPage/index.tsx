@@ -6,7 +6,7 @@ import { StyledUserPage } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userDataSchema } from "./userDataSchema";
-import { Button } from "../../components/Button/style";
+import { Button } from "../../components/Button";
 
 export function UserPage({ children }: iUserPage) {
   const [pageToRender, setPageToRender] = useState("userData" as String);

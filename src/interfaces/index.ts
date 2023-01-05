@@ -13,6 +13,13 @@ export interface iInputStyleProps {
   width: string;
 }
 
+export interface iFormModal {
+  email: string;
+  password: string;
+  confirmPass?: string;
+  name?: string;
+}
+
 // interface iErrorsInput{
 //     message: string,
 //     ref: InputHTMLAttributes<HTMLInputElement>,
@@ -26,34 +33,24 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
-export interface iButtonProps{
-    width?: string,
-    padding?: string,
-    styleButton: string,
-    fontSize?: string
+export interface iCardProductProps {
+  name: string;
+  price: number;
+  img: string;
 }
 
-
-
-export interface iCardProductProps{
-  name: string,
-  price: number,
-  img: string
+export interface iCardMyProductProps {
+  image: string;
+  name: string;
+  price: number;
+  id: number;
 }
 
-export interface iCardMyProductProps{
-    image: string,
-    name: string,
-    price: number,
-    id: number
-}
-
-export interface iCardHistoryBuy{
-    image: string,
-    name: string,
-    price: number
+export interface iCardHistoryBuy {
+  image: string;
+  name: string;
+  price: number;
 }
 export interface iUserPage {
   children: React.ReactNode;
 }
-
