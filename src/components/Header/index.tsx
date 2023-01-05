@@ -4,8 +4,8 @@ import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 import imageCart from "./../../assets/cart.png";
 import menu from "./../../assets/menu.png";
-import { ModalContext } from "../../context/ModalContext";
-import { Login } from "../Modal";
+import { ModalContext } from "../../context/AuthContext";
+import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
 
 export function Header() {

@@ -1,4 +1,4 @@
-import { ModalProvider } from "./context/ModalContext";
+import { ModalProvider } from "./context/AuthContext";
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";
 import { Global } from "./styles/global";
