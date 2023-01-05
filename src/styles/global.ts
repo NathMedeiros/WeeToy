@@ -14,8 +14,10 @@ export const Global = createGlobalStyle`
     }
 
     :root{
+        --color-primary: #4abdac;
         --color-grey-0: #f4f4f4;
         --font-button: font-family: 'Seymour One', sans-serif;
+        --size-1: 1.688rem;
     }
 
     body{
