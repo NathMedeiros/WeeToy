@@ -4,6 +4,7 @@ import child from "../../assets/child.png";
 import login from "../../assets/logoLogin.png";
 import logoRegister from "../../assets/logoRegister.png";
 import { ModalContext } from "../../context/ModalContext";
+import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
 
@@ -49,7 +50,13 @@ export function Login() {
 }
 
 export function Register() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
   const { closeModal } = useContext(ModalContext);
 
   return (
@@ -72,6 +79,8 @@ export function Register() {
             width="100%"
             {...register("name")}
           />
+          <p>{errors.name?.message}</p>
+
           <Input
             id="email"
             placeholder=""
@@ -81,6 +90,8 @@ export function Register() {
             width="100%"
             {...register("email")}
           />
+          <p>{errors.email?.message}</p>
+
           <Input
             id="password"
             placeholder=""
@@ -90,18 +101,32 @@ export function Register() {
             width="100%"
             {...register("password")}
           />
+          <p>{errors.password?.message}</p>
+
           <Input
-            id="confirm-password"
+            id="confirmPass"
             placeholder=""
             labelName="Confirmar senha"
             required={true}
             inputType="password"
             width="100%"
-            {...register("confirm-password")}
+            {...register("confirmPass")}
           />
+          <p>{errors.confirmPass?.message}</p>
+
           <button type="submit">Cadastrar</button>
         </form>
       </section>
     </Div>
   );
+}
+function yupResolver(
+  registerSchema: any
+):
+  | import("react-hook-form").Resolver<
+      import("react-hook-form").FieldValues,
+      any
+    >
+  | undefined {
+  throw new Error("Function not implemented.");
 }

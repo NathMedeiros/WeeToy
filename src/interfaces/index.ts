@@ -20,15 +20,6 @@ export interface iInputStyleProps {
 // }
 
 export interface iButtonProps {
-  width: string;
-  radius: string;
-  padding: string;
-  styleButton: string;
-  fontSize: string;
-  fontWeight: string;
-}
-
-export interface iButtonProps {
   width?: string;
   padding?: string;
   styleButton: string;

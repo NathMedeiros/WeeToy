@@ -10,6 +10,13 @@ export interface iModalContext {
   isOpen: boolean;
 }
 
+export interface iData {
+  email: string;
+  password: string;
+  name: string;
+  confirmPass?: string;
+}
+
 export const ModalContext = createContext({} as iModalContext);
 
 export function ModalProvider({ children }: iModalProps) {
