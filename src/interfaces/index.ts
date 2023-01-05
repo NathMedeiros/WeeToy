@@ -25,3 +25,10 @@ export interface iButtonProps {
   styleButton: string;
   fontSize?: string;
 }
+
+export interface iFormModal {
+  email: string;
+  password: string;
+  confirmPass?: string;
+  name?: string;
+}

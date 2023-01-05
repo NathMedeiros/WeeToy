@@ -9,6 +9,7 @@ import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
 import { loginSchema } from "../../schema/loginSchema";
+import { iFormModal } from "../../interfaces";
 
 export function Login() {
   const { closeLogin } = useContext(ModalContext);
@@ -17,7 +18,7 @@ export function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iFormModal>({
     resolver: yupResolver(loginSchema),
   });
 
@@ -69,7 +70,7 @@ export function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iFormModal>({
     resolver: yupResolver(registerSchema),
   });
 
