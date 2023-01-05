@@ -1,8 +1,8 @@
-import { Header } from "../../components/Header"
-import {HomeStyled} from "./styled"
+import { Header } from "../../components/Header";
+import { HomeStyled } from "./styled";
 
-import imageChild from "./../../assets/imageChild.png"
-import { Button } from "../../components/Button"
+import imageChild from "./../../assets/imageChild.png";
+import { Button } from "../../components/Button/style";
 
 export function Home (){
     return (
