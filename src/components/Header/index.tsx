@@ -7,10 +7,13 @@ import menu from "./../../assets/menu.png";
 import { ModalContext } from "../../context/AuthContext";
 import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
+import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
+import { Announce } from "../ModalAnunciar copy";
 import { ButtonCart } from "../ButtonCart";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(ModalContext);
+  const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
 
   const [linksMobile, setLinksMobile] = useState(false);
 
@@ -30,10 +33,10 @@ export function Header() {
           <div className="linksHeader">
             <span>Categoria</span>
             <span>Doações</span>
-            <span>Anunciar</span>
+            <span onClick={openModal}>Anunciar</span>
             <span onClick={openLogin}>Login</span>
           </div>
-          <ButtonCart/>
+          <ButtonCart />
           <button
             className="buttonMenu"
             onClick={() => {
@@ -49,6 +52,13 @@ export function Header() {
           style={modalPosition}
         >
           <Login />
+        </Modal>
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          style={modalPosition}
+        >
+          <Announce />
         </Modal>
       </div>
       {linksMobile === true ? (
