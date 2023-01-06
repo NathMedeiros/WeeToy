@@ -69,7 +69,7 @@ export function Announce() {
                 <label htmlFor="category">Categoria</label>
                 <select {...register("category")}>
                   <option selected value=""></option>
-                  <option value="Boneco">Boneco</option>
+                  <option value="Bonecos">Boneco</option>
                   <option value="Pelúcias">Pelúcias</option>
                   <option value="Carrinhos">Carrinhos</option>
                   <option value="Quebra cabeças">Quebra cabeças</option>
