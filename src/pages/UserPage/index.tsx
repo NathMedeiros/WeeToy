@@ -15,18 +15,20 @@ import MyAds from "../../components/MyAds";
 import { UserNav } from "../../components/UserNav";
 
 export function UserPage({ children }: iUserPage) {
-  const [pageToRender, setPageToRender] = useState([true, false, false]);
+  const [pageToRender, setPageToRender] = useState<string | null>("Meus Dados");
   const { isOpen } = useContext(ModalAnnounceContext);
 
-  function changePage(event: React.ChangeEventHandler) {
-    console.log(event);
+  function changePage(event: React.MouseEvent<HTMLButtonElement>) {
+    setPageToRender(event.currentTarget.textContent);
   }
 
   return (
     <StyledUserPage>
       <Header />
       <UserNav handleChange={changePage} />
-      <Historic />
+      {pageToRender === "Meus Dados" && <UserData />}
+      {pageToRender === "Compras" && <Historic />}
+      {pageToRender === "Anúncios" && <MyAds />}
     </StyledUserPage>
   );
 }

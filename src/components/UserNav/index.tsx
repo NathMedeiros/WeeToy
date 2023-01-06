@@ -3,7 +3,7 @@ import { StyledNav } from "./style";
 export function UserNav({ handleChange }: any) {
   return (
     <StyledNav>
-      <label htmlFor="myData" onChange={handleChange}>
+      <label htmlFor="myData" onClick={handleChange}>
         Meus Dados
         <input
           value="myData"
@@ -14,12 +14,12 @@ export function UserNav({ handleChange }: any) {
         />
       </label>
 
-      <label htmlFor="boughtList" onChange={handleChange}>
+      <label htmlFor="boughtList" onClick={handleChange}>
         Compras
         <input value="boughtList" type="radio" id="boughtList" name="navItem" />
       </label>
 
-      <label htmlFor="myAnnouces" onChange={handleChange}>
+      <label htmlFor="myAnnouces" onClick={handleChange}>
         Anúncios
         <input
           value="annouceList"
