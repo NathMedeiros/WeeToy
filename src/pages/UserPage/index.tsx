@@ -10,27 +10,25 @@ import { Button } from "../../components/Button";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
 import { Announce } from "../../components/ModalAnnounce/index";
 import { UserData } from "../../components/UserData";
+import Historic from "../../components/Historic";
+import MyAds from "../../components/MyAds";
+import { UserNav } from "../../components/UserNav";
 
 export function UserPage({ children }: iUserPage) {
-  const [pageToRender, setPageToRender] = useState("userData" as String);
+  const [pageToRender, setPageToRender] = useState<string | null>("Meus Dados");
   const { isOpen } = useContext(ModalAnnounceContext);
-  console.log(isOpen);
 
-  function changePage() {
-    pageToRender === "userData"
-      ? setPageToRender("History")
-      : setPageToRender("userData");
+  function changePage(event: React.MouseEvent<HTMLButtonElement>) {
+    setPageToRender(event.currentTarget.textContent);
   }
 
   return (
     <StyledUserPage>
       <Header />
-      <nav>
-        <button className="selected">Meus Dados</button>
-        <button>Histórico</button>
-        <button>Anúncios</button>
-      </nav>
-      <UserData />
+      <UserNav handleChange={changePage} />
+      {pageToRender === "Meus Dados" && <UserData />}
+      {pageToRender === "Compras" && <Historic />}
+      {pageToRender === "Anúncios" && <MyAds />}
     </StyledUserPage>
   );
 }
