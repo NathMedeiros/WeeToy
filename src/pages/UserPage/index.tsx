@@ -10,8 +10,8 @@ import { Button } from "../../components/Button";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
 import { Announce } from "../../components/ModalAnnounce/index";
 import { UserData } from "../../components/UserData";
-import Historic from "../../components/Historic";
-import MyAds from "../../components/MyAds";
+import Historic from "../../components/UserHistory";
+import MyAds from "../../components/UserAds";
 import { UserNav } from "../../components/UserNav";
 
 export function UserPage({ children }: iUserPage) {
