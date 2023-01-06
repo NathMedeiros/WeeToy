@@ -64,8 +64,14 @@ export const HomeStyled = styled.div`
         }
 
         .textHome{
-            font-size: 22px;
+            font-size: var(--size-2);
             text-align: center;
+        }
+
+        .listProducts{
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            padding-bottom: 20px;
         }
     }
 
