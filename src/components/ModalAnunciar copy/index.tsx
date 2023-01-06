@@ -7,22 +7,7 @@ import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
 
 export function Announce() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<IToyData>({
-    resolver: yupResolver(announceSchema),
-    defaultValues: {
-      img: "",
-      marks: "",
-      toy_name: "",
-      category: "",
-      price: 0,
-      description: "",
-    },
-  });
+  const { register, handleSubmit } = useForm<IToyData>();
 
   function getToy(data: IToyData) {
     console.log(data);
@@ -68,7 +53,15 @@ export function Announce() {
               <div className="colDiv">
                 <label htmlFor="category">Categoria</label>
                 <select {...register("category")}>
-                  <option value=""></option>
+                  <option selected value=""></option>
+                  <option value="Boneco">Boneco</option>
+                  <option value="Pelúcias">Pelúcias</option>
+                  <option value="Carrinhos">Carrinhos</option>
+                  <option value="Quebra cabeças">Quebra cabeças</option>
+                  <option value="Instrumento musical">
+                    Instrumento musical
+                  </option>
+                  <option value="Outros">Outros</option>
                 </select>
               </div>
               <InputAnnounce
