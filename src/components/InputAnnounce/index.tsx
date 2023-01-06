@@ -1,4 +1,4 @@
-import { iInputProps } from "../../interfaces";
+import { iInputAnnounceProps } from "../../interfaces";
 import { InputAnnounceStyle } from "./style";
 
 export function InputAnnounce({
@@ -8,7 +8,8 @@ export function InputAnnounce({
   required,
   inputType,
   width,
-}: iInputProps) {
+  register,
+}: iInputAnnounceProps) {
   return (
     <InputAnnounceStyle width={width}>
       <div>
@@ -18,6 +19,7 @@ export function InputAnnounce({
           type={inputType}
           required={required}
           placeholder={placeholder}
+          {...register}
         />
       </div>
     </InputAnnounceStyle>

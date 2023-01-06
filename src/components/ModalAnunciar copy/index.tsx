@@ -11,7 +11,6 @@ export function Announce() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<IToyData>({
     resolver: yupResolver(announceSchema),
     defaultValues: {
@@ -38,19 +37,20 @@ export function Announce() {
             id="image"
             placeholder=""
             labelName="Foto do brinquedo"
-            required={true}
+            required={false}
             inputType="text"
             width="500px"
-            {...register("img")}
+            register={register("img")}
           />
+          {errors.img?.message}
           <InputAnnounce
             id="mark"
             placeholder=""
             labelName="Marca (opicional)"
-            required={true}
+            required={false}
             inputType="text"
             width="500px"
-            {...register("marks")}
+            register={register("marks")}
           />
         </div>
         <div className="divColl">
@@ -59,17 +59,18 @@ export function Announce() {
               id="name"
               placeholder=""
               labelName="Nome"
-              required={true}
+              required={false}
               inputType="text"
               width="500px"
-              {...register("toy_name")}
+              register={register("toy_name")}
             />
+            {errors.toy_name?.message}
             <div className="categoryPrice">
               <div className="colDiv">
                 <label htmlFor="category">Categoria</label>
                 <select {...register("category")}>
                   <option selected value=""></option>
-                  <option value="Bonecos">Boneco</option>
+                  <option value="Bonecos">Bonecos</option>
                   <option value="Pelúcias">Pelúcias</option>
                   <option value="Carrinhos">Carrinhos</option>
                   <option value="Quebra cabeças">Quebra cabeças</option>
@@ -79,15 +80,17 @@ export function Announce() {
                   <option value="Outros">Outros</option>
                 </select>
               </div>
+              {errors.category?.message}
               <InputAnnounce
-                id="name"
+                id="Price"
                 placeholder="R$"
                 labelName="Preço"
-                required={true}
+                required={false}
                 inputType="number"
                 width="230px"
-                {...register("price")}
+                register={register("price")}
               />
+              {errors.price?.message}
             </div>
           </div>
           <div className="colDiv">

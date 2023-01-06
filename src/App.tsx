@@ -10,9 +10,9 @@ function App() {
     <>
       <ModalAnnounceProvider>
         <ModalProvider>
-          {/* <Global /> */}
+          <Global />
           <ResetCss />
-          {/* <Home /> */}
+          <Home />
           <Global />
           <UserPage>
             <></>
