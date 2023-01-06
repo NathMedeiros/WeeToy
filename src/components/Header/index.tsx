@@ -7,7 +7,7 @@ import menu from "./../../assets/menu.png";
 import { LoginContext } from "../../context/LoginContext";
 import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
-import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
+import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 
@@ -56,7 +56,9 @@ export function Header() {
         <Modal
           isOpen={isOpen}
           onRequestClose={closeModal}
-          style={modalPosition}
+          contentLabel="Example Modal"
+          overlayClassName="modal-overlay"
+          className="modal-content-announce"
         >
           <Announce />
         </Modal>

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginProvider } from "./context/LoginContext";
-import { ModalAnnounceProvider } from "./context/ModalAnnounceContext";
+import { ModalAnnounceProvider } from "./context/AnnounceContext";
 import { RegisterProvider } from "./context/RegisterContext";
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";

@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext";
 import reportWebVitals from "./reportWebVitals";
 import { Global } from "./styles/global";
 import { ResetCss } from "./styles/resetCss";
+import "../src/components/Modal/background.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

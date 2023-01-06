@@ -24,7 +24,20 @@ export function Announce() {
   });
 
   function getToy(data: IToyData) {
+    const user = localStorage.getItem("@USER: WeeToys");
+    console.log(user);
     console.log(data);
+    const { category, price, marks, toy_name, img } = data;
+
+    const newAnnounce = {
+      category: category,
+      price: price,
+      marks: marks,
+      toy_name: toy_name,
+      img: img,
+      // id: ,
+    };
+    console.log(newAnnounce);
   }
 
   return (
@@ -69,7 +82,7 @@ export function Announce() {
               <div className="colDiv">
                 <label htmlFor="category">Categoria</label>
                 <select {...register("category")}>
-                  <option selected value=""></option>
+                  <option value=""></option>
                   <option value="Bonecos">Bonecos</option>
                   <option value="Pelúcias">Pelúcias</option>
                   <option value="Carrinhos">Carrinhos</option>

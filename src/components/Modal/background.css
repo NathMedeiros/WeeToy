@@ -1,24 +1,24 @@
 .modal-overlay {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(18, 18, 20, 0.5);
-  width: 100%;
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
+  background: rgba(18, 18, 20, 0.5);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
-
 .modal-content {
-  inset: 50% auto auto 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid rgb(204, 204, 204);
-  overflow: auto;
+  background: white;
+  max-width: 634px;
   border-radius: 4px;
-  outline: none;
-  padding: 20px;
-  background-color: #ffff;
+  padding: 14px;
+  border: solid 1px white;
+}
+.modal-content-announce {
+  background: white;
+  border-radius: 4px;
+  padding: 14px;
+  border: solid 1px white;
 }
