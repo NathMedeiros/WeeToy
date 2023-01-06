@@ -3,18 +3,17 @@ import { useContext, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 import imageUser from "./../../assets/user.png";
-
 import menu from "./../../assets/menu.png";
-import { LoginContext } from "../../context/LoginContext";
 import { Login } from "../Modal/auth";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { RegisterContext } from "../../context/RegisterContext";
 
 export function Header() {
-  const { openLogin, closeLogin, loginOpen } = useContext(LoginContext);
+  const { openLogin, closeLogin, loginOpen } = useContext(RegisterContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
   const { isLogged } = useContext(AuthContext);
 

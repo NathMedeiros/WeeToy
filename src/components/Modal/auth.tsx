@@ -14,8 +14,8 @@ import { iFormModal } from "../../interfaces";
 import { RegisterContext } from "../../context/RegisterContext";
 
 export function Login() {
-  const { closeLogin, submitLogin } = useContext(LoginContext);
-  const { openRegister } = useContext(RegisterContext);
+  const { submitLogin } = useContext(LoginContext);
+  const { openRegister, closeLogin } = useContext(RegisterContext);
 
   const {
     register,

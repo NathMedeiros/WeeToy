@@ -26,8 +26,8 @@ export const Div = styled.div`
 
   .form-section span {
     position: relative;
-    left: 233px;
-    bottom: 75px;
+    right: -230px;
+    bottom: 65px;
     color: #fc4a1a;
     font-weight: 700;
     cursor: pointer;
