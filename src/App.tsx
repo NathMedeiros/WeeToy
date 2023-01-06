@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import { ModalProvider } from "./context/AuthContext";
 import { ModalAnnounceProvider } from "./context/ModalAnnounceContext";
 
@@ -11,13 +12,13 @@ function App() {
     <>
       <ModalAnnounceProvider>
         <ModalProvider>
-          <Global />
-          <ResetCss />
-          <Home />
-          <Global />
-          <UserPage>
-            <></>
-          </UserPage>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/UserPage"
+              element={<UserPage children={undefined} />}
+            />
+          </Routes>
         </ModalProvider>
       </ModalAnnounceProvider>
     </>
