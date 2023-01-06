@@ -17,7 +17,8 @@ export const CardProductStyled = styled.li`
         padding: 15px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        justify-content: space-between;
+        height: 150px;
     }
 
     h3{

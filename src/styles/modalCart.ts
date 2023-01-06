@@ -19,6 +19,11 @@ export const ModalCartStyled = styled.div`
         color: #fff;
     }
 
+    .cartTitle h2{
+        font-family: var(--font-button);
+        text-align: center;
+    }
+
     .emptyCart{
         background-color: #f9f9f9;
         padding: 20px;
@@ -33,6 +38,10 @@ export const ModalCartStyled = styled.div`
 
     .emptyCart p{
         font-size: 22px;
+    }
+
+    span{
+        text-align: center;
     }
 
     .cartOn{
