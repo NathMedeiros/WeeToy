@@ -1,3 +1,4 @@
+import { ModalAnnounceProvider } from "./context/ModalAnnounceContext";
 import { ModalProvider } from "./context/ModalContext";
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";
@@ -7,15 +8,17 @@ import { ResetCss } from "./styles/resetCss";
 function App() {
   return (
     <>
-      <ModalProvider>
-        <Global />
-        <ResetCss />
-        <Home />
-        <Global />
-        <UserPage>
-          <></>
-        </UserPage>
-      </ModalProvider>
+      <ModalAnnounceProvider>
+        <ModalProvider>
+          {/* <Global /> */}
+          <ResetCss />
+          {/* <Home /> */}
+          <Global />
+          <UserPage>
+            <></>
+          </UserPage>
+        </ModalProvider>
+      </ModalAnnounceProvider>
     </>
   );
 }

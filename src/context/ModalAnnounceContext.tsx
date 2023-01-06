@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 export interface iModalAnnounceProps {
   children: React.ReactNode;
@@ -24,8 +25,11 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   }
   console.log(isOpen);
   return (
-    <ModalAnnounceContext.Provider value={{ openModal, closeModal, isOpen }}>
-      {children}
-    </ModalAnnounceContext.Provider>
+    <>
+      <ModalAnnounceContext.Provider value={{ openModal, closeModal, isOpen }}>
+        {children}
+      </ModalAnnounceContext.Provider>
+      <Outlet />
+    </>
   );
 }
