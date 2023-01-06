@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import reportWebVitals from "./reportWebVitals";
 import { Global } from "./styles/global";
@@ -13,11 +14,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CartProvider>
-        <Global />
-        <ResetCss />
-        <App />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Global />
+          <ResetCss />
+          <App />
+        </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
