@@ -7,7 +7,22 @@ import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
 
 export function Announce() {
-  const { register, handleSubmit } = useForm<IToyData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IToyData>({
+    resolver: yupResolver(announceSchema),
+    defaultValues: {
+      img: "",
+      marks: "",
+      toy_name: "",
+      category: "",
+      price: 0,
+      description: "",
+    },
+  });
 
   function getToy(data: IToyData) {
     console.log(data);

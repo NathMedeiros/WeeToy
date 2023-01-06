@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
 export const announceSchema = yup.object().shape({
-  name: yup.string(),
-  adress: yup.string(),
-  cep: yup.string().matches(/^[0-9]{5}-[0-9]{3}$/),
-  email: yup.string().email(),
+  img: yup.string().required("Insira uma imagem"),
+  toy_name: yup.string().required("Insira um nome"),
+  price: yup.string().required("Insira um preço"),
+  category: yup.string().required("Escolha uma categoria"),
 });
