@@ -1,26 +1,15 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { createContext, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
 import { AuthContext } from "./AuthContext";
-import { RegisterContext } from "./RegisterContext";
 
 export interface iModalProps {
   children: React.ReactNode;
 }
 
 export interface iLoginContext {
-  openLogin: () => void;
-  closeLogin: () => void;
   submitLogin: (data: iDataLogin) => Promise<void>;
-  loginOpen: boolean;
-  setLoginOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface iDataLogin {
@@ -31,18 +20,7 @@ export interface iDataLogin {
 export const LoginContext = createContext({} as iLoginContext);
 
 export function LoginProvider({ children }: iModalProps) {
-  const { closeRegister } = useContext(RegisterContext);
-  const {setLogged} = useContext(AuthContext)
-  const [loginOpen, setLoginOpen] = useState(false);
-
-  function openLogin() {
-    setLoginOpen(true);
-    closeRegister();
-  }
-
-  function closeLogin() {
-    setLoginOpen(false);
-  }
+  const { setLogged } = useContext(AuthContext);
 
   async function submitLogin(data: iDataLogin) {
     try {
@@ -52,13 +30,13 @@ export function LoginProvider({ children }: iModalProps) {
 
       const { accessToken, user } = response;
 
-      const userJson = JSON.stringify(user)
+      const userJson = JSON.stringify(user);
 
       localStorage.setItem("@TOKEN: WeeToys", accessToken);
       localStorage.setItem("@USER: WeeToys", userJson);
 
       toast("login bem sucedido");
-      setLogged(true)
+      setLogged(true);
     } catch (error) {
       toast.error(`Falha no login. Tente novamente!`, {
         style: {
@@ -79,11 +57,7 @@ export function LoginProvider({ children }: iModalProps) {
     <>
       <LoginContext.Provider
         value={{
-          openLogin,
-          closeLogin,
-          loginOpen,
           submitLogin,
-          setLoginOpen,
         }}
       >
         {children}
