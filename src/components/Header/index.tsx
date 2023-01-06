@@ -2,16 +2,21 @@ import { HeaderStyled } from "./styled";
 import { useContext, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
+import imageUser from "./../../assets/user.png";
+
 import menu from "./../../assets/menu.png";
 import { LoginContext } from "../../context/LoginContext";
 import { Login } from "../Modal/auth";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(LoginContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
+  const { isLogged } = useContext(AuthContext);
 
   const [linksMobile, setLinksMobile] = useState(false);
 
@@ -32,7 +37,13 @@ export function Header() {
             <span>Categoria</span>
             <span>Doações</span>
             <span onClick={openModal}>Anunciar</span>
-            <span onClick={openLogin}>Login</span>
+            {isLogged === true ? (
+              <Link to="/UserPage">
+                <img src={imageUser} alt="Logo usuário" />
+              </Link>
+            ) : (
+              <span onClick={openLogin}>Login</span>
+            )}
           </div>
           <ButtonCart />
           <button
@@ -68,7 +79,13 @@ export function Header() {
           <span>Categoria</span>
           <span>Doações</span>
           <span>Anunciar</span>
-          <span>Login</span>
+          {isLogged === true ? (
+            <Link to="/UserPage">
+              <img src={imageUser} alt="Logo usuário" />
+            </Link>
+          ) : (
+            <span onClick={openLogin}>Login</span>
+          )}
         </div>
       ) : null}
     </HeaderStyled>

@@ -8,6 +8,7 @@ import {
 import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
+import { AuthContext } from "./AuthContext";
 import { RegisterContext } from "./RegisterContext";
 
 export interface iModalProps {
@@ -31,6 +32,7 @@ export const LoginContext = createContext({} as iLoginContext);
 
 export function LoginProvider({ children }: iModalProps) {
   const { closeRegister } = useContext(RegisterContext);
+  const { setLogged } = useContext(AuthContext);
   const [loginOpen, setLoginOpen] = useState(false);
 
   function openLogin() {
@@ -50,10 +52,13 @@ export function LoginProvider({ children }: iModalProps) {
 
       const { accessToken, user } = response;
 
+      const userJson = JSON.stringify(user);
+
       localStorage.setItem("@TOKEN: WeeToys", accessToken);
-      localStorage.setItem("@USERID: WeeToys", user.id);
+      localStorage.setItem("@USER: WeeToys", userJson);
 
       toast("login bem sucedido");
+      setLogged(true);
     } catch (error) {
       toast.error(`Falha no login. Tente novamente!`, {
         style: {
