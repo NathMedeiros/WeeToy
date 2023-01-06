@@ -4,9 +4,10 @@ import Modal from "react-modal";
 import imageChild from "./../../assets/imageChild.png";
 import { Button } from "../../components/Button";
 import { useContext } from "react";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../context/AuthContext";
 import { modalPosition } from "../../components/Modal/modal";
-import { Register } from "../../components/Modal";
+
+import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
 
 export const dataToys = [
@@ -48,7 +49,14 @@ export const dataToys = [
   }
 ]
 
+
+
+
+
 export function Home() {
+  const { openRegister, closeRegister, registerOpen } =
+    useContext(ModalContext);
+
 
   return (
     <HomeStyled>
@@ -62,9 +70,21 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              <Button padding="small" styleButton="style1" fontSize="1.688rem">
+              <Button
+                padding="small"
+                styleButton="style1"
+                fontSize="1.688rem"
+                onClick={openRegister}
+              >
                 Cadastre-se
               </Button>
+              <Modal
+                isOpen={registerOpen}
+                onRequestClose={closeRegister}
+                style={modalPosition}
+              >
+                <Register />
+              </Modal>
             </div>
           </div>
         </section>
