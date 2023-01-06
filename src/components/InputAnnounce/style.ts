@@ -34,7 +34,7 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       @media (max-width: 700px) {
         position: absolute;
         left: 0;
-        top: -25px;
+        top: -30px;
       }
     }
 

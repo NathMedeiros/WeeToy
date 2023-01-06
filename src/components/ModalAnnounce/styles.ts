@@ -41,7 +41,6 @@ export const Div = styled.div`
     background-color: #fff;
     border-radius: 0.5rem;
     border: none;
-    padding: 0.75rem 0.75rem;
     height: 48px;
     margin-bottom: 37px;
   }
@@ -111,9 +110,11 @@ export const Div = styled.div`
     height: 811px;
     .nameMark {
       flex-direction: column;
-      gap: 0px;
+      gap: 15px;
       justify-content: center;
       align-items: center;
+      margin-bottom: 15px;
+      margin-top: 0px;
     }
 
     .divColl {
@@ -131,8 +132,8 @@ export const Div = styled.div`
     }
 
     select {
-      margin-bottom: 0;
-      width: 80%;
+      margin-bottom: 40px;
+      max-width: 245px;
     }
 
     form {
@@ -156,11 +157,16 @@ export const Div = styled.div`
     textarea {
       width: 245px;
       height: 87px;
+      margin-bottom: 60px;
     }
     .announceTitle {
-      font-size: 15px;
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 70px;
     }
-
+    .subtitle {
+      display: none;
+    }
     .divColl {
       gap: 0px;
     }
