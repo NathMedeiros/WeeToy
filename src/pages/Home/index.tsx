@@ -1,10 +1,17 @@
 import { Header } from "../../components/Header";
 import { HomeStyled } from "./styled";
-
+import Modal from "react-modal";
 import imageChild from "./../../assets/imageChild.png";
 import { Button } from "../../components/Button";
+import { useContext } from "react";
+import { ModalContext } from "../../context/AuthContext";
+import { modalPosition } from "../../components/Modal/modal";
+import { Register } from "../../components/Modal/auth";
 
 export function Home() {
+  const { openRegister, closeRegister, registerOpen } =
+    useContext(ModalContext);
+
   return (
     <HomeStyled>
       <Header />
@@ -17,14 +24,26 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              <Button padding="small" styleButton="style1" fontSize="1.688rem">
+              <Button
+                padding="small"
+                styleButton="style1"
+                fontSize="1.688rem"
+                onClick={openRegister}
+              >
                 Cadastre-se
               </Button>
+              <Modal
+                isOpen={registerOpen}
+                onRequestClose={closeRegister}
+                style={modalPosition}
+              >
+                <Register />
+              </Modal>
             </div>
           </div>
         </section>
         <section className="sectionList">
-          <ul></ul>
+          <ul className="listProducts"></ul>
         </section>
       </main>
     </HomeStyled>

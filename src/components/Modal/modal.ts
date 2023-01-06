@@ -5,7 +5,6 @@ export const Div = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 600px;
-  height: 350px;
 
   .img-aside {
     width: 300px;
@@ -59,6 +58,19 @@ export const Div = styled.div`
     color: #f7b733;
     font-weight: 600;
     font-size: 0.85rem;
+  }
+
+  p {
+    color: red;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+
+    .img-aside {
+      display: none;
+    }
   }
 `;
 

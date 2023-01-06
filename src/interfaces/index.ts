@@ -13,6 +13,13 @@ export interface iInputStyleProps {
   width: string;
 }
 
+export interface iFormModal {
+  email: string;
+  password: string;
+  confirmPass?: string;
+  name?: string;
+}
+
 // interface iErrorsInput{
 //     message: string,
 //     ref: InputHTMLAttributes<HTMLInputElement>,
@@ -31,6 +38,12 @@ export interface iButtonProps {
   padding?: string;
   styleButton: string;
   fontSize?: string;
+}
+
+export interface iCardProductProps {
+  name: string;
+  price: number;
+  img: string;
 }
 
 export interface iCardMyProductProps {

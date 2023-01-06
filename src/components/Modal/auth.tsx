@@ -1,15 +1,26 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import child from "../../assets/child.png";
 import login from "../../assets/logoLogin.png";
 import logoRegister from "../../assets/logoRegister.png";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../context/AuthContext";
+import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
+import { loginSchema } from "../../schema/loginSchema";
+import { iFormModal } from "../../interfaces";
 
 export function Login() {
-  const { register, handleSubmit } = useForm();
-  const { closeModal } = useContext(ModalContext);
+  const { closeLogin } = useContext(ModalContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iFormModal>({
+    resolver: yupResolver(loginSchema),
+  });
 
   return (
     <Div>
@@ -20,7 +31,7 @@ export function Login() {
       />
       <section className="form-section">
         <img src={login} alt="logo do login" />
-        <span onClick={closeModal}>x</span>
+        <span onClick={closeLogin}>x</span>
         <form>
           <Input
             id="email"
@@ -31,6 +42,8 @@ export function Login() {
             width="100%"
             {...register("email")}
           />
+          <p>{errors.email?.message}</p>
+
           <Input
             id="password"
             placeholder=""
@@ -40,6 +53,8 @@ export function Login() {
             width="100%"
             {...register("password")}
           />
+          <p>{errors.password?.message}</p>
+
           <button type="submit">Entrar</button>
         </form>
         <button type="button">Cadastre-se</button>
@@ -49,8 +64,15 @@ export function Login() {
 }
 
 export function Register() {
-  const { register, handleSubmit } = useForm();
-  const { closeModal } = useContext(ModalContext);
+  const { closeRegister } = useContext(ModalContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iFormModal>({
+    resolver: yupResolver(registerSchema),
+  });
 
   return (
     <Div>
@@ -61,7 +83,7 @@ export function Register() {
       />
       <section className="form-section">
         <img src={logoRegister} alt="logo do cadastro" />
-        <span onClick={closeModal}>x</span>
+        <span onClick={closeRegister}>x</span>
         <form>
           <Input
             id="name"
@@ -72,6 +94,8 @@ export function Register() {
             width="100%"
             {...register("name")}
           />
+          <p>{errors.name?.message}</p>
+
           <Input
             id="email"
             placeholder=""
@@ -81,6 +105,8 @@ export function Register() {
             width="100%"
             {...register("email")}
           />
+          <p>{errors.email?.message}</p>
+
           <Input
             id="password"
             placeholder=""
@@ -90,15 +116,19 @@ export function Register() {
             width="100%"
             {...register("password")}
           />
+          <p>{errors.password?.message}</p>
+
           <Input
-            id="confirm-password"
+            id="confirmPass"
             placeholder=""
             labelName="Confirmar senha"
             required={true}
             inputType="password"
             width="100%"
-            {...register("confirm-password")}
+            {...register("confirmPass")}
           />
+          <p>{errors.confirmPass?.message}</p>
+
           <button type="submit">Cadastrar</button>
         </form>
       </section>
