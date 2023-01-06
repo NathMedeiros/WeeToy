@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
 import { RegisterContext } from "./RegisterContext";
 
@@ -25,7 +25,6 @@ export const LoginContext = createContext({} as iLoginContext);
 export function LoginProvider({ children }: iModalProps) {
   const { closeRegister } = useContext(RegisterContext);
   const [loginOpen, setLoginOpen] = useState(false);
-  const navigate = useNavigate();
 
   function openLogin() {
     setLoginOpen(true);

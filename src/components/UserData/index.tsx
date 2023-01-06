@@ -32,7 +32,7 @@ export function UserData() {
           labelName="Nome"
           required={true}
           inputType="text"
-          {...register("name")}
+          register={register("name")}
           width="100%"
         />
         {errors && <span>{errors.name?.message}</span>}
@@ -42,7 +42,7 @@ export function UserData() {
           labelName="Endereço"
           required={true}
           inputType="email"
-          {...register("adress")}
+          register={register("adress")}
           width="100%"
         />
         {errors && <span>{errors.email?.message}</span>}
@@ -52,7 +52,7 @@ export function UserData() {
           labelName="CEP"
           required={true}
           inputType="text"
-          {...register("cep")}
+          register={register("cep")}
           width="100%"
         />
         {errors && <span>{errors.cep?.message}</span>}
@@ -62,7 +62,7 @@ export function UserData() {
           labelName="Email"
           required={true}
           inputType="text"
-          {...register("email")}
+          register={register("email")}
           width="100%"
         />
         {errors && <span>{errors.email?.message}</span>}
@@ -72,7 +72,7 @@ export function UserData() {
           labelName="Data de Nasicmento"
           required={true}
           inputType="date"
-          {...register("dateOfBirth")}
+          register={register("dateOfBirth")}
           width="100%"
         />
         {errors && <span>{errors.email?.message}</span>}
