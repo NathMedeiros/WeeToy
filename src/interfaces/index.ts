@@ -26,25 +26,33 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
-export interface iButtonProps{
-    width?: string,
-    padding?: string,
-    styleButton: string,
-    fontSize?: string
+export interface iButtonProps {
+  width?: string;
+  padding?: string;
+  styleButton: string;
+  fontSize?: string;
 }
 
-export interface iCardMyProductProps{
-    image: string,
-    name: string,
-    price: number,
-    id: number
+export interface iCardMyProductProps {
+  image: string;
+  name: string;
+  price: number;
+  id: number;
 }
 
-export interface iCardHistoryBuy{
-    image: string,
-    name: string,
-    price: number
+export interface iCardHistoryBuy {
+  image: string;
+  name: string;
+  price: number;
 }
 export interface iUserPage {
   children: React.ReactNode;
+}
+
+export interface iFormRegister {
+  name: string;
+  adress: string;
+  cep: number;
+  email: string;
+  dateOfBirth: number;
 }
