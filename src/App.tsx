@@ -12,6 +12,9 @@ function App() {
         <ResetCss />
         <Home />
         <Global />
+        <UserPage>
+          <></>
+        </UserPage>
       </ModalProvider>
     </>
   );

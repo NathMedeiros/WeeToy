@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userDataSchema } from "./userDataSchema";
 import { Button } from "../../components/Button";
 import { UserHistory } from "../../components/UserHistory";
+import { UserData } from "../../components/UserData";
 
 export function UserPage({ children }: iUserPage) {
   const [pageToRender, setPageToRender] = useState("userData" as String);
@@ -26,9 +27,7 @@ export function UserPage({ children }: iUserPage) {
         <button>Histórico</button>
         <button>Anúncios</button>
       </nav>
-      {/* <UserData /> */}
-      <UserHistory />
-      {/* <UserProducts/> */}
+      <UserData />
     </StyledUserPage>
   );
 }
