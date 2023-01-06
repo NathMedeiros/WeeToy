@@ -1,4 +1,10 @@
-import { createContext, useState, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
@@ -13,6 +19,7 @@ export interface iLoginContext {
   closeLogin: () => void;
   submitLogin: (data: iDataLogin) => Promise<void>;
   loginOpen: boolean;
+  setLoginOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface iDataLogin {
@@ -71,6 +78,7 @@ export function LoginProvider({ children }: iModalProps) {
           closeLogin,
           loginOpen,
           submitLogin,
+          setLoginOpen,
         }}
       >
         {children}
