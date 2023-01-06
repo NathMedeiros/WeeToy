@@ -33,6 +33,13 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
+export interface iButtonProps {
+  width?: string;
+  padding?: string;
+  styleButton: string;
+  fontSize?: string;
+}
+
 export interface iCardProductProps {
   name: string;
   price: number;
@@ -54,4 +61,12 @@ export interface iCardHistoryBuy {
 }
 export interface iUserPage {
   children: React.ReactNode;
+}
+
+export interface iFormRegister {
+  name: string;
+  adress: string;
+  cep: number;
+  email: string;
+  dateOfBirth: number;
 }
