@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Div } from "./styles";
-import { InputAnnounce } from "./../InputAnnounce/index";
+import { InputAnnounce } from "../InputAnnounce/index";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";

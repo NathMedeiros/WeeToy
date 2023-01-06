@@ -8,7 +8,7 @@ import { ModalContext } from "../../context/AuthContext";
 import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
-import { Announce } from "../ModalAnunciar copy";
+import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 
 export function Header() {
