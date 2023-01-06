@@ -3,11 +3,6 @@ import { Header } from "../../components/Header";
 
 import { iUserPage } from "../../interfaces";
 import { StyledUserPage } from "./style";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { userDataSchema } from "./userDataSchema";
-import { Button } from "../../components/Button";
-import { UserHistory } from "../../components/UserHistory";
 import { UserData } from "../../components/UserData";
 
 export function UserPage({ children }: iUserPage) {

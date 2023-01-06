@@ -12,6 +12,8 @@ export interface iModalContext {
   closeLogin: () => void;
   registerOpen: boolean;
   loginOpen: boolean;
+  hiddenSearch: () => void;
+  hidden: boolean;
 }
 
 export interface iData {
@@ -26,6 +28,15 @@ export const ModalContext = createContext({} as iModalContext);
 export function ModalProvider({ children }: iModalProps) {
   const [registerOpen, setRegisterOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  function hiddenSearch() {
+    if (hidden === true) {
+      setHidden(false);
+    } else {
+      setHidden(true);
+    }
+  }
 
   function openRegister() {
     setRegisterOpen(true);
@@ -53,6 +64,8 @@ export function ModalProvider({ children }: iModalProps) {
           openLogin,
           closeLogin,
           loginOpen,
+          hiddenSearch,
+          hidden,
         }}
       >
         {children}

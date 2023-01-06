@@ -4900,6 +4900,11 @@ hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0:
   dependencies:
     react-is "^16.7.0"
 
+hook-form@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/hook-form/-/hook-form-0.0.1.tgz#42cc6036a40d4552e3991aadfef82f2537600eb2"
+  integrity sha512-jusNZfTsHBSqvIgrhG8a1iwdeN1UT3HenQwg3snzd5ArwpNgDQlN2O0XdPqEE2oPUdMr/k16WmCccO8jRgiRYA==
+
 hoopy@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d661100033a9a9402ad3dea677381c1b1d"
