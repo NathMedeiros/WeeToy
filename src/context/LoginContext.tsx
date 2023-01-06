@@ -51,7 +51,7 @@ export function LoginProvider({ children }: iModalProps) {
       const { accessToken, user } = response;
 
       localStorage.setItem("@TOKEN: WeeToys", accessToken);
-      localStorage.setItem("@USER: WeeToys", user);
+      localStorage.setItem("@USERID: WeeToys", user.id);
 
       toast("login bem sucedido");
     } catch (error) {

@@ -4,7 +4,7 @@ export const Div = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
+  max-width: 600px;
 
   .img-aside {
     width: 300px;
@@ -25,9 +25,9 @@ export const Div = styled.div`
   }
 
   .form-section span {
-    position: absolute;
-    right: 30px;
-    top: 20px;
+    position: relative;
+    left: 233px;
+    bottom: 75px;
     color: #fc4a1a;
     font-weight: 700;
     cursor: pointer;

@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import imageChild from "./../../assets/imageChild.png";
 import { Button } from "../../components/Button";
 import { useContext } from "react";
-import { modalPosition } from "../../components/Modal/modal";
 import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
 import { RegisterContext } from "../../context/RegisterContext";
@@ -75,7 +74,9 @@ export function Home() {
               <Modal
                 isOpen={registerOpen}
                 onRequestClose={closeRegister}
-                style={modalPosition}
+                contentLabel="Example Modal"
+                overlayClassName="modal-overlay"
+                className="modal-content"
               >
                 <Register />
               </Modal>
