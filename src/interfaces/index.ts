@@ -31,12 +31,6 @@ export interface iFormModal {
   name?: string;
 }
 
-// interface iErrorsInput{
-//     message: string,
-//     ref: InputHTMLAttributes<HTMLInputElement>,
-//     type: string
-// }
-
 export interface iButtonProps {
   width?: string;
   padding?: string;
@@ -57,6 +51,7 @@ export interface iCardProductProps {
   name: string;
   price: number;
   img: string;
+  id: number;
 }
 
 export interface iCardMyProductProps {
@@ -73,4 +68,12 @@ export interface iCardHistoryBuy {
 }
 export interface iUserPage {
   children: React.ReactNode;
+}
+
+export interface iFormRegister {
+  name: string;
+  adress: string;
+  cep: number;
+  email: string;
+  dateOfBirth: number;
 }
