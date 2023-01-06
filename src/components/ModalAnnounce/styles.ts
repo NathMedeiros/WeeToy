@@ -41,6 +41,7 @@ export const Div = styled.div`
     background-color: #fff;
     border-radius: 0.5rem;
     border: none;
+    padding: 0.75rem 0.75rem;
     height: 48px;
     margin-bottom: 37px;
   }
@@ -133,7 +134,7 @@ export const Div = styled.div`
 
     select {
       margin-bottom: 40px;
-      max-width: 245px;
+      width: 245px;
     }
 
     form {
