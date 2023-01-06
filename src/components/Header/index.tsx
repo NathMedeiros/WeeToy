@@ -2,13 +2,14 @@ import { HeaderStyled } from "./styled";
 import { useContext, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
-import imageCart from "./../../assets/cart.png";
+
 import menu from "./../../assets/menu.png";
-import { ModalContext } from "../../context/ModalContext";
-import { Login } from "../Modal";
+import { ModalContext } from "../../context/AuthContext";
+import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
 import { Announce } from "../ModalAnunciar copy";
+import { ButtonCart } from "../ButtonCart";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(ModalContext);
@@ -35,9 +36,7 @@ export function Header() {
             <span onClick={openModal}>Anunciar</span>
             <span onClick={openLogin}>Login</span>
           </div>
-          <button>
-            <img src={imageCart} alt="Logo do carrinho" className="cart" />
-          </button>
+          <ButtonCart />
           <button
             className="buttonMenu"
             onClick={() => {

@@ -1,5 +1,6 @@
+import { ModalProvider } from "./context/AuthContext";
 import { ModalAnnounceProvider } from "./context/ModalAnnounceContext";
-import { ModalProvider } from "./context/ModalContext";
+
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";
 import { Global } from "./styles/global";
