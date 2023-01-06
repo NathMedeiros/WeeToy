@@ -10,6 +10,16 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   width: string;
   register: UseFormRegisterReturn;
 }
+export interface iInputAnnounceProps
+  extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  labelName: string;
+  placeholder: string;
+  inputType: HTMLInputTypeAttribute;
+  required: boolean;
+  width: string;
+  register: UseFormRegisterReturn;
+}
 
 export interface iInputStyleProps {
   width: string;
@@ -22,12 +32,6 @@ export interface iFormModal {
   name?: string;
 }
 
-// interface iErrorsInput{
-//     message: string,
-//     ref: InputHTMLAttributes<HTMLInputElement>,
-//     type: string
-// }
-
 export interface iButtonProps {
   width?: string;
   padding?: string;
@@ -35,10 +39,20 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
+export interface IToyData {
+  img: string;
+  marks: string;
+  toy_name: string;
+  category: string;
+  price: number;
+  description: string;
+}
+
 export interface iCardProductProps {
   name: string;
   price: number;
   img: string;
+  id: number;
 }
 
 export interface iCardMyProductProps {
@@ -55,4 +69,12 @@ export interface iCardHistoryBuy {
 }
 export interface iUserPage {
   children: React.ReactNode;
+}
+
+export interface iFormRegister {
+  name: string;
+  adress: string;
+  cep: number;
+  email: string;
+  dateOfBirth: number;
 }

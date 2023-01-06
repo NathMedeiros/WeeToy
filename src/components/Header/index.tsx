@@ -2,14 +2,18 @@ import { HeaderStyled } from "./styled";
 import { useContext, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
-import imageCart from "./../../assets/cart.png";
+
 import menu from "./../../assets/menu.png";
 import { LoginContext } from "../../context/LoginContext";
 import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
+import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
+import { Announce } from "../ModalAnnounce";
+import { ButtonCart } from "../ButtonCart";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(LoginContext);
+  const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
 
   const [linksMobile, setLinksMobile] = useState(false);
 
@@ -29,12 +33,10 @@ export function Header() {
           <div className="linksHeader">
             <span>Categoria</span>
             <span>Doações</span>
-            <span>Anunciar</span>
+            <span onClick={openModal}>Anunciar</span>
             <span onClick={openLogin}>Login</span>
           </div>
-          <button>
-            <img src={imageCart} alt="Logo do carrinho" className="cart" />
-          </button>
+          <ButtonCart />
           <button
             className="buttonMenu"
             onClick={() => {
@@ -50,6 +52,13 @@ export function Header() {
           style={modalPosition}
         >
           <Login />
+        </Modal>
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          style={modalPosition}
+        >
+          <Announce />
         </Modal>
       </div>
       {linksMobile === true ? (
