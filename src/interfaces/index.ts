@@ -37,6 +37,7 @@ export interface iCardProductProps {
   name: string;
   price: number;
   img: string;
+  id: number
 }
 
 export interface iCardMyProductProps {

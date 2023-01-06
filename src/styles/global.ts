@@ -23,6 +23,17 @@ export const Global = createGlobalStyle`
         cursor: pointer;
     }
 
+    .modalCart{
+        position: fixed;
+        top: 10%;
+        right: 25%;
+    }
+
+    @media(max-width: 620px){
+        .modalCart{
+            right: 9%;
+        }
+    }
 `;
 
 

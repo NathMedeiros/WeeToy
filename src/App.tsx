@@ -10,7 +10,7 @@ function App() {
       <ModalProvider>
         <Global />
         <ResetCss />
-        <Home />
+        <Home/>
         <Global />
         <UserPage>
           <></>
