@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const StyledHistoric = styled.div`
-  margin: 2rem auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  background-color: #fff;
-  border-radius: var(--radius);
-  max-width: 350px;
+  margin: 0 0.4rem;
 `;
 
 export const UlHistoric = styled.ul`
   margin-bottom: 20px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: var(--radius);
+  max-width: 350px;
 
   h1 {
     display: flex;
@@ -25,6 +25,7 @@ export const UlHistoric = styled.ul`
     display: flex;
     margin-bottom: 30px;
     align-items: center;
+    border-radius: 12px;
 
     img {
       padding: 10px;

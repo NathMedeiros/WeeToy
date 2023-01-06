@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledUserData = styled.div`
+  margin: 0 0.4rem;
   & form {
     margin: 2rem auto;
     padding: 1rem;

@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const MyAdsStyled = styled.div`
-  margin: 2rem auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  background-color: #fff;
-  border-radius: var(--radius);
-  max-width: 350px;
+  margin: 0 0.4rem;
 `;
 
 export const UlAds = styled.ul`
   margin-bottom: 20px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: var(--radius);
+  max-width: 350px;
 
   h1 {
     display: flex;
@@ -26,6 +26,7 @@ export const UlAds = styled.ul`
     margin-bottom: 30px;
     align-items: center;
     justify-content: space-between;
+    border-radius: 12px;
 
     img {
       padding: 10px;
