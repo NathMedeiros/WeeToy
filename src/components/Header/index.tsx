@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 
 import menu from "./../../assets/menu.png";
-import { ModalContext } from "../../context/AuthContext";
+import { LoginContext } from "../../context/LoginContext";
 import { Login } from "../Modal/auth";
 import { modalPosition } from "../Modal/modal";
 import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
@@ -12,7 +12,7 @@ import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 
 export function Header() {
-  const { openLogin, closeLogin, loginOpen } = useContext(ModalContext);
+  const { openLogin, closeLogin, loginOpen } = useContext(LoginContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
 
   const [linksMobile, setLinksMobile] = useState(false);

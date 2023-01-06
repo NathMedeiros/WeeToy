@@ -1,25 +1,25 @@
 import { Route, Routes } from "react-router-dom";
-import { ModalProvider } from "./context/AuthContext";
+import { LoginProvider } from "./context/LoginContext";
 import { ModalAnnounceProvider } from "./context/ModalAnnounceContext";
-
+import { RegisterProvider } from "./context/RegisterContext";
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";
-import { Global } from "./styles/global";
-import { ResetCss } from "./styles/resetCss";
 
 function App() {
   return (
     <>
       <ModalAnnounceProvider>
-        <ModalProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/UserPage"
-              element={<UserPage children={undefined} />}
-            />
-          </Routes>
-        </ModalProvider>
+        <LoginProvider>
+          <RegisterProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/UserPage"
+                element={<UserPage children={undefined} />}
+              />
+            </Routes>
+          </RegisterProvider>
+        </LoginProvider>
       </ModalAnnounceProvider>
     </>
   );

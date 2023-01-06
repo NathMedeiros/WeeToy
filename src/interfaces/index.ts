@@ -8,6 +8,7 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputType: HTMLInputTypeAttribute;
   required: boolean;
   width: string;
+  register: UseFormRegisterReturn;
 }
 export interface iInputAnnounceProps
   extends InputHTMLAttributes<HTMLInputElement> {

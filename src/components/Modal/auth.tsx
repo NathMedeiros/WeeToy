@@ -1,29 +1,33 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Toaster } from "react-hot-toast";
 import child from "../../assets/child.png";
 import login from "../../assets/logoLogin.png";
 import logoRegister from "../../assets/logoRegister.png";
-import { ModalContext } from "../../context/AuthContext";
+import { iDataLogin, LoginContext } from "../../context/LoginContext";
 import { registerSchema } from "../../schema/registerSchema";
 import { Input } from "../Input";
 import { Div } from "./modal";
 import { loginSchema } from "../../schema/loginSchema";
 import { iFormModal } from "../../interfaces";
+import { RegisterContext } from "../../context/RegisterContext";
 
 export function Login() {
-  const { closeLogin } = useContext(ModalContext);
+  const { closeLogin, submitLogin } = useContext(LoginContext);
+  const { openRegister } = useContext(RegisterContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<iFormModal>({
+  } = useForm<iDataLogin>({
     resolver: yupResolver(loginSchema),
   });
 
   return (
     <Div>
+      <Toaster />
       <img
         src={child}
         alt="imagem de criança brincando"
@@ -32,39 +36,41 @@ export function Login() {
       <section className="form-section">
         <img src={login} alt="logo do login" />
         <span onClick={closeLogin}>x</span>
-        <form>
+        <form onSubmit={handleSubmit(submitLogin)}>
           <Input
-            id="email"
+            id="email-login"
             placeholder=""
             labelName="Email"
             required={true}
             inputType="text"
             width="100%"
-            {...register("email")}
+            register={register("email")}
           />
           <p>{errors.email?.message}</p>
 
           <Input
-            id="password"
+            id="password-login"
             placeholder=""
             labelName="Senha"
             required={true}
             inputType="password"
             width="100%"
-            {...register("password")}
+            register={register("password")}
           />
           <p>{errors.password?.message}</p>
 
           <button type="submit">Entrar</button>
         </form>
-        <button type="button">Cadastre-se</button>
+        <button type="button" onClick={openRegister}>
+          Cadastre-se
+        </button>
       </section>
     </Div>
   );
 }
 
 export function Register() {
-  const { closeRegister } = useContext(ModalContext);
+  const { closeRegister, submitRegister } = useContext(RegisterContext);
 
   const {
     register,
@@ -76,6 +82,7 @@ export function Register() {
 
   return (
     <Div>
+      <Toaster />
       <img
         src={child}
         alt="imagem de criança brincando"
@@ -84,7 +91,7 @@ export function Register() {
       <section className="form-section">
         <img src={logoRegister} alt="logo do cadastro" />
         <span onClick={closeRegister}>x</span>
-        <form>
+        <form onSubmit={handleSubmit(submitRegister)}>
           <Input
             id="name"
             placeholder=""
@@ -92,29 +99,29 @@ export function Register() {
             required={true}
             inputType="text"
             width="100%"
-            {...register("name")}
+            register={register("name")}
           />
           <p>{errors.name?.message}</p>
 
           <Input
-            id="email"
+            id="email-register"
             placeholder=""
             labelName="Email"
             required={true}
             inputType="text"
             width="100%"
-            {...register("email")}
+            register={register("email")}
           />
           <p>{errors.email?.message}</p>
 
           <Input
-            id="password"
+            id="password-register"
             placeholder=""
             labelName="Senha"
             required={true}
             inputType="password"
             width="100%"
-            {...register("password")}
+            register={register("password")}
           />
           <p>{errors.password?.message}</p>
 
@@ -125,7 +132,7 @@ export function Register() {
             required={true}
             inputType="password"
             width="100%"
-            {...register("confirmPass")}
+            register={register("confirmPass")}
           />
           <p>{errors.confirmPass?.message}</p>
 
