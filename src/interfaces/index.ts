@@ -1,4 +1,5 @@
 import React, { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -7,6 +8,7 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputType: HTMLInputTypeAttribute;
   required: boolean;
   width: string;
+  register: UseFormRegisterReturn;
 }
 
 export interface iInputStyleProps {
