@@ -15,6 +15,13 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
     gap: 0.25rem;
     margin-bottom: 37px;
 
+    @media (max-width: 1200px) {
+      margin-bottom: 0;
+      width: 245px;
+      position: relative;
+      height: 70px;
+    }
+
     @media (max-width: 700px) {
       align-items: center;
       margin-bottom: 0;
@@ -48,6 +55,10 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       padding: 0.75rem 0.75rem;
       height: 48px;
 
+      @media (max-width: 1200px) {
+        width: 245px;
+      }
+
       @media (max-width: 700px) {
         width: 245px;
       }
@@ -60,7 +71,12 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
     color: red;
   }
 
+  @media (max-width: 1200px) {
+    align-items: center;
+    width: 245px;
+  }
   @media (max-width: 700px) {
     align-items: center;
+    width: 245px;
   }
 `;

@@ -25,19 +25,21 @@ export function Announce() {
 
   function getToy(data: IToyData) {
     const user = localStorage.getItem("@USER: WeeToys");
-    console.log(user);
-    console.log(data);
-    const { category, price, marks, toy_name, img } = data;
+    if (user != null) {
+      const userData = JSON.parse(user);
+      const { id } = userData;
 
-    const newAnnounce = {
-      category: category,
-      price: price,
-      marks: marks,
-      toy_name: toy_name,
-      img: img,
-      // id: ,
-    };
-    console.log(newAnnounce);
+      const { category, price, marks, toy_name, img } = data;
+      const newAnnounce = {
+        category: category,
+        price: price,
+        marks: marks,
+        toy_name: toy_name,
+        img: img,
+        id: id,
+      };
+      console.log(newAnnounce);
+    }
   }
 
   return (
