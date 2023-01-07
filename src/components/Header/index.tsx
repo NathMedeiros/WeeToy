@@ -68,7 +68,7 @@ export function Header() {
           onRequestClose={closeModal}
           contentLabel="Example Modal"
           overlayClassName="modal-overlay"
-          className="modal-content"
+          className="modal-content-announce"
         >
           <Announce />
         </Modal>

@@ -80,7 +80,6 @@ export const Div = styled.div`
     background-color: #fff;
     border-radius: 0.5rem;
     border: none;
-    padding: 0.75rem 0.75rem;
     resize: none;
   }
 
@@ -104,6 +103,73 @@ export const Div = styled.div`
   .nameCategoryPriceDiv {
     display: flex;
     flex-direction: column;
-    gap: 27px;
+    gap: 8px;
+  }
+
+  @media (max-width: 700px) {
+    width: 278px;
+    height: 811px;
+    .nameMark {
+      flex-direction: column;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      margin-top: 0px;
+    }
+
+    .divColl {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .categoryPrice {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0px;
+      width: 80%;
+    }
+
+    select {
+      margin-bottom: 40px;
+      width: 245px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .nameCategoryPriceDiv {
+      align-items: center;
+      gap: 0px;
+    }
+    button {
+      width: 234px;
+      height: 47px;
+      font-size: 27px;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 19px;
+    }
+    textarea {
+      width: 245px;
+      height: 87px;
+      margin-bottom: 60px;
+    }
+    .announceTitle {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 70px;
+    }
+    .subtitle {
+      display: none;
+    }
+    .divColl {
+      gap: 0px;
+    }
   }
 `;

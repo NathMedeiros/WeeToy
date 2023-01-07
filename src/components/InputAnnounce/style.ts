@@ -15,6 +15,14 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
     gap: 0.25rem;
     margin-bottom: 37px;
 
+    @media (max-width: 700px) {
+      align-items: center;
+      margin-bottom: 0;
+      width: 245px;
+      position: relative;
+      height: 70px;
+    }
+
     & > label {
       font-size: 1rem;
       font-weight: 500;
@@ -22,6 +30,12 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       font-family: "Inter", sans-serif;
       margin-left: 10px;
       margin-bottom: 10px;
+
+      @media (max-width: 700px) {
+        position: absolute;
+        left: 0;
+        top: -30px;
+      }
     }
 
     & > input {
@@ -33,6 +47,10 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       border: none;
       padding: 0.75rem 0.75rem;
       height: 48px;
+
+      @media (max-width: 700px) {
+        width: 245px;
+      }
     }
   }
 
@@ -40,5 +58,9 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
     font-size: 0.875rem;
     font-weight: 400;
     color: red;
+  }
+
+  @media (max-width: 700px) {
+    align-items: center;
   }
 `;
