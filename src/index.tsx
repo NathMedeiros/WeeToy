@@ -1,17 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import "../src/components/Modal/background.css";
+import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import reportWebVitals from "./reportWebVitals";
+import { Global } from "./styles/global";
+import { ResetCss } from "./styles/resetCss";
+import "../src/components/Modal/background.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <Global />
+          <ResetCss />
+          <App />
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

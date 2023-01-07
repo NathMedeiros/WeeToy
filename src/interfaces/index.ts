@@ -1,5 +1,5 @@
 import React, { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
-import { UseFormRegisterReturn } from "react-hook-form/dist/types";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -8,7 +8,17 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputType: HTMLInputTypeAttribute;
   required: boolean;
   width: string;
-  register: UseFormRegisterReturn
+  register: UseFormRegisterReturn;
+}
+export interface iInputAnnounceProps
+  extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  labelName: string;
+  placeholder: string;
+  inputType: HTMLInputTypeAttribute;
+  required: boolean;
+  width: string;
+  register: UseFormRegisterReturn;
 }
 
 export interface iInputStyleProps {
@@ -22,12 +32,6 @@ export interface iFormModal {
   name?: string;
 }
 
-// interface iErrorsInput{
-//     message: string,
-//     ref: InputHTMLAttributes<HTMLInputElement>,
-//     type: string
-// }
-
 export interface iButtonProps {
   width?: string;
   padding?: string;
@@ -35,18 +39,20 @@ export interface iButtonProps {
   fontSize?: string;
 }
 
-export interface iButtonProps {
-  width?: string;
-  padding?: string;
-  styleButton: string;
-  fontSize?: string;
+export interface IToyData {
+  img: string;
+  marks: string;
+  toy_name: string;
+  category: string;
+  price: number;
+  description: string;
 }
 
 export interface iCardProductProps {
   name: string;
   price: number;
   img: string;
-  id: number
+  id: number;
 }
 
 export interface iCardMyProductProps {

@@ -7,6 +7,7 @@ export const Global = createGlobalStyle`
         --color-grey-0: #f4f4f4;
         --font-button: 'Seymour One', sans-serif;
         --size-1: 1.688rem;
+        --size-2: 1.1rem;
         --radius: 0.75rem;
     }
 

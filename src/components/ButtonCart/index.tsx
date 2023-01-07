@@ -49,7 +49,7 @@ export function ButtonCart (){
                             <ul>
                                 {listCart.map((toy)=>{
                                     return (
-                                        <CartProduct key={toy.id} name={toy.name} price={toy.price} img={toy.img} id={toy.id}/>
+                                        <CartProduct key={toy.id} name={toy.toy_name} price={toy.price} img={toy.img} id={toy.id}/>
                                     )
                                 })}
                             </ul>

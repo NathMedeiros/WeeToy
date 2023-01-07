@@ -1,0 +1,104 @@
+import { createContext, useState } from "react";
+import toast from "react-hot-toast";
+import { Outlet } from "react-router-dom";
+import { api } from "../request/api";
+import { iModalProps, iDataLogin } from "./LoginContext";
+
+export interface iRegisterContext {
+  openRegister: () => void;
+  closeRegister: () => void;
+  openLogin: () => void;
+  closeLogin: () => void;
+  submitRegister: (data: iDataLogin) => Promise<void>;
+  registerOpen: boolean;
+  loginOpen: boolean;
+}
+
+export interface iDataRegister {
+  email: string;
+  password: string;
+  name?: string;
+  confirmPass?: string;
+}
+
+export const RegisterContext = createContext({} as iRegisterContext);
+
+export function RegisterProvider({ children }: iModalProps) {
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  function openRegister() {
+    setRegisterOpen(true);
+    closeLogin();
+  }
+
+  function closeRegister() {
+    setRegisterOpen(false);
+  }
+
+  function openLogin() {
+    setLoginOpen(true);
+    closeRegister();
+  }
+
+  function closeLogin() {
+    setLoginOpen(false);
+  }
+
+  async function submitRegister(data: iDataRegister) {
+    try {
+      const request = await api.post("/register", data);
+
+      if (request.status === 201) {
+        toast.success(`Cadastro realizado com sucesso`, {
+          style: {
+            border: "1px solid #27AE60",
+            padding: "16px",
+            color: "#27AE60",
+            background: "#F5F5F5",
+          },
+          iconTheme: {
+            primary: "#27AE60",
+            secondary: "#F5F5F5",
+          },
+        });
+
+        openLogin();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(`Falha no registro. Tente novamente!`, {
+        style: {
+          border: "1px solid #EB5757",
+          padding: "16px",
+          color: "#EB5757",
+          background: "#F5F5F5",
+        },
+        iconTheme: {
+          primary: "#EB5757",
+          secondary: "#F5F5F5",
+        },
+      });
+    }
+  }
+
+  return (
+    <>
+      <RegisterContext.Provider
+        value={{
+          openRegister,
+          closeRegister,
+          registerOpen,
+          submitRegister,
+          loginOpen,
+          openLogin,
+          closeLogin,
+        }}
+      >
+        {children}
+      </RegisterContext.Provider>
+
+      <Outlet />
+    </>
+  );
+}

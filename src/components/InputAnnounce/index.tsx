@@ -1,7 +1,7 @@
-import { iInputProps } from "../../interfaces";
-import { InputStyle } from "./style";
+import { iInputAnnounceProps } from "../../interfaces";
+import { InputAnnounceStyle } from "./style";
 
-export function Input({
+export function InputAnnounce({
   id,
   placeholder,
   labelName,
@@ -9,9 +9,9 @@ export function Input({
   inputType,
   width,
   register,
-}: iInputProps) {
+}: iInputAnnounceProps) {
   return (
-    <InputStyle width={width}>
+    <InputAnnounceStyle width={width}>
       <div>
         <label htmlFor={id}>{labelName}</label>
         <input
@@ -22,6 +22,6 @@ export function Input({
           {...register}
         />
       </div>
-    </InputStyle>
+    </InputAnnounceStyle>
   );
 }

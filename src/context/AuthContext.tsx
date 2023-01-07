@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { api } from "./../request/api"
 
-export interface iModalProps {
-  children: React.ReactNode;
+interface iAuthProps{
+    children: React.ReactNode;
 }
 
 export interface iModalContext {
@@ -17,63 +18,87 @@ export interface iModalContext {
   closeEditProduct: () => void;
 }
 
-export interface iData {
-  email: string;
-  password: string;
-  name: string;
-  confirmPass?: string;
+export interface iToys{
+    category: string,
+    description: string,
+    id: number,
+    img: string,
+    marks: string,
+    price: number,
+    toy_name: string,
+    userId: number
 }
 
-export const ModalContext = createContext({} as iModalContext);
+interface iAuthContext{
+    setLogged: React.Dispatch<React.SetStateAction<boolean>>,
+    isLogged: boolean,
+    listToys: iToys[]
+}
 
-export function ModalProvider({ children }: iModalProps) {
-  const [registerOpen, setRegisterOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [modalEditProduct, setModalEditProduct] = useState<boolean>(false)
+export const AuthContext = createContext({} as iAuthContext)
 
-  function openRegister() {
-    setRegisterOpen(true);
-  }
+export function AuthProvider({children}: iAuthProps){
 
-  function closeRegister() {
-    setRegisterOpen(false);
-  }
+    const [logged, setLogged] = useState(false)
 
-  function openLogin() {
-    setLoginOpen(true);
-  }
+    const [isLogged, setIsLogged] = useState(false)
 
-  function closeLogin() {
-    setLoginOpen(false);
-  }
+    const [listToys, setListToys] = useState([{
+        category: "",
+        description: "",
+        id: 0,
+        img: "",
+        marks: "",
+        price: 0,
+        toy_name: "",
+        userId: 0
+    }])
 
-  function openEditProduct() {
-    setModalEditProduct(true)
-  }
+    useEffect(()=>{
+        const token = localStorage.getItem("@TOKEN: WeeToys")
 
-  function closeEditProduct() {
-    setModalEditProduct(false)
-  }
+        const userIdLocal = localStorage.getItem("@USER: WeeToys")
+        
+        async function loadUser(){
+            if(token && userIdLocal !== null){
+                
+                const userId = await JSON.parse(userIdLocal)
+                
+                try{
+                    const request = await api.get(`/users/${userId.id}`, {headers: {authorization: `Bearer ${token}`}})
 
-  return (
-    <>
-      <ModalContext.Provider
-        value={{
-          openRegister,
-          closeRegister,
-          registerOpen,
-          openLogin,
-          closeLogin,
-          loginOpen,
-          modalEditProduct,
-          openEditProduct,
-          closeEditProduct
-        }}
-      >
-        {children}
-      </ModalContext.Provider>
+                    if(request.data){
+                        setIsLogged(true)
+                    }
+                }catch(err){
+                    return null
+                }
+            }
+        }
 
-      <Outlet />
-    </>
-  );
+        loadUser()
+
+        async function getToysFromAPI(){
+            try{
+                const {data} = await api.get("/toys")
+                
+                const arrayToys: iToys[] = data.map((toy: iToys)=>{
+                    return toy
+                })
+                
+                setListToys(arrayToys)
+            }catch(err){
+                return null
+            }
+        }
+
+        getToysFromAPI()
+        
+    },[logged])
+
+    return (
+        <AuthContext.Provider value={{setLogged, isLogged, listToys}}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
