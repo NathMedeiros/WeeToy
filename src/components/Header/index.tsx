@@ -5,7 +5,7 @@ import logo from "./../../assets/logoWeeToy.png";
 import imageUser from "./../../assets/user.png";
 import menu from "./../../assets/menu.png";
 import { Login } from "../Modal/auth";
-import { ModalAnnounceContext } from "../../context/ModalAnnounceContext";
+import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
@@ -30,7 +30,9 @@ export function Header() {
   return (
     <HeaderStyled>
       <div className="divHeader">
-        <img src={logo} alt="Logo WeeToy" />
+        <Link to="/">
+          <img src={logo} alt="Logo WeeToy" />
+        </Link>
         <div className="divLinksCart">
           <div className="linksHeader">
             <span>Categoria</span>
