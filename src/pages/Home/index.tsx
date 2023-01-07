@@ -9,6 +9,7 @@ import { modalPosition } from "../../components/Modal/modal";
 
 import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
+import { ModalEditProduct } from "../../components/ModalEditProduct";
 
 export const dataToys = [
   {
@@ -60,6 +61,27 @@ export function Home() {
 
   return (
     <HomeStyled>
+      <Modal 
+      isOpen={true}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.5)"
+        },
+        content: {
+          borderRadius: "0.75rem",
+          backgroundColor: "#F9F9F9",
+          maxWidth: "100%",
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          marginRight: "-50%",
+          transform: "translate(-50%, -50%)"
+        }
+      }}
+      >
+        <ModalEditProduct />
+      </Modal>
       <Header />
       <main>
         <section className="sectionImage">
