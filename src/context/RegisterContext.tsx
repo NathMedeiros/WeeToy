@@ -1,15 +1,17 @@
 import { createContext, useState } from "react";
-import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
-import { iModalProps, iDataLogin, LoginContext } from "./LoginContext";
+import { iModalProps, iDataLogin } from "./LoginContext";
 
 export interface iRegisterContext {
   openRegister: () => void;
   closeRegister: () => void;
+  openLogin: () => void;
+  closeLogin: () => void;
   submitRegister: (data: iDataLogin) => Promise<void>;
   registerOpen: boolean;
+  loginOpen: boolean;
 }
 
 export interface iDataRegister {
@@ -22,8 +24,8 @@ export interface iDataRegister {
 export const RegisterContext = createContext({} as iRegisterContext);
 
 export function RegisterProvider({ children }: iModalProps) {
-  const { closeLogin, openLogin } = useContext(LoginContext);
   const [registerOpen, setRegisterOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   function openRegister() {
     setRegisterOpen(true);
@@ -34,8 +36,16 @@ export function RegisterProvider({ children }: iModalProps) {
     setRegisterOpen(false);
   }
 
+  function openLogin() {
+    setLoginOpen(true);
+    closeRegister();
+  }
+
+  function closeLogin() {
+    setLoginOpen(false);
+  }
+
   async function submitRegister(data: iDataRegister) {
-    console.log(data);
     try {
       const request = await api.post("/register", data);
 
@@ -53,7 +63,7 @@ export function RegisterProvider({ children }: iModalProps) {
           },
         });
 
-        setTimeout(openLogin, 2500);
+        openLogin();
       }
     } catch (error) {
       console.error(error);
@@ -80,6 +90,9 @@ export function RegisterProvider({ children }: iModalProps) {
           closeRegister,
           registerOpen,
           submitRegister,
+          loginOpen,
+          openLogin,
+          closeLogin,
         }}
       >
         {children}

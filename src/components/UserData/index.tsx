@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { iFormRegister } from "../../interfaces";
 import { userDataSchema } from "../../pages/UserPage/userDataSchema";
 import { Button } from "../Button";
-import { Header } from "../Header";
 import { Input } from "../Input";
 import { StyledUserData } from "./style";
 
