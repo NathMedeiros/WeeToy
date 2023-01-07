@@ -30,7 +30,9 @@ export function Header() {
   return (
     <HeaderStyled>
       <div className="divHeader">
-        <img src={logo} alt="Logo WeeToy" />
+        <Link to="/">
+          <img src={logo} alt="Logo WeeToy" />
+        </Link>
         <div className="divLinksCart">
           <div className="linksHeader">
             <span>Categoria</span>

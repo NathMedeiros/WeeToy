@@ -6,9 +6,21 @@ interface iAuthProps{
     children: React.ReactNode;
 }
 
+export interface iToys{
+    category: string,
+    description: string,
+    id: number,
+    img: string,
+    marks: string,
+    price: number,
+    toy_name: string,
+    userId: number
+}
+
 interface iAuthContext{
     setLogged: React.Dispatch<React.SetStateAction<boolean>>,
-    isLogged: boolean
+    isLogged: boolean,
+    listToys: iToys[]
 }
 
 export const AuthContext = createContext({} as iAuthContext)
@@ -18,6 +30,17 @@ export function AuthProvider({children}: iAuthProps){
     const [logged, setLogged] = useState(false)
 
     const [isLogged, setIsLogged] = useState(false)
+
+    const [listToys, setListToys] = useState([{
+        category: "",
+        description: "",
+        id: 0,
+        img: "",
+        marks: "",
+        price: 0,
+        toy_name: "",
+        userId: 0
+    }])
 
     useEffect(()=>{
         const token = localStorage.getItem("@TOKEN: WeeToys")
@@ -43,11 +66,26 @@ export function AuthProvider({children}: iAuthProps){
 
         loadUser()
 
+        async function getToysFromAPI(){
+            try{
+                const {data} = await api.get("/toys")
+                
+                const arrayToys: iToys[] = data.map((toy: iToys)=>{
+                    return toy
+                })
+                
+                setListToys(arrayToys)
+            }catch(err){
+                return null
+            }
+        }
 
+        getToysFromAPI()
+        
     },[logged])
 
     return (
-        <AuthContext.Provider value={{setLogged, isLogged}}>
+        <AuthContext.Provider value={{setLogged, isLogged, listToys}}>
             {children}
         </AuthContext.Provider>
     )

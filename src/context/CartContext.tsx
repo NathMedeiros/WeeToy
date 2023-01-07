@@ -1,21 +1,15 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
-import { dataToys } from "../pages/Home";
+import { AuthContext } from "./AuthContext";
+import { iToys } from "./AuthContext";
 
 interface iCartProps{
     children: React.ReactNode;
 }
 
-interface iProductCart{
-    id: number,
-    name: string,
-    price: number,
-    img: string
-}
-
 interface iModalCart{
-    listCart: iProductCart[],
-    setListCart: React.Dispatch<React.SetStateAction<Array<iProductCart>>>,
+    listCart: iToys[],
+    setListCart: React.Dispatch<React.SetStateAction<Array<iToys>>>,
     addProductToCart: (id: number) => void,
     removeProductFromCart: (id: number) => void,
     count: number,
@@ -26,11 +20,17 @@ export const CartContext = createContext({} as iModalCart)
 
 export function CartProvider ({children}: iCartProps){
 
+    const {listToys} = useContext(AuthContext)
+
     const [listCart, setListCart] = useState([{
+        category: "",
+        description: "",
         id: 0,
-        name: "",
+        img: "",
+        marks: "",
         price: 0,
-        img: ""
+        toy_name: "",
+        userId: 0
     }])
 
     const [count, setCount] = useState(0)
@@ -67,27 +67,39 @@ export function CartProvider ({children}: iCartProps){
 
     function addProductToCart(id: number){
         if(listCart[0].id === 0){
-            let toyFind = dataToys.filter((toy)=>{
+            let toyFind = listToys.filter((toy)=>{
                 return toy.id === id
             })
 
             setListCart(toyFind)
         } else{
-            let toyFind = dataToys.filter((toy)=>{
+            let toyFind = listToys.filter((toy)=>{
                 return toy.id === id
             })
 
-            setListCart([...listCart, ...toyFind])
+            let duplicateProduct = listCart.filter((toy)=>{
+                return toy.id === id
+            })
+            
+            if(duplicateProduct.length !== 0){
+                return null
+            }else{
+                setListCart([...listCart, ...toyFind])
+            }
         }
     }
 
     function removeProductFromCart(id: number){
         if(listCart[0].id !== 0 && listCart.length === 1){
             setListCart([{
+                category: "",
+                description: "",
                 id: 0,
-                name: "",
+                img: "",
+                marks: "",
                 price: 0,
-                img: ""
+                toy_name: "",
+                userId: 0
             }])
         } else{
             let arrayFilter = listCart.filter((toy)=>{
