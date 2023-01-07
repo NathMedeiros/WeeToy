@@ -9,6 +9,7 @@ export function Input({
   inputType,
   width,
   register,
+  value,
 }: iInputProps) {
   return (
     <InputStyle width={width}>
@@ -19,6 +20,7 @@ export function Input({
           type={inputType}
           required={required}
           placeholder={placeholder}
+          defaultValue={value}
           {...register}
         />
       </div>

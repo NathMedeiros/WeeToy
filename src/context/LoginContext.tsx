@@ -35,9 +35,10 @@ export function LoginProvider({ children }: iModalProps) {
       localStorage.setItem("@TOKEN: WeeToys", accessToken);
       localStorage.setItem("@USER: WeeToys", userJson);
 
-      toast("login bem sucedido");
+      toast.success("login bem sucedido");
       setLogged(true);
     } catch (error) {
+      console.log(error);
       toast.error(`Falha no login. Tente novamente!`, {
         style: {
           border: "1px solid #EB5757",

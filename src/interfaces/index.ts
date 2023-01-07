@@ -9,6 +9,7 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   required: boolean;
   width: string;
   register: UseFormRegisterReturn;
+  value?: string;
 }
 export interface iInputAnnounceProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -73,8 +74,8 @@ export interface iUserPage {
 
 export interface iFormRegister {
   name: string;
-  adress: string;
-  cep: number;
+  address: string;
+  cep: string;
   email: string;
-  dateOfBirth: number;
+  birth_date: string;
 }
