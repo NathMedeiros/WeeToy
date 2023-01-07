@@ -9,15 +9,17 @@ import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterContext } from "../../context/RegisterContext";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(RegisterContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
-  const { isLogged } = useContext(AuthContext);
+  const { isLogged, setLogged } = useContext(AuthContext);
 
   const [linksMobile, setLinksMobile] = useState(false);
+
+  const navigate = useNavigate()
 
   function changeStatusLinksMobile() {
     if (linksMobile === false) {
@@ -25,6 +27,13 @@ export function Header() {
     } else {
       setLinksMobile(false);
     }
+  }
+
+  function logout(){
+    localStorage.removeItem("@TOKEN: WeeToys")
+    localStorage.removeItem("@USER: WeeToys")
+    setLogged(false)
+    navigate("/")
   }
 
   return (
@@ -39,9 +48,13 @@ export function Header() {
             <span>Doações</span>
             <span onClick={openModal}>Anunciar</span>
             {isLogged === true ? (
-              <Link to="/UserPage">
-                <img src={imageUser} alt="Logo usuário" />
-              </Link>
+              <div className="divUser">
+                <img src={imageUser} alt="Logo usuário"/>
+                <div className="optionsUser">
+                  <Link to="/UserPage" className="linkUser">Ver perfil</Link>
+                  <span className="logout" onClick={()=>{logout()}}>Logout</span>
+                </div>
+              </div>
             ) : (
               <span onClick={openLogin}>Login</span>
             )}
