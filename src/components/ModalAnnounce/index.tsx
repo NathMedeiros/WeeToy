@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Div } from "./styles";
 import { InputAnnounce } from "../InputAnnounce/index";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
+import { ModalAnnounceContext } from "../../context/AnnounceContext";
 
 export function Announce() {
+  const { submitAnnounce } = useContext(ModalAnnounceContext);
   const {
     register,
     handleSubmit,
@@ -29,16 +31,17 @@ export function Announce() {
       const userData = JSON.parse(user);
       const { id } = userData;
 
-      const { category, price, marks, toy_name, img } = data;
+      const { category, price, marks, toy_name, img, description } = data;
       const newAnnounce = {
         category: category,
         price: price,
         marks: marks,
         toy_name: toy_name,
         img: img,
-        id: id,
+        userId: id,
+        description: description,
       };
-      console.log(newAnnounce);
+      submitAnnounce(newAnnounce);
     }
   }
 

@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { api } from "./../request/api";
 
 export interface iModalAnnounceProps {
   children: React.ReactNode;
@@ -34,10 +35,17 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   function closeModal() {
     setIsOpen(false);
   }
-  console.log(isOpen);
 
   async function submitAnnounce(data: IDataNewAnnounce) {
-    console.log(data);
+    const token = localStorage.getItem("@TOKEN: WeeToys");
+    if (token) {
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        const request = await api.post("/toys", data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
   return (
