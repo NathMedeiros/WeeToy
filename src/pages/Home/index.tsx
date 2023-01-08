@@ -13,7 +13,7 @@ export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
 
-  const {listToys} = useContext(AuthContext)  
+  const {listToys, isLogged} = useContext(AuthContext)  
   
   return (
     <HomeStyled>
@@ -27,14 +27,18 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              <Button
-                padding="small"
-                styleButton="style1"
-                fontSize="1.688rem"
-                onClick={openRegister}
-              >
-                Cadastre-se
-              </Button>
+              {isLogged === true ? (
+                null
+              ):(
+                <Button
+                  padding="small"
+                  styleButton="style1"
+                  fontSize="1.688rem"
+                  onClick={openRegister}
+                >
+                  Cadastre-se
+                </Button>
+              )}
               <Modal
                 isOpen={registerOpen}
                 onRequestClose={closeRegister}

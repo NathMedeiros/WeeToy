@@ -66,6 +66,8 @@ export function AuthProvider({ children }: iAuthProps) {
           console.log(err);
           return null;
         }
+      }else{
+        setIsLogged(false)
       }
     }
 
@@ -86,6 +88,7 @@ export function AuthProvider({ children }: iAuthProps) {
     }
 
     getToysFromAPI();
+
   }, [logged]);
 
   return (

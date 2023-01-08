@@ -22,10 +22,34 @@ export const HeaderStyled = styled.header`
     display: flex;
     align-items: center;
     gap: 35px;
+    position: relative;
   }
 
   .linksHeaderMobile {
     display: none;
+  }
+
+  .optionsUser{
+    position: absolute;
+    top: 30px;
+    right: -35px;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--color-grey-0);
+    height: 80px;
+    padding: 10px;
+    border-radius: 12px;
+    visibility: visible;
+  }
+
+  .divUser{
+    cursor: pointer;
+  }
+
+  .divUser:hover .optionsUser{
+    display: flex;
   }
 
   .cart {
@@ -48,6 +72,25 @@ export const HeaderStyled = styled.header`
   span {
     font-size: 18px;
     cursor: pointer;
+  }
+
+  span:hover{
+    color: var(--color-primary);
+  }
+
+  .linkUser{
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .linkUser:hover{
+    color: var(--color-primary);
+  }
+
+  .logout:hover{
+    color: var(--color-secundary);
   }
 
   .modal-overlay {

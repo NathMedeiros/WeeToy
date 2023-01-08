@@ -4,6 +4,7 @@ export const Global = createGlobalStyle`
 
     :root{
         --color-primary: #4abdac;
+        --color-secundary: #fc4a1a;
         --color-grey-0: #f4f4f4;
         --font-button: 'Seymour One', sans-serif;
         --size-1: 1.688rem;
