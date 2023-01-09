@@ -58,8 +58,8 @@ export interface iCardProductProps {
 }
 
 export interface iCardMyProductProps {
-  image: string;
-  name: string;
+  img: string;
+  toy_name: string;
   price: number;
   id: number;
 }
@@ -81,7 +81,7 @@ export interface iFormRegister {
   birth_date: string;
 }
 
-export interface iEditProductModal{
+export interface iEditProductModal {
   img: string;
   toy_name: string;
   category: string;
