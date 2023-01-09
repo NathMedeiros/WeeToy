@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { useContext } from "react"
 import { EditProductContext } from "../../context/EditProductContext";
 
-// { img, toy_name, category, price, marks, description }: iEditProductModal obs: passar isso aqui como parâmetro para recuperar as info do brinquedo e renderizar
+// { img, toy_name, category, price, marks, description, id }: iEditProductModal passar isso depois na função para resgatar as info e mandar o id do brinquedo
 
 export function ModalEditProduct(){
 

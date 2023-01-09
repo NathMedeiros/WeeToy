@@ -88,4 +88,5 @@ export interface iEditProductModal {
   price: number;
   marks: string;
   description: string;
+  id: number;
 }
