@@ -275,7 +275,7 @@ export const Div = styled.div`
     button {
       width: 100%;
       height: 2rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 400;
       font-size: 11px;
       line-height: 19px;
