@@ -250,7 +250,7 @@ export const Div = styled.div`
     }
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: 540px) {
     padding: 0;
     select {
       width: 100%;
@@ -290,6 +290,21 @@ export const Div = styled.div`
     }
     form {
       width: 100%;
+    }
+    .nameMark {
+      width: 100%;
+    }
+    .colDiv {
+      width: 100%;
+    }
+    .nameCategoryPriceDiv {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 280px) {
+    button {
+      font-size: 10px;
     }
   }
 `;
