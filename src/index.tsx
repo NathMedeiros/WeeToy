@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Global } from "./styles/global";
 import { ResetCss } from "./styles/resetCss";
 import "../src/components/Modal/background.css";
+import { EditProductProvider } from "./context/EditProductContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,9 +19,11 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <CartProvider>
-          <Global />
-          <ResetCss />
-          <App />
+          <EditProductProvider>
+            <Global />
+            <ResetCss />
+            <App />
+          </EditProductProvider>
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>

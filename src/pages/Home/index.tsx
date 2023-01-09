@@ -11,15 +11,14 @@ import { AuthContext } from "../../context/AuthContext";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
 
 export function Home() {
-  const { openRegister, closeRegister, registerOpen } =
-    useContext(RegisterContext);
+  const { openRegister, closeRegister, registerOpen } = useContext(RegisterContext);
 
-  const {listToys} = useContext(AuthContext)  
+  const {listToys, isLogged} = useContext(AuthContext)  
   
   return (
     <HomeStyled>
       <Modal 
-      isOpen={true}
+      isOpen={false}
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.5)"
@@ -28,12 +27,8 @@ export function Home() {
           borderRadius: "0.75rem",
           backgroundColor: "#F9F9F9",
           maxWidth: "100%",
-          top: "50%",
-          left: "50%",
-          right: "auto",
-          bottom: "auto",
-          marginRight: "-50%",
-          transform: "translate(-50%, -50%)"
+          height: "fit-content",
+          width: "fit-content"
         }
       }}
       >
@@ -49,14 +44,18 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              <Button
-                padding="small"
-                styleButton="style1"
-                fontSize="1.688rem"
-                onClick={openRegister}
-              >
-                Cadastre-se
-              </Button>
+              {isLogged === true ? (
+                null
+              ):(
+                <Button
+                  padding="small"
+                  styleButton="style1"
+                  fontSize="1.688rem"
+                  onClick={openRegister}
+                >
+                  Cadastre-se
+                </Button>
+              )}
               <Modal
                 isOpen={registerOpen}
                 onRequestClose={closeRegister}
