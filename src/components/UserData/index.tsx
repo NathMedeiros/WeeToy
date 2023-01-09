@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { iFormRegister } from "../../interfaces";
 import { userDataSchema } from "../../pages/UserPage/userDataSchema";
@@ -24,12 +24,11 @@ export function UserData() {
         });
         const { address, birth_date, cep, email, name } = request.data;
         setUserData({ address, birth_date, cep, email, name });
-        console.log(address, birth_date);
-        setValue(address, address);
-        setValue(birth_date, birth_date);
-        setValue(cep, cep);
-        setValue(email, email);
-        setValue(name, name);
+        setValue("address", address);
+        setValue("birth_date", birth_date);
+        setValue("cep", cep);
+        setValue("email", email);
+        setValue("name", name);
       } catch (error) {
         console.log(error);
         navigate("/");
@@ -55,7 +54,6 @@ export function UserData() {
   });
 
   async function patchUser(data: iFormRegister) {
-    console.log(data);
     try {
       const request = await api.patch(`/users/${user.id}`, data, {
         headers: { authorization: `Bearer ${token}` },
@@ -81,6 +79,7 @@ export function UserData() {
 
   return (
     <StyledUserData>
+      <Toaster />
       <form noValidate onSubmit={handleSubmit(patchUser)}>
         <Input
           id="name"
@@ -122,6 +121,7 @@ export function UserData() {
           required={true}
           inputType="text"
           register={register("email")}
+          readOnly={true}
           width="100%"
           value={userData.email}
         />
