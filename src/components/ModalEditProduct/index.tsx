@@ -8,7 +8,9 @@ import { Button } from "../Button";
 import { useContext } from "react"
 import { EditProductContext } from "../../context/EditProductContext";
 
-export function ModalEditProduct({ img, toy_name, category, price, marks, description, id }: iEditProductModal){
+// { img, toy_name, category, price, marks, description, id }: iEditProductModal passar isso depois na função para resgatar as info e mandar o id do brinquedo
+
+export function ModalEditProduct(){
 
     const { editProductLoading, editProduct } = useContext(EditProductContext)
 
@@ -19,7 +21,7 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
     return (
         <ModalEditProductStyle>
             <h2>Atualizar informações do produto.</h2>
-            <form onSubmit={handleSubmit((data) => editProduct(data, id))} noValidate>
+            <form onSubmit={handleSubmit((data) => editProduct(data))} noValidate>
                 <div>
                     <div>
                         <Input labelName="Foto do brinquedo" id="toysImage" inputType="url" required={true} placeholder="" width="100%" register={register("img")} />

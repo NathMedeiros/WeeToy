@@ -16,14 +16,17 @@ export function Home() {
 
   const {listToys, isLogged} = useContext(AuthContext)  
 
-  const { editProductLoading, setOpenEditProduct } = useContext(EditProductContext)
+  const { openEditProduct, setOpenEditProduct } = useContext(EditProductContext)
   
   return (
     <HomeStyled>
-      <Modal
-      isOpen={editProductLoading}
+      <Modal 
+        isOpen={openEditProduct}
+        onRequestClose={() => setOpenEditProduct(false)}
+        overlayClassName="modal-overlay"
+        className="modal-content-home"
       >
-        {/* <ModalEditProduct /> o ts tá reclamando porque tem que passar os parâmetros ao clicar para editar */}
+        <ModalEditProduct /> 
       </Modal>
       <Header />
       <main>

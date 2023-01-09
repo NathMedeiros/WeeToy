@@ -4,7 +4,7 @@ import { iEditProductModal } from "../interfaces"
 import { api } from "../request/api";
 
 interface iEditProductContext{
-    editProduct: (data: iEditProductModal, id: number) => void;
+    editProduct: (data: iEditProductModal) => void;
     editProductLoading: boolean;
     openEditProduct: boolean;
     setOpenEditProduct: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,10 +22,10 @@ export function EditProductProvider({ children }: iEditProductProps) {
 
     const [openEditProduct, setOpenEditProduct] = useState<boolean>(false)
 
-    async function editProduct(data: iEditProductModal, id: number){
+    async function editProduct(data: iEditProductModal){
         setEditProductLoading(true)
         try {
-            await api.patch(`/toys/${id}`, data)
+            // await api.patch(`/toys/${}`, data) passar o id do brinquedo no template string
             toast.success("O produto foi atualizado com sucesso")
         } catch (error) {
             console.log(error)
