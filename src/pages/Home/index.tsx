@@ -18,19 +18,9 @@ export function Home() {
   return (
     <HomeStyled>
       <Modal 
-      isOpen={false}
-      style={{
-        overlay: {
-          backgroundColor: "rgba(0, 0, 0, 0.5)"
-        },
-        content: {
-          borderRadius: "0.75rem",
-          backgroundColor: "#F9F9F9",
-          maxWidth: "100%",
-          height: "fit-content",
-          width: "fit-content"
-        }
-      }}
+        isOpen={false}
+        overlayClassName="modal-overlay"
+        className="modal-content-home"
       >
         <ModalEditProduct />
       </Modal>

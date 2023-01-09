@@ -19,7 +19,7 @@ export function Header() {
 
   const [linksMobile, setLinksMobile] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function changeStatusLinksMobile() {
     if (linksMobile === false) {
@@ -29,11 +29,11 @@ export function Header() {
     }
   }
 
-  function logout(){
-    localStorage.removeItem("@TOKEN: WeeToys")
-    localStorage.removeItem("@USER: WeeToys")
-    setLogged(false)
-    navigate("/")
+  function logout() {
+    localStorage.removeItem("@TOKEN: WeeToys");
+    localStorage.removeItem("@USER: WeeToys");
+    setLogged(false);
+    navigate("/");
   }
 
   return (
@@ -49,10 +49,19 @@ export function Header() {
             <span onClick={openModal}>Anunciar</span>
             {isLogged === true ? (
               <div className="divUser">
-                <img src={imageUser} alt="Logo usuário"/>
+                <img src={imageUser} alt="Logo usuário" />
                 <div className="optionsUser">
-                  <Link to="/UserPage" className="linkUser">Ver perfil</Link>
-                  <span className="logout" onClick={()=>{logout()}}>Logout</span>
+                  <Link to="/UserPage" className="linkUser">
+                    Ver perfil
+                  </Link>
+                  <span
+                    className="logout"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    Logout
+                  </span>
                 </div>
               </div>
             ) : (
@@ -92,7 +101,7 @@ export function Header() {
         <div className="linksHeaderMobile">
           <span>Categoria</span>
           <span>Doações</span>
-          <span>Anunciar</span>
+          <span onClick={openModal}>Anunciar</span>
           {isLogged === true ? (
             <Link to="/UserPage">
               <img src={imageUser} alt="Logo usuário" />
