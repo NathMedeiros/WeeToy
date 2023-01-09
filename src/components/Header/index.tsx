@@ -11,6 +11,8 @@ import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterContext } from "../../context/RegisterContext";
+import { Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 export function Header() {
   const { openLogin, closeLogin, loginOpen } = useContext(RegisterContext);
@@ -36,8 +38,28 @@ export function Header() {
     navigate("/");
   }
 
+  function logedUser() {
+    if (isLogged === false) {
+      toast.error(`Você deve estar logado!`, {
+        style: {
+          border: "1px solid #EB5757",
+          padding: "16px",
+          color: "#EB5757",
+          background: "#F5F5F5",
+        },
+        iconTheme: {
+          primary: "#EB5757",
+          secondary: "#F5F5F5",
+        },
+      });
+    } else {
+      openModal();
+    }
+  }
+
   return (
     <HeaderStyled>
+      <Toaster />
       <div className="divHeader">
         <Link to="/">
           <img src={logo} alt="Logo WeeToy" />
@@ -46,7 +68,7 @@ export function Header() {
           <div className="linksHeader">
             <span>Categoria</span>
             <span>Doações</span>
-            <span onClick={openModal}>Anunciar</span>
+            <span onClick={logedUser}>Anunciar</span>
             {isLogged === true ? (
               <div className="divUser">
                 <img src={imageUser} alt="Logo usuário" />
@@ -101,7 +123,7 @@ export function Header() {
         <div className="linksHeaderMobile">
           <span>Categoria</span>
           <span>Doações</span>
-          <span onClick={openModal}>Anunciar</span>
+          <span onClick={logedUser}>Anunciar</span>
           {isLogged === true ? (
             <Link to="/UserPage">
               <img src={imageUser} alt="Logo usuário" />

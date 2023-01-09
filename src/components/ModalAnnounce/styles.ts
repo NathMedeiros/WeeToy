@@ -69,13 +69,14 @@ export const Div = styled.div`
 
   .divColl {
     display: flex;
-    gap: 2.75rem;
-    justify-content: space-around;
+
+    justify-content: space-between;
+    width: 100%;
   }
 
   textarea {
-    width: 29.6875rem;
-    height: 10.625rem;
+    width: 31rem;
+    height: 12.0625rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
       rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     background-color: #fff;

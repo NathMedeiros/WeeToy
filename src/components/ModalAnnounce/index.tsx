@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
 import { ModalAnnounceContext } from "../../context/AnnounceContext";
+import { Toaster } from "react-hot-toast";
 
 export function Announce() {
   const { submitAnnounce } = useContext(ModalAnnounceContext);
@@ -47,6 +48,7 @@ export function Announce() {
 
   return (
     <Div>
+      <Toaster />
       <p className="announceTitle">Anuncie seu produto, é fácil e rápido!</p>
       <p className="subtitle">capriche na foto e na descrição do seu produto</p>
       <form onSubmit={handleSubmit(getToy)}>
