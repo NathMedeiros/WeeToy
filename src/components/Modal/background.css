@@ -19,7 +19,7 @@
 .modal-content-announce {
   background: white;
   border-radius: 12px;
-  width: 90%;
+  width: auto;
   max-height: fit-content;
 }
 
