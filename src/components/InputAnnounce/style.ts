@@ -24,10 +24,17 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
 
     @media (max-width: 700px) {
       align-items: center;
-      margin-bottom: 0;
+      margin-bottom: 10px;
       width: 245px;
       position: relative;
       height: 70px;
+    }
+    @media (max-width: 380px) {
+      align-items: center;
+      margin-bottom: 0;
+      width: 100%;
+      position: relative;
+      height: 50px;
     }
 
     & > label {
@@ -61,6 +68,10 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
 
       @media (max-width: 700px) {
         width: 245px;
+      }
+      @media (max-width: 380px) {
+        width: 100%;
+        height: 30px;
       }
     }
   }

@@ -64,7 +64,7 @@ export function Announce() {
           <InputAnnounce
             id="mark"
             placeholder=""
-            labelName="Marca (opicional)"
+            labelName="Marca (opcional)"
             required={false}
             inputType="text"
             width="500px"

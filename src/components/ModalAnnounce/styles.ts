@@ -42,7 +42,7 @@ export const Div = styled.div`
     background-color: #fff;
     border-radius: 8px;
     border: none;
-    padding: 12px 12px;
+    overflow: hidden;
     height: 3rem;
     margin-bottom: 2.3125rem;
   }
@@ -141,6 +141,7 @@ export const Div = styled.div`
     select {
       width: 15.3125rem;
       margin-bottom: 10px;
+      padding: 0;
     }
 
     form {
@@ -209,6 +210,7 @@ export const Div = styled.div`
     select {
       margin-bottom: 2.5rem;
       width: 15.3125rem;
+      padding: 0;
     }
 
     form {
@@ -244,6 +246,49 @@ export const Div = styled.div`
     }
     .divColl {
       gap: 0rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    padding: 0;
+    select {
+      width: 100%;
+
+      padding: 0;
+      height: 30px;
+    }
+    .categoryPrice {
+      width: 100%;
+    }
+    .colDiv {
+      width: 100%;
+    }
+    .announceTitle {
+      font-size: 15px;
+      line-height: 17px;
+    }
+    textarea {
+      width: 100%;
+      height: 5.4375rem;
+      margin-bottom: 1.1875rem;
+    }
+    button {
+      width: 100%;
+      height: 2rem;
+      font-size: 1rem;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 19px;
+      margin-top: 0;
+    }
+    input {
+      width: 100%;
+    }
+    fieldset {
+      width: 100%;
+    }
+    form {
+      width: 100%;
     }
   }
 `;
