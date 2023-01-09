@@ -24,12 +24,12 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
 
     @media (max-width: 700px) {
       align-items: center;
-      margin-bottom: 0;
+      margin-bottom: 10px;
       width: 245px;
       position: relative;
       height: 70px;
     }
-    @media (max-width: 700px) {
+    @media (max-width: 380px) {
       align-items: center;
       margin-bottom: 0;
       width: 100%;
