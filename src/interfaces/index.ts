@@ -79,3 +79,12 @@ export interface iFormRegister {
   email: string;
   birth_date: string;
 }
+
+export interface iEditProductModal{
+  img: string;
+  toy_name: string;
+  category: string;
+  price: number;
+  marks: string;
+  description: string;
+}
