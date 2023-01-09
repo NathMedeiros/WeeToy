@@ -34,6 +34,7 @@ export function ButtonCart (){
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 className="modalCart"
+                overlayClassName="modal-overlay"
             >
                 <ModalCartStyled>
                     <div className="cartTitle">
