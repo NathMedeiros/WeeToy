@@ -29,7 +29,7 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       position: relative;
       height: 70px;
     }
-    @media (max-width: 380px) {
+    @media (max-width: 540px) {
       align-items: center;
       margin-bottom: 0;
       width: 100%;
@@ -69,7 +69,7 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       @media (max-width: 700px) {
         width: 245px;
       }
-      @media (max-width: 380px) {
+      @media (max-width: 540px) {
         width: 100%;
         height: 30px;
       }
