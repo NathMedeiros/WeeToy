@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <ModalAnnounceProvider>
-        <LoginProvider>
-          <RegisterProvider>
+        <RegisterProvider>
+          <LoginProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
@@ -18,8 +18,8 @@ function App() {
                 element={<UserPage children={undefined} />}
               />
             </Routes>
-          </RegisterProvider>
-        </LoginProvider>
+          </LoginProvider>
+        </RegisterProvider>
       </ModalAnnounceProvider>
     </>
   );
