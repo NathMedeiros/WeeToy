@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import { iUserPage } from "../../interfaces";
 import { StyledUserPage } from "./style";
+import imageChild from "./../../assets/imageChild.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userDataSchema } from "./userDataSchema";
@@ -24,10 +25,19 @@ export function UserPage({ children }: iUserPage) {
   return (
     <StyledUserPage>
       <Header />
-      <UserNav handleChange={changePage} />
-      {pageToRender === "Meus Dados" && <UserData />}
-      {pageToRender === "Compras" && <Historic />}
-      {pageToRender === "Anúncios" && <MyAds />}
+      <main>
+        <section className="sectionImage">
+          <img src={imageChild} alt="Imagem criança" className="imageChild"/>
+        </section>
+        <section className="content">
+          <div className="divContent">
+            <UserNav handleChange={changePage} />
+            {pageToRender === "Meus Dados" && <UserData />}
+            {pageToRender === "Compras" && <Historic />}
+            {pageToRender === "Anúncios" && <MyAds />}
+          </div>
+        </section>
+      </main>
     </StyledUserPage>
   );
 }

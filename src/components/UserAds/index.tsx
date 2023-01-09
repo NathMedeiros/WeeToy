@@ -31,6 +31,40 @@ const MyAds = () => {
   return (
     <MyAdsStyled>
       <UlAds>
+        <h1>Anúncios Ativos</h1>
+        <li>
+          <img src={WeeToy} alt="Brinquedo" />
+          <div>
+            <p>Descrição</p>
+            <p> R$</p>
+          </div>
+          <div>
+            <ImgEdit src={Edit} alt="Editar" />
+            <ImgEdit src={Remove} alt="Remover" />
+          </div>
+        </li>
+        <li>
+          <img src={WeeToy} alt="Brinquedo" />
+          <div>
+            <p>Descrição</p>
+            <p>R$</p>
+          </div>
+          <div>
+            <ImgEdit src={Edit} alt="Editar" />
+            <ImgEdit src={Remove} alt="Remover" />
+          </div>
+        </li>
+        <li>
+          <img src={WeeToy} alt="Brinquedo" />
+          <div>
+            <p>Descrição</p>
+            <p> R$</p>
+          </div>
+          <div>
+            <ImgEdit src={Edit} alt="Editar" />
+            <ImgEdit src={Remove} alt="Remover" />
+          </div>
+        </li>
         {userAds.length > 0 ? (
           userAds.map((element) => (
             <CardMyProduct

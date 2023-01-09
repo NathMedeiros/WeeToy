@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const StyledUserData = styled.div`
   margin: 0 0.4rem;
+
   & form {
-    margin: 2rem auto;
+    margin: 5rem auto;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -27,5 +28,19 @@ export const StyledUserData = styled.div`
         margin: 0;
       }
     }
+  }
+
+  @media (min-width: 620px){
+    margin: 0;
+    width: 70%;
+
+    & form{
+      margin: 0;
+      max-width: 1000px;
+      width: 100%;
+      height: 100%;
+    }
+
+    
   }
 `;
