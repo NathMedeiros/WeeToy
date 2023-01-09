@@ -9,30 +9,21 @@ import { CardProduct } from "../../components/CardProduct";
 import { RegisterContext } from "../../context/RegisterContext";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
+import { EditProductContext } from "../../context/EditProductContext";
 
 export function Home() {
   const { openRegister, closeRegister, registerOpen } = useContext(RegisterContext);
 
   const {listToys, isLogged} = useContext(AuthContext)  
+
+  const { editProductLoading, setOpenEditProduct } = useContext(EditProductContext)
   
   return (
     <HomeStyled>
-      <Modal 
-      isOpen={false}
-      style={{
-        overlay: {
-          backgroundColor: "rgba(0, 0, 0, 0.5)"
-        },
-        content: {
-          borderRadius: "0.75rem",
-          backgroundColor: "#F9F9F9",
-          maxWidth: "100%",
-          height: "fit-content",
-          width: "fit-content"
-        }
-      }}
+      <Modal
+      isOpen={editProductLoading}
       >
-        <ModalEditProduct />
+        {/* <ModalEditProduct /> o ts tá reclamando porque tem que passar os parâmetros ao clicar para editar */}
       </Modal>
       <Header />
       <main>
