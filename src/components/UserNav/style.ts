@@ -5,7 +5,7 @@ export const StyledNav = styled.nav`
   padding: 1rem 0;
   display: flex;
   justify-content: center;
-  column-gap: 10px;
+  column-gap: 20px;
   background-color: var(--color-grey-0);
 
   & label {
@@ -18,5 +18,17 @@ export const StyledNav = styled.nav`
 
   & input {
     display: none;
+  }
+
+  @media (min-width: 620px){
+    flex-direction: column;
+    border-radius: 12px;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0 30px;
+
+    label{
+      font-size: var(--size-1);
+    }
   }
 `;

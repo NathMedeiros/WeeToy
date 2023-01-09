@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 export const StyledHistoric = styled.div`
   margin: 0 0.4rem;
+
+  @media (min-width: 620px){
+    margin: 0;
+    height: 100%;
+    width: 70%;
+  }
 `;
 
 export const UlHistoric = styled.ul`
   margin-bottom: 20px;
-  margin: 2rem auto;
+  margin: 5rem auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -34,6 +40,18 @@ export const UlHistoric = styled.ul`
     p {
       margin-left: 40px;
       padding: 10px;
+    }
+  }
+
+  @media (min-width: 620px){
+    margin: 0;
+    height: 100%;
+    max-width: 1000px;
+    width: 100%;
+    padding: 2rem;
+
+    h1{
+      font-size: var(--size-1);
     }
   }
 `;

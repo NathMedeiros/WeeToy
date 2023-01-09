@@ -8,7 +8,7 @@ const MyAds = () => {
   return (
     <MyAdsStyled>
       <UlAds>
-        <h1>Anuncios Ativos</h1>
+        <h1>Anúncios Ativos</h1>
         <li>
           <img src={WeeToy} alt="Brinquedo" />
           <div>
