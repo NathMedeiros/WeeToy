@@ -94,7 +94,7 @@ export const ModalEditProductStyle = styled.div`
 
                         & > textarea{
                             width: 100%;
-                            height: 6.25rem;
+                            height: 4rem;
                             padding: 0.75rem;
                             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
                             rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -105,6 +105,12 @@ export const ModalEditProductStyle = styled.div`
                         }
                 }
             }
+        }
+
+        
+        & > button{
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
         }
     }
 
@@ -142,6 +148,11 @@ export const ModalEditProductStyle = styled.div`
                         }
                     }
                 }
+            }
+
+            & > button{
+                padding: 0.75rem;
+                font-size: 1.4375rem;
             }
         }
     }
