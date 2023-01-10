@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { iToys } from "./AuthContext";
+import { toast } from "react-hot-toast";
 
 interface iCartProps{
     children: React.ReactNode;
@@ -13,14 +14,15 @@ interface iModalCart{
     addProductToCart: (id: number) => void,
     removeProductFromCart: (id: number) => void,
     count: number,
-    total: number
+    total: number,
+    updateCartWithLogin: () => void
 }
 
 export const CartContext = createContext({} as iModalCart)
 
 export function CartProvider ({children}: iCartProps){
 
-    const {listToys} = useContext(AuthContext)
+    const {listToys, userId} = useContext(AuthContext)
 
     const [listCart, setListCart] = useState([{
         category: "",
@@ -71,6 +73,19 @@ export function CartProvider ({children}: iCartProps){
                 return toy.id === id
             })
 
+            toast.success("Produto adicionado ao carrinho!", {
+                style: {
+                  border: "1px solid #15da4d",
+                  padding: "16px",
+                  color: "#15da4d",
+                  background: "#F5F5F5",
+                },
+                iconTheme: {
+                  primary: "#15da4d",
+                  secondary: "#F5F5F5",
+                },
+              })
+
             setListCart(toyFind)
         } else{
             let toyFind = listToys.filter((toy)=>{
@@ -82,8 +97,34 @@ export function CartProvider ({children}: iCartProps){
             })
             
             if(duplicateProduct.length !== 0){
+                toast.error(`Este produto já foi adicionado ao carrinho!`, {
+                    style: {
+                      border: "1px solid #EB5757",
+                      padding: "16px",
+                      color: "#EB5757",
+                      background: "#F5F5F5",
+                    },
+                    iconTheme: {
+                      primary: "#EB5757",
+                      secondary: "#F5F5F5",
+                    },
+                  });
                 return null
             }else{
+
+                toast.success("Produto adicionado ao carrinho!", {
+                    style: {
+                      border: "1px solid #15da4d",
+                      padding: "16px",
+                      color: "#15da4d",
+                      background: "#F5F5F5",
+                    },
+                    iconTheme: {
+                      primary: "#15da4d",
+                      secondary: "#F5F5F5",
+                    },
+                  })
+                  
                 setListCart([...listCart, ...toyFind])
             }
         }
@@ -110,8 +151,31 @@ export function CartProvider ({children}: iCartProps){
         }
     }
 
+    function updateCartWithLogin(){
+        if(listCart[0].id !== 0){
+            let listWithoutOwnToys = listCart.filter((toy)=>{
+                return toy.userId !== userId
+            })
+
+            if(listWithoutOwnToys.length === 0){
+                setListCart([{
+                    category: "",
+                    description: "",
+                    id: 0,
+                    img: "",
+                    marks: "",
+                    price: 0,
+                    toy_name: "",
+                    userId: 0
+                }])
+            }else{
+                setListCart(listWithoutOwnToys)
+            }
+        }
+    }
+
     return (
-        <CartContext.Provider value={{listCart, setListCart, addProductToCart, removeProductFromCart, count, total}}>
+        <CartContext.Provider value={{listCart, setListCart, addProductToCart, removeProductFromCart, count, total, updateCartWithLogin}}>
             {children}
         </CartContext.Provider>
     )

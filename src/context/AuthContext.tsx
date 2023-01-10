@@ -22,12 +22,15 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
-  toysPurshased: (listCart: iToys[]) => void
+  toysPurshased: (listCart: iToys[]) => void,
+  userId: number
 }
 
 export const AuthContext = createContext({} as iAuthContext);
 
 export function AuthProvider({ children }: iAuthProps) {
+
+  const [userId, setUserId] = useState(0)
 
   const [logged, setLogged] = useState(false);
 
@@ -54,7 +57,7 @@ export function AuthProvider({ children }: iAuthProps) {
     async function loadUser() {
       if (token && userIdLocal !== null) {
         const userId = await JSON.parse(userIdLocal);
-
+        setUserId(userId.id)
         try {
           const request = await api.get(`/users/${userId.id}`, {
             headers: { authorization: `Bearer ${token}` },
@@ -162,7 +165,7 @@ export function AuthProvider({ children }: iAuthProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased}}>
+    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased, userId}}>
       {children}
     </AuthContext.Provider>
   );
