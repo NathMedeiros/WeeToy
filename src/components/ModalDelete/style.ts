@@ -8,7 +8,7 @@ export const Div = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 13px;
   padding: 10px 20px;
 
   p {
