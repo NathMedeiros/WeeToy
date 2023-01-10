@@ -12,7 +12,7 @@ import { Announce } from "../../components/ModalAnnounce/index";
 
 import { UserData } from "../../components/UserData";
 import Historic from "../../components/UserHistory";
-import MyAds from "../../components/UserAds";
+import { MyAds } from "../../components/UserAds";
 import { UserNav } from "../../components/UserNav";
 
 export function UserPage({ children }: iUserPage) {
@@ -27,7 +27,7 @@ export function UserPage({ children }: iUserPage) {
       <Header />
       <main>
         <section className="sectionImage">
-          <img src={imageChild} alt="Imagem criança" className="imageChild"/>
+          <img src={imageChild} alt="Imagem criança" className="imageChild" />
         </section>
         <section className="content">
           <div className="divContent">
