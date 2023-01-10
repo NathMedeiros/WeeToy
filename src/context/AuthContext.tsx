@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { api } from "./../request/api";
+import { toast } from "react-hot-toast";
 
 interface iAuthProps {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ interface iAuthContext {
 export const AuthContext = createContext({} as iAuthContext);
 
 export function AuthProvider({ children }: iAuthProps) {
+
   const [logged, setLogged] = useState(false);
 
   const [isLogged, setIsLogged] = useState(false);
@@ -92,35 +94,71 @@ export function AuthProvider({ children }: iAuthProps) {
 
   }, [logged]);
 
-  function toysPurshased(listCart: iToys[]){
+  async function toysPurshased(listCart: iToys[]){
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
     const userId = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
 
     let count = 0
 
+    let oneTimeToast = 0
+
+    let number = listCart.length
+
     listCart.forEach(async (toy) => {
-      toy.userId = userId.id
+      const {category, description, img, marks, price, toy_name} = toy
+      const data = {
+        category: category,
+        description: description,
+        img: img,
+        marks: marks,
+        price: price,
+        toy_name: toy_name,
+        userId: userId.id
+      }
+      
       try{
-        const request = await api.post("/purchases_historic", toy, {headers:{authorization: `Bearer ${token}`}})
-        if(request.data){
+        const request = await api.post("/purchases_historic", data, {headers:{authorization: `Bearer ${token}`}})
+        if(request){
           count++
         }
       }catch(err){
-        console.log(err)
+        toast.error(`Falha na compra. Tente novamente!`, {
+          style: {
+            border: "1px solid #EB5757",
+            padding: "16px",
+            color: "#EB5757",
+            background: "#F5F5F5",
+          },
+          iconTheme: {
+            primary: "#EB5757",
+            secondary: "#F5F5F5",
+          },
+        });
       }
-
-      try{
-        const request = await api.delete(`/toys/${toy.id}`, {headers:{authorization: `Bearer ${token}`}})
-        console.log(request.data)
-      }catch(err){
-        console.log(err)
+      if(count !== 0){
+        try{
+          await api.delete(`/toys/${toy.id}`, {headers:{authorization: `Bearer ${token}`}})
+          if(count === number && oneTimeToast === 0){
+            toast.success("Compra realizada", {
+              style: {
+                border: "1px solid #15da4d",
+                padding: "16px",
+                color: "#15da4d",
+                background: "#F5F5F5",
+              },
+              iconTheme: {
+                primary: "#15da4d",
+                secondary: "#F5F5F5",
+              },
+            })
+            oneTimeToast++
+          }
+        }catch(err){
+          return null
+        }
       }
     })
-
-    if(count === listCart.length){
-      console.log("Compra realizada com sucesso!")
-    }
   }
 
   return (
