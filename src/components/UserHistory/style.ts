@@ -34,10 +34,6 @@ export const UlHistoric = styled.ul`
     align-items: center;
     border-radius: 12px;
 
-    img {
-      padding: 10px;
-    }
-
     p {
       margin-left: 40px;
       padding: 10px;

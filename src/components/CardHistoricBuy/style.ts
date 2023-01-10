@@ -10,6 +10,9 @@ export const CardHistoricBuyStyle = styled.li`
   background-color: #fff;
 
   & > div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 4.625rem;
     height: 4.625rem;
     background-color: #d8d8d8;
