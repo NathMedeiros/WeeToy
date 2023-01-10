@@ -16,20 +16,8 @@ export function Home() {
 
   const { listToys, isLogged } = useContext(AuthContext);
 
-  const { openEditProduct, setOpenEditProduct } =
-    useContext(EditProductContext);
-
   return (
     <HomeStyled>
-      <Modal
-        isOpen={openEditProduct}
-        onRequestClose={() => setOpenEditProduct(false)}
-        overlayClassName="modal-overlay"
-        className="modal-content-home"
-      >
-        <ModalEditProduct />
-      </Modal>
-
       <Header />
       <main>
         <section className="sectionImage">
