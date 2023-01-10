@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { MyAdsStyled, UlAds } from "./style";
 import { api } from "../../request/api";
 import { CardMyProduct } from "../CardMyProduct";
-
+import { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
 import { ModalDeleteContext } from "./../../context/DeleteContext";
 import { Delete } from "../ModalDelete";
@@ -36,6 +36,7 @@ export function MyAds() {
   }, []);
   return (
     <MyAdsStyled>
+      <Toaster />
       <UlAds>
         <h2>Anúncios Ativos</h2>
 
