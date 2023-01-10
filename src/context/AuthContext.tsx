@@ -21,6 +21,7 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
+  toysPurshased: (listCart: iToys[]) => void
 }
 
 export const AuthContext = createContext({} as iAuthContext);
@@ -91,8 +92,39 @@ export function AuthProvider({ children }: iAuthProps) {
 
   }, [logged]);
 
+  function toysPurshased(listCart: iToys[]){
+    const token = localStorage.getItem("@TOKEN: WeeToys");
+
+    const userId = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
+
+    let count = 0
+
+    listCart.forEach(async (toy) => {
+      toy.userId = userId.id
+      try{
+        const request = await api.post("/purchases_historic", toy, {headers:{authorization: `Bearer ${token}`}})
+        if(request.data){
+          count++
+        }
+      }catch(err){
+        console.log(err)
+      }
+
+      try{
+        const request = await api.delete(`/toys/${toy.id}`, {headers:{authorization: `Bearer ${token}`}})
+        console.log(request.data)
+      }catch(err){
+        console.log(err)
+      }
+    })
+
+    if(count === listCart.length){
+      console.log("Compra realizada com sucesso!")
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ setLogged, isLogged, listToys }}>
+    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased}}>
       {children}
     </AuthContext.Provider>
   );

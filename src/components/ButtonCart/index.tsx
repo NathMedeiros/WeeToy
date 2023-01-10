@@ -7,12 +7,18 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartProduct } from "../CartProduct";
 import { Button } from "../Button";
+import { AuthContext } from "../../context/AuthContext";
+import { RegisterContext } from "../../context/RegisterContext"
 
 Modal.setAppElement("#root")
 
 export function ButtonCart (){
 
-    const {listCart, count, total} = useContext(CartContext)
+    const {openLogin} = useContext(RegisterContext)
+
+    const {isLogged, toysPurshased} = useContext(AuthContext)
+
+    const {listCart, count, total, setListCart} = useContext(CartContext)
 
     const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -22,6 +28,25 @@ export function ButtonCart (){
 
     function closeModal(){
         setIsOpen(false)
+    }
+
+    function toBuy(){
+        if(isLogged === true){
+            toysPurshased(listCart)
+            setListCart([{
+                category: "",
+                description: "",
+                id: 0,
+                img: "",
+                marks: "",
+                price: 0,
+                toy_name: "",
+                userId: 0
+            }])
+        }else{
+            closeModal()
+            openLogin()
+        }
     }
 
     return (
@@ -58,7 +83,7 @@ export function ButtonCart (){
                                 <p>{`Quantidade: ${count}`}</p>
                                 <p>{`R$ ${total.toFixed(2)}`}</p>
                             </div>
-                            <Button styleButton="style4">Finalizar Compra</Button>
+                            <Button styleButton="style4" onClick={()=>{toBuy()}}>Finalizar Compra</Button>
                         </div>
                     )}
                 </ModalCartStyled>

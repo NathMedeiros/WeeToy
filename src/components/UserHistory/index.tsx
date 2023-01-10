@@ -33,9 +33,11 @@ const Historic = () => {
         {historicList.length > 0 ? (
           historicList.map((element) => (
             <CardHistoricBuy
+              key={element.id}
               name={element.name}
               price={element.price}
-              image={element.image}
+              img={element.img}
+              id={element.id}
             />
           ))
         ) : (

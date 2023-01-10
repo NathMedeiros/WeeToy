@@ -65,9 +65,10 @@ export interface iCardMyProductProps {
 }
 
 export interface iCardHistoryBuy {
-  image: string;
+  img: string;
   name: string;
   price: number;
+  id: number
 }
 export interface iUserPage {
   children: React.ReactNode;
