@@ -57,13 +57,6 @@ export interface iCardProductProps {
   id: number;
 }
 
-export interface iCardMyProductProps {
-  img: string;
-  toy_name: string;
-  price: number;
-  id: number;
-}
-
 export interface iCardHistoryBuy {
   img: string;
   name: string;

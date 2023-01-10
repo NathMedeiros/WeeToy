@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { MyAdsStyled, UlAds } from "./style";
 import { api } from "../../request/api";
 import { CardMyProduct } from "../CardMyProduct";
-import { iCardMyProductProps } from "../../interfaces";
+import { iEditProductModal } from "../../interfaces";
 
 export function MyAds() {
-  const [userAds, setUserAds] = useState([] as iCardMyProductProps[]);
+  const [userAds, setUserAds] = useState([] as iEditProductModal[]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
@@ -33,6 +33,9 @@ export function MyAds() {
           userAds.map((element) => (
             <CardMyProduct
               key={element.id}
+              category={element.category}
+              marks={element.marks}
+              description={element.description}
               toy_name={element.toy_name}
               id={element.id}
               price={element.price}
