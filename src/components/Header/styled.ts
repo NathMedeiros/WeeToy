@@ -29,7 +29,7 @@ export const HeaderStyled = styled.header`
     display: none;
   }
 
-  .optionsUser{
+  .optionsUser {
     position: absolute;
     top: 30px;
     right: -35px;
@@ -42,13 +42,14 @@ export const HeaderStyled = styled.header`
     padding: 10px;
     border-radius: 12px;
     visibility: visible;
+    box-shadow: 0 6px 18px -6px;
   }
 
-  .divUser{
+  .divUser {
     cursor: pointer;
   }
 
-  .divUser:hover .optionsUser{
+  .divUser:hover .optionsUser {
     display: flex;
   }
 
@@ -74,22 +75,22 @@ export const HeaderStyled = styled.header`
     cursor: pointer;
   }
 
-  span:hover{
+  span:hover {
     color: var(--color-primary);
   }
 
-  .linkUser{
+  .linkUser {
     font-size: 18px;
     color: #000;
     text-decoration: none;
     cursor: pointer;
   }
 
-  .linkUser:hover{
+  .linkUser:hover {
     color: var(--color-primary);
   }
 
-  .logout:hover{
+  .logout:hover {
     color: var(--color-secundary);
   }
 
