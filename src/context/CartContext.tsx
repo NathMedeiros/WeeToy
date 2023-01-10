@@ -15,14 +15,14 @@ interface iModalCart{
     removeProductFromCart: (id: number) => void,
     count: number,
     total: number,
-    updateCartWithLogin: () => void
+    updateCartWithLogin: (userId: number) => void
 }
 
 export const CartContext = createContext({} as iModalCart)
 
 export function CartProvider ({children}: iCartProps){
 
-    const {listToys, userId} = useContext(AuthContext)
+    const {listToys} = useContext(AuthContext)
 
     const [listCart, setListCart] = useState([{
         category: "",
@@ -151,12 +151,12 @@ export function CartProvider ({children}: iCartProps){
         }
     }
 
-    function updateCartWithLogin(){
+    function updateCartWithLogin(userId: number){
         if(listCart[0].id !== 0){
             let listWithoutOwnToys = listCart.filter((toy)=>{
                 return toy.userId !== userId
             })
-
+            console.log(listWithoutOwnToys)
             if(listWithoutOwnToys.length === 0){
                 setListCart([{
                     category: "",
