@@ -12,21 +12,23 @@ import { ModalEditProduct } from "../../components/ModalEditProduct";
 import { EditProductContext } from "../../context/EditProductContext";
 
 export function Home() {
-  const { openRegister, closeRegister, registerOpen } = useContext(RegisterContext);
+  const { openRegister, closeRegister, registerOpen } =
+    useContext(RegisterContext);
 
-  const {listToys, isLogged} = useContext(AuthContext)  
+  const { listToys, isLogged } = useContext(AuthContext);
 
-  const { openEditProduct, setOpenEditProduct } = useContext(EditProductContext)
-  
+  const { openEditProduct, setOpenEditProduct } =
+    useContext(EditProductContext);
+
   return (
     <HomeStyled>
-      <Modal 
+      <Modal
         isOpen={openEditProduct}
         onRequestClose={() => setOpenEditProduct(false)}
         overlayClassName="modal-overlay"
         className="modal-content-home"
       >
-        <ModalEditProduct /> 
+        <ModalEditProduct />
       </Modal>
       <Header />
       <main>
@@ -38,9 +40,7 @@ export function Home() {
                 Brinquedos quase novos ou nunca usados procurando um novo dono.
                 Compre online e receba em sua casa.
               </p>
-              {isLogged === true ? (
-                null
-              ):(
+              {isLogged === true ? null : (
                 <Button
                   padding="small"
                   styleButton="style1"
@@ -50,6 +50,7 @@ export function Home() {
                   Cadastre-se
                 </Button>
               )}
+
               <Modal
                 isOpen={registerOpen}
                 onRequestClose={closeRegister}
