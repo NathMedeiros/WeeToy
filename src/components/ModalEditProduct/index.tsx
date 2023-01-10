@@ -69,9 +69,15 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                         required={true}
                         {...register("category")}
                         >
-                        <option value="">Selecione</option>
-                        <option value="carrinho">Carrinho</option>
-                        <option value="quebraCabeça">Quebra-Cabeça</option>
+                            <option value="">Selecione</option>
+                            <option value="Bonecos">Bonecos</option>
+                            <option value="Pelúcias">Pelúcias</option>
+                            <option value="Carrinhos">Carrinhos</option>
+                            <option value="Quebra cabeças">Quebra cabeças</option>
+                            <option value="Instrumento musical">
+                                Instrumento musical
+                            </option>
+                            <option value="Outros">Outros</option>
                         </select>
                     </fieldset>
                     {errors.category && <span>{errors.category.message}</span>}
