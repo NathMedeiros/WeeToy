@@ -43,7 +43,7 @@ export function Login() {
         <section className="form-section">
           <img src={login} alt="logo do login" />
           <span onClick={closeLogin}>x</span>
-          <form onSubmit={handleSubmit(submitLogin)}>
+          <form onSubmit={handleSubmit(submitLogin)} noValidate>
             <Input
               id="email-login"
               placeholder=""
@@ -105,7 +105,7 @@ export function Register() {
         <section className="form-section">
           <img src={logoRegister} alt="logo do cadastro" />
           <span onClick={closeRegister}>x</span>
-          <form onSubmit={handleSubmit(submitRegister)}>
+          <form onSubmit={handleSubmit(submitRegister)} noValidate>
             <Input
               id="name"
               placeholder=""

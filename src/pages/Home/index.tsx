@@ -13,7 +13,6 @@ export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
 
-
   const { listToys, isLogged } = useContext(AuthContext);
 
   return (
