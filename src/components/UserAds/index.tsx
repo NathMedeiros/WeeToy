@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { ImgEdit, MyAdsStyled, UlAds } from "./style";
-import WeeToy from "../../assets/image.png";
-import Edit from "../../assets/edit.png";
-import Remove from "../../assets/delet.png";
+import { useEffect, useState } from "react";
+import { MyAdsStyled, UlAds } from "./style";
 import { api } from "../../request/api";
 import { CardMyProduct } from "../CardMyProduct";
 import { iCardMyProductProps } from "../../interfaces";
 
-const MyAds = () => {
+export function MyAds() {
   const [userAds, setUserAds] = useState([] as iCardMyProductProps[]);
 
   useEffect(() => {
@@ -31,40 +28,7 @@ const MyAds = () => {
   return (
     <MyAdsStyled>
       <UlAds>
-        <h1>Anúncios Ativos</h1>
-        <li>
-          <img src={WeeToy} alt="Brinquedo" />
-          <div>
-            <p>Descrição</p>
-            <p> R$</p>
-          </div>
-          <div>
-            <ImgEdit src={Edit} alt="Editar" />
-            <ImgEdit src={Remove} alt="Remover" />
-          </div>
-        </li>
-        <li>
-          <img src={WeeToy} alt="Brinquedo" />
-          <div>
-            <p>Descrição</p>
-            <p>R$</p>
-          </div>
-          <div>
-            <ImgEdit src={Edit} alt="Editar" />
-            <ImgEdit src={Remove} alt="Remover" />
-          </div>
-        </li>
-        <li>
-          <img src={WeeToy} alt="Brinquedo" />
-          <div>
-            <p>Descrição</p>
-            <p> R$</p>
-          </div>
-          <div>
-            <ImgEdit src={Edit} alt="Editar" />
-            <ImgEdit src={Remove} alt="Remover" />
-          </div>
-        </li>
+        <h2>Anúncios Ativos</h2>
         {userAds.length > 0 ? (
           userAds.map((element) => (
             <CardMyProduct
@@ -76,10 +40,9 @@ const MyAds = () => {
             />
           ))
         ) : (
-          <h2>Você ainda não tem brinquedos anunciados</h2>
+          <h3>Você ainda não tem brinquedos anunciados</h3>
         )}
       </UlAds>
     </MyAdsStyled>
   );
-};
-export default MyAds;
+}

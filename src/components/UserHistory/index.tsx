@@ -30,6 +30,7 @@ const Historic = () => {
   return (
     <StyledHistoric>
       <UlHistoric>
+        <h2>Histórico de compras</h2>
         {historicList.length > 0 ? (
           historicList.map((element) => (
             <CardHistoricBuy
@@ -39,7 +40,7 @@ const Historic = () => {
             />
           ))
         ) : (
-          <h2>Você ainda não comprou produtos</h2>
+          <h3>Você ainda não comprou produtos</h3>
         )}
       </UlHistoric>
     </StyledHistoric>

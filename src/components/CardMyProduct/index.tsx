@@ -1,7 +1,7 @@
 import { iCardMyProductProps } from "../../interfaces";
 import { CardMyProductStyle } from "./style";
 import editPencil from "../../assets/editPencil.svg";
-import trash from "../../assets/trash.svg";
+import trashIcon from "../../assets/trash.svg";
 
 export function CardMyProduct({
   toy_name,
@@ -22,7 +22,7 @@ export function CardMyProduct({
       </div>
       <div>
         <img src={editPencil} alt="Editar produto" />
-        <img src={trash} alt="Excluir produto" />
+        <img src={trashIcon} alt="Excluir produto" />
       </div>
     </CardMyProductStyle>
   );
