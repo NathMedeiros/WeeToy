@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { CardModalContext } from "../../context/CardModalContext";
 import { CartContext } from "../../context/CartContext";
 import { iCardProductProps } from "../../interfaces";
 import { Button } from "./../Button";
@@ -6,10 +7,11 @@ import { CardProductStyled } from "./styled";
 
 export function CardProduct({ name, price, img, id }: iCardProductProps) {
   const { addProductToCart } = useContext(CartContext);
+  const { openCard } = useContext(CardModalContext);
 
   return (
     <CardProductStyled>
-      <figure>
+      <figure onClick={openCard}>
         <img src={img} alt="Imagem brinquedo" />
       </figure>
       <div className="infoToy">

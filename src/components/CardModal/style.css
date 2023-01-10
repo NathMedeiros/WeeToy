@@ -1,0 +1,7 @@
+.modal-content-card {
+  width: 500px;
+  background-color: var(--color-grey-0);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  outline: none;
+}
