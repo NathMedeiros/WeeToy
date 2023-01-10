@@ -82,6 +82,10 @@ export function EditProductProvider({ children }: iEditProductProps) {
                 id
             })
             setEditProductLoading(false)
+
+            setInterval(() => {
+                setOpenEditProduct(false)
+            }, 600)
         }
     }
 
