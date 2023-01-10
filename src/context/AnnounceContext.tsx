@@ -55,6 +55,7 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
             secondary: "#F5F5F5",
           },
         });
+        setIsOpen(false);
       } catch (error) {
         toast.error(`Ocorreu algum erro. Tente novamente!`, {
           style: {
