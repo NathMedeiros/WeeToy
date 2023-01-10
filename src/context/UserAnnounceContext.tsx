@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { ReactNode } from "react";
-import { iCardMyProductProps } from "../interfaces";
+import { iEditProductModal } from "../interfaces";
 import { api } from "../request/api";
 
 interface iUserAnnounceProps {
@@ -8,14 +8,14 @@ interface iUserAnnounceProps {
 }
 
 interface iUserAnnounceContext {
-  loadUser: iCardMyProductProps[] | undefined;
+  loadUser: iEditProductModal[] | undefined;
   loadAnnounces: () => void;
 }
 
 export const UserAnnounceContext = createContext({} as iUserAnnounceContext);
 
 export function UserAnnounceProvider({ children }: iUserAnnounceProps) {
-  const [loadUser, setLoadUser] = useState<iCardMyProductProps[]>();
+  const [loadUser, setLoadUser] = useState<iEditProductModal[]>();
 
   async function loadAnnounces() {
     const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);

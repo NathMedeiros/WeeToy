@@ -1,5 +1,5 @@
 import { HeaderStyled } from "./styled";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 import imageUser from "./../../assets/user.png";

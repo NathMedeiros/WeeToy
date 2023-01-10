@@ -2,14 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { MyAdsStyled, UlAds } from "./style";
 import { api } from "../../request/api";
 import { CardMyProduct } from "../CardMyProduct";
-import { iCardMyProductProps } from "../../interfaces";
+
 import Modal from "react-modal";
 import { ModalDeleteContext } from "./../../context/DeleteContext";
 import { Delete } from "../ModalDelete";
 import { UserAnnounceContext } from "./../../context/UserAnnounceContext";
 
+import { iEditProductModal } from "../../interfaces";
+
 export function MyAds() {
-  const [userAds, setUserAds] = useState([] as iCardMyProductProps[]);
+  const [userAds, setUserAds] = useState([] as iEditProductModal[]);
   const { isOpen, closeDelete } = useContext(ModalDeleteContext);
   const { loadUser } = useContext(UserAnnounceContext);
   console.log(loadUser);
@@ -36,12 +38,16 @@ export function MyAds() {
     <MyAdsStyled>
       <UlAds>
         <h2>Anúncios Ativos</h2>
+
         {userAds.length > 0 ||
         (loadUser != undefined && loadUser.length > 0) ? (
           loadUser === undefined ? (
             userAds.map((element) => (
               <CardMyProduct
                 key={element.id}
+                category={element.category}
+                marks={element.marks}
+                description={element.description}
                 toy_name={element.toy_name}
                 id={element.id}
                 price={element.price}
@@ -52,6 +58,9 @@ export function MyAds() {
             loadUser.map((element) => (
               <CardMyProduct
                 key={element.id}
+                category={element.category}
+                marks={element.marks}
+                description={element.description}
                 toy_name={element.toy_name}
                 id={element.id}
                 price={element.price}

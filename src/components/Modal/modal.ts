@@ -25,6 +25,7 @@ export const Div = styled.div`
   }
 
   .form-section span {
+    width: 15px;
     position: relative;
     right: -230px;
     bottom: 65px;

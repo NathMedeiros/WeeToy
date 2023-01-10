@@ -36,10 +36,6 @@ export const UlAds = styled.ul`
     justify-content: space-between;
     border-radius: 12px;
 
-    img {
-      padding: 10px;
-    }
-
     p {
       padding: 10px;
       font-size: 14px;

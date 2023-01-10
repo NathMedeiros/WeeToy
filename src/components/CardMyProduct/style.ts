@@ -15,6 +15,9 @@ export const CardMyProductStyle = styled.li`
     gap: 1rem;
 
     & > div:nth-child(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 4.625rem;
       height: 4.625rem;
       background-color: #d8d8d8;
@@ -43,8 +46,10 @@ export const CardMyProductStyle = styled.li`
     align-items: center;
     gap: 0.75rem;
 
-    img {
+    & > img {
       cursor: pointer;
+      width: 1.75rem;
+      height: 1.75rem;
     }
   }
 
