@@ -72,6 +72,15 @@ export function EditProductProvider({ children }: iEditProductProps) {
                 },
               })
         } finally {
+            setModalInfo({
+                toy_name,
+                price,
+                img,
+                category,
+                marks,
+                description,
+                id
+            })
             setEditProductLoading(false)
         }
     }
