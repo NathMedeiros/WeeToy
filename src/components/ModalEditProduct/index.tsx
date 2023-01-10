@@ -9,10 +9,11 @@ import { useContext } from "react";
 import { EditProductContext } from "../../context/EditProductContext";
 import { motion } from "framer-motion";
 
-// { img, toy_name, category, price, marks, description, id }: iEditProductModal passar isso depois na função para resgatar as info e mandar o id do brinquedo
 
-export function ModalEditProduct() {
-  const { editProductLoading, editProduct } = useContext(EditProductContext);
+
+
+export function ModalEditProduct({ img, toy_name, category, price, marks, description, id }: iEditProductModal){
+
 
   const {
     register,
@@ -21,6 +22,7 @@ export function ModalEditProduct() {
   } = useForm<iEditProductModal>({
     resolver: yupResolver(editProductSchema),
   });
+
 
   return (
     <motion.div
@@ -114,3 +116,4 @@ export function ModalEditProduct() {
     </motion.div>
   );
 }
+

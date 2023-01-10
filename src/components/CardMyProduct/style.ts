@@ -43,8 +43,10 @@ export const CardMyProductStyle = styled.li`
     align-items: center;
     gap: 0.75rem;
 
-    img {
+    & > img {
       cursor: pointer;
+      width: 2.8125rem;
+      height: 2.8125rem;
     }
   }
 

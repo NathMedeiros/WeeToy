@@ -8,12 +8,11 @@ import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
 import { RegisterContext } from "../../context/RegisterContext";
 import { AuthContext } from "../../context/AuthContext";
-import { ModalEditProduct } from "../../components/ModalEditProduct";
-import { EditProductContext } from "../../context/EditProductContext";
 
 export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
+
 
   const { listToys, isLogged } = useContext(AuthContext);
 
@@ -30,6 +29,7 @@ export function Home() {
       >
         <ModalEditProduct />
       </Modal>
+
       <Header />
       <main>
         <section className="sectionImage">
