@@ -2,6 +2,8 @@ import { iCardMyProductProps } from "../../interfaces";
 import { CardMyProductStyle } from "./style";
 import editPencil from "../../assets/editPencil.svg";
 import trashIcon from "../../assets/trash.svg";
+import { useContext } from "react";
+import { ModalDeleteContext } from "./../../context/DeleteContext";
 
 export function CardMyProduct({
   toy_name,
@@ -9,6 +11,14 @@ export function CardMyProduct({
   price,
   id,
 }: iCardMyProductProps) {
+  const { openDelete } = useContext(ModalDeleteContext);
+
+  function deleteAnnounce() {
+    const productId = JSON.stringify(id);
+    localStorage.setItem("@ProductID: WeeToys", productId);
+    openDelete();
+  }
+
   return (
     <CardMyProductStyle>
       <div>
@@ -22,7 +32,7 @@ export function CardMyProduct({
       </div>
       <div>
         <img src={editPencil} alt="Editar produto" />
-        <img src={trashIcon} alt="Excluir produto" />
+        <img src={trashIcon} alt="Excluir produto" onClick={deleteAnnounce} />
       </div>
     </CardMyProductStyle>
   );

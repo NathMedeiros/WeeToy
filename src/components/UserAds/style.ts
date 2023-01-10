@@ -19,6 +19,7 @@ export const UlAds = styled.ul`
   background-color: #fff;
   border-radius: var(--radius);
   max-width: 350px;
+  text-align: center;
 
   h2 {
     font-size: 2rem;
