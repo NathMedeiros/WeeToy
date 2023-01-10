@@ -45,6 +45,7 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                     placeholder=""
                     width="100%"
                     register={register("img")}
+                    value={img}
                 />
                 {errors.img && <span>{errors.img.message}</span>}
                 <Input
@@ -55,6 +56,7 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                     placeholder=""
                     width="100%"
                     register={register("toy_name")}
+                    value={toy_name}
                 />
                 {errors.toy_name && <span>{errors.toy_name.message}</span>}
                 <div>
@@ -62,6 +64,7 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                     <fieldset>
                         <label htmlFor="toyCategory">Categoria</label>
                         <select
+                        defaultValue={category}
                         id="toyCategory"
                         required={true}
                         {...register("category")}
@@ -82,6 +85,7 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                         placeholder="R$"
                         width="100%"
                         register={register("price")}
+                        value={`${price.toFixed(2)}`}
                     />
                     {errors.price && <span>{errors.price.message}</span>}
                     </div>
@@ -96,15 +100,18 @@ export function ModalEditProduct({ img, toy_name, category, price, marks, descri
                     placeholder=""
                     width="100%"
                     register={register("marks")}
+                    value={marks}
                 />
                 {errors.marks && <span>{errors.marks.message}</span>}
                 <fieldset>
                     <label htmlFor="toyDescription">Descrição</label>
                     <textarea
-                    id="toyDescription"
-                    required={true}
-                    {...register("description")}
-                    ></textarea>
+                        id="toyDescription"
+                        required={true}
+                        {...register("description")}
+                        defaultValue={description}
+                    >
+                    </textarea>
                 </fieldset>
                 {errors.description && <span>{errors.description.message}</span>}
                 </div>
