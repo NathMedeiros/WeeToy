@@ -14,9 +14,8 @@ export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
 
-
   const { listToys, isLogged, userId } = useContext(AuthContext);
-
+  
   return (
     <HomeStyled>
       <Toaster/>

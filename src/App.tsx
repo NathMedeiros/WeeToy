@@ -4,23 +4,29 @@ import { ModalAnnounceProvider } from "./context/AnnounceContext";
 import { RegisterProvider } from "./context/RegisterContext";
 import { Home } from "./pages/Home";
 import { UserPage } from "./pages/UserPage";
+import { ModalDeleteProvider } from "./context/DeleteContext";
+import { UserAnnounceProvider } from "./context/UserAnnounceContext";
 
 function App() {
   return (
     <>
-      <ModalAnnounceProvider>
-        <RegisterProvider>
-          <LoginProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/UserPage"
-                element={<UserPage children={undefined} />}
-              />
-            </Routes>
-          </LoginProvider>
-        </RegisterProvider>
-      </ModalAnnounceProvider>
+      <RegisterProvider>
+        <LoginProvider>
+          <UserAnnounceProvider>
+            <ModalDeleteProvider>
+              <ModalAnnounceProvider>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/UserPage"
+                    element={<UserPage children={undefined} />}
+                  />
+                </Routes>
+              </ModalAnnounceProvider>
+            </ModalDeleteProvider>
+          </UserAnnounceProvider>
+        </LoginProvider>
+      </RegisterProvider>
     </>
   );
 }

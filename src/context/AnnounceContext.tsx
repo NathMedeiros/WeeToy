@@ -1,7 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { api } from "./../request/api";
 import { toast } from "react-hot-toast";
+import { UserAnnounceContext } from "./UserAnnounceContext";
 
 export interface iModalAnnounceProps {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ export const ModalAnnounceContext = createContext({} as iModalAnnounceContext);
 
 export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { loadAnnounces } = useContext(UserAnnounceContext);
 
   function openModal() {
     setIsOpen(true);
@@ -55,6 +57,7 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
             secondary: "#F5F5F5",
           },
         });
+        loadAnnounces();
         setIsOpen(false);
       } catch (error) {
         toast.error(`Ocorreu algum erro. Tente novamente!`, {
