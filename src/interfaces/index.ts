@@ -66,7 +66,7 @@ export interface iCardMyProductProps {
 
 export interface iCardHistoryBuy {
   img: string;
-  name: string;
+  toy_name: string;
   price: number;
   id: number
 }
