@@ -43,6 +43,7 @@ export function ButtonCart (){
                 toy_name: "",
                 userId: 0
             }])
+            closeModal()
         }else{
             closeModal()
             openLogin()
