@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { LoginProvider } from "./context/LoginContext";
+import { ModalAnnounceProvider } from "./context/AnnounceContext";
+import { RegisterProvider } from "./context/RegisterContext";
+import { Home } from "./pages/Home";
+import { UserPage } from "./pages/UserPage";
+import { ModalDeleteProvider } from "./context/DeleteContext";
+import { UserAnnounceProvider } from "./context/UserAnnounceContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RegisterProvider>
+        <LoginProvider>
+          <UserAnnounceProvider>
+            <ModalDeleteProvider>
+              <ModalAnnounceProvider>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/UserPage"
+                    element={<UserPage children={undefined} />}
+                  />
+                </Routes>
+              </ModalAnnounceProvider>
+            </ModalDeleteProvider>
+          </UserAnnounceProvider>
+        </LoginProvider>
+      </RegisterProvider>
+    </>
   );
 }
 
