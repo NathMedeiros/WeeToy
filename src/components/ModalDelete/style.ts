@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button } from "./../Button/index";
 
 export const Div = styled.div`
   width: 300x;
