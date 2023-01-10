@@ -1,5 +1,5 @@
 import { HeaderStyled } from "./styled";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 import imageUser from "./../../assets/user.png";
@@ -35,7 +35,8 @@ export function Header() {
     localStorage.removeItem("@TOKEN: WeeToys");
     localStorage.removeItem("@USER: WeeToys");
     setLogged(false);
-    navigate("/");
+    console.log(isLogged);
+    navigate(0);
   }
 
   function logedUser() {
@@ -76,12 +77,7 @@ export function Header() {
                   <Link to="/UserPage" className="linkUser">
                     Ver perfil
                   </Link>
-                  <span
-                    className="logout"
-                    onClick={() => {
-                      logout();
-                    }}
-                  >
+                  <span className="logout" onClick={logout}>
                     Logout
                   </span>
                 </div>

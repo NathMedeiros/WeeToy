@@ -8,8 +8,6 @@ import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
 import { RegisterContext } from "../../context/RegisterContext";
 import { AuthContext } from "../../context/AuthContext";
-import { ModalEditProduct } from "../../components/ModalEditProduct";
-import { EditProductContext } from "../../context/EditProductContext";
 
 export function Home() {
   const { openRegister, closeRegister, registerOpen } =
@@ -17,19 +15,8 @@ export function Home() {
 
   const { listToys, isLogged } = useContext(AuthContext);
 
-  const { openEditProduct, setOpenEditProduct } =
-    useContext(EditProductContext);
-
   return (
     <HomeStyled>
-      <Modal
-        isOpen={openEditProduct}
-        onRequestClose={() => setOpenEditProduct(false)}
-        overlayClassName="modal-overlay"
-        className="modal-content-home"
-      >
-        <ModalEditProduct />
-      </Modal>
       <Header />
       <main>
         <section className="sectionImage">
