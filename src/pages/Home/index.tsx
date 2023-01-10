@@ -8,15 +8,18 @@ import { Register } from "../../components/Modal/auth";
 import { CardProduct } from "../../components/CardProduct";
 import { RegisterContext } from "../../context/RegisterContext";
 import { AuthContext } from "../../context/AuthContext";
+import { Toaster } from "react-hot-toast";
+import { CardModal } from "../../components/CardModal";
 
 export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
 
-  const { listToys, isLogged } = useContext(AuthContext);
+  const { listToys, isLogged, userId } = useContext(AuthContext);
 
   return (
     <HomeStyled>
+      <Toaster />
       <Header />
       <main>
         <section className="sectionImage">
@@ -47,21 +50,27 @@ export function Home() {
               >
                 <Register />
               </Modal>
+
+              <CardModal />
             </div>
           </div>
         </section>
         <section className="sectionList">
           <ul className="listProducts">
             {listToys.map((toy) => {
-              return (
-                <CardProduct
-                  key={toy.id}
-                  name={toy.toy_name}
-                  price={toy.price}
-                  img={toy.img}
-                  id={toy.id}
-                />
-              );
+              if (toy.userId !== userId) {
+                return (
+                  <CardProduct
+                    key={toy.id}
+                    name={toy.toy_name}
+                    price={toy.price}
+                    img={toy.img}
+                    id={toy.id}
+                  />
+                );
+              } else {
+                return null;
+              }
             })}
           </ul>
         </section>

@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
 import { AuthContext } from "./AuthContext";
+import { CartContext } from "./CartContext";
 import { RegisterContext } from "./RegisterContext";
 
 export interface iModalProps {
@@ -23,6 +24,7 @@ export const LoginContext = createContext({} as iLoginContext);
 export function LoginProvider({ children }: iModalProps) {
   const { setLogged } = useContext(AuthContext);
   const { closeLogin } = useContext(RegisterContext);
+  const {updateCartWithLogin} = useContext(CartContext)
 
   async function submitLogin(data: iDataLogin) {
     try {
@@ -50,6 +52,7 @@ export function LoginProvider({ children }: iModalProps) {
         },
       });
       setLogged(true);
+      updateCartWithLogin(user.id)
       setTimeout(closeLogin, 2500);
     } catch (error) {
       console.log(error);

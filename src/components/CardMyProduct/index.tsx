@@ -1,8 +1,10 @@
 import { iEditProductModal } from "../../interfaces";
 import { CardMyProductStyle } from "./style";
 import editPencil from "../../assets/editPencil.svg";
+import trashIcon from "../../assets/trash.svg";
+import { ModalDeleteContext } from "./../../context/DeleteContext";
 import trash from "../../assets/trash.svg";
-import { useContext } from "react"
+import { useContext } from "react";
 import { EditProductContext } from "../../context/EditProductContext";
 
 export function CardMyProduct({
@@ -12,10 +14,17 @@ export function CardMyProduct({
   id,
   description,
   marks,
-  category
+  category,
 }: iEditProductModal) {
+  const { openDelete } = useContext(ModalDeleteContext);
 
-  const { setModalInfo, setOpenEditProduct } = useContext(EditProductContext)
+  function deleteAnnounce() {
+    const productId = JSON.stringify(id);
+    localStorage.setItem("@ProductID: WeeToys", productId);
+    openDelete();
+  }
+
+  const { setModalInfo, setOpenEditProduct } = useContext(EditProductContext);
 
   return (
     <CardMyProductStyle>
@@ -29,19 +38,23 @@ export function CardMyProduct({
         </div>
       </div>
       <div>
-        <img src={editPencil} onClick={() => {
-          setModalInfo({
-            id: id,
-            img: img,
-            toy_name: toy_name,
-            price: price,
-            description: description,
-            category: category,
-            marks: marks
-          })
-          setOpenEditProduct(true)
-        }} alt="Editar produto" />
-        <img src={trash} alt="Excluir produto" />
+        <img
+          src={editPencil}
+          onClick={() => {
+            setModalInfo({
+              id: id,
+              img: img,
+              toy_name: toy_name,
+              price: price,
+              description: description,
+              category: category,
+              marks: marks,
+            });
+            setOpenEditProduct(true);
+          }}
+          alt="Editar produto"
+        />
+        <img src={trash} alt="Excluir produto" onClick={deleteAnnounce} />
       </div>
     </CardMyProductStyle>
   );
