@@ -73,7 +73,7 @@ export function UserPage({ children }: iUserPage) {
           description={modalInfo.description}
         />
       </Modal>
-      <Header />
+      <Header userPage={true} />
       <main>
         <section className="sectionImage">
           <img src={imageChild} alt="Imagem criança" className="imageChild" />

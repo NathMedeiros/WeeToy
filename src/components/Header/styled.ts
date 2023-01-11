@@ -21,7 +21,7 @@ export const HeaderStyled = styled.header`
   .linksHeader {
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 60px;
     position: relative;
   }
 
