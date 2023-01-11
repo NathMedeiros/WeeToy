@@ -13,6 +13,7 @@ export interface iRegisterContext {
   submitRegister: (data: iDataLogin) => Promise<void>;
   registerOpen: boolean;
   loginOpen: boolean;
+  loadingRegister: boolean;
 }
 
 export interface iDataRegister {
@@ -27,6 +28,7 @@ export const RegisterContext = createContext({} as iRegisterContext);
 export function RegisterProvider({ children }: iModalProps) {
   const [registerOpen, setRegisterOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [loadingRegister, setLoadingRegister] = useState(false)
 
   function openRegister() {
     setRegisterOpen(true);
@@ -47,6 +49,7 @@ export function RegisterProvider({ children }: iModalProps) {
   }
 
   async function submitRegister(data: iDataRegister) {
+    setLoadingRegister(true)
     
     try {
       const request = await toast.promise(api.post("/register", data), {
@@ -60,9 +63,9 @@ export function RegisterProvider({ children }: iModalProps) {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingRegister(false)
     }
-
-   
   }
 
   return (
@@ -76,6 +79,7 @@ export function RegisterProvider({ children }: iModalProps) {
           loginOpen,
           openLogin,
           closeLogin,
+          loadingRegister
         }}
       >
         {children}

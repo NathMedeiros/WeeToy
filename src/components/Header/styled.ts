@@ -6,6 +6,7 @@ export const HeaderStyled = styled.header`
 
   .divHeader {
     margin: 0 auto;
+    gap: 40px;
     max-width: 1400px;
     display: flex;
     align-items: center;
@@ -21,8 +22,32 @@ export const HeaderStyled = styled.header`
   .linksHeader {
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 60px;
     position: relative;
+  }
+
+  .lupa img {
+    width: 28px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  form {
+    width: 30%;
+  }
+
+  form input {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    border: solid 2px var(--color-primary);
+    color: #000;
+  }
+
+  input::placeholder {
+    padding: 5px;
+    font-size: var(--size-2);
   }
 
   .linksHeaderMobile {
@@ -131,7 +156,7 @@ export const HeaderStyled = styled.header`
       position: relative;
     }
 
-    .optionsUser{
+    .optionsUser {
       right: 0;
       top: 40px;
     }

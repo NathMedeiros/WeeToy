@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { createContext, useState } from "react";
 import { api } from "./../request/api";
 import { toast } from "react-hot-toast";
@@ -23,21 +23,27 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
-  toysPurshased: (listCart: iToys[]) => Promise<void>,
-  userId: number
+  toysPurshased: (listCart: iToys[]) => Promise<void>;
+  userId: number;
+  setSearch: Dispatch<SetStateAction<string>>;
+  filter: iToys[];
+  loadingPurchase: boolean;
 }
 
 export const AuthContext = createContext({} as iAuthContext);
 
 export function AuthProvider({ children }: iAuthProps) {
-
-  const [userId, setUserId] = useState(0)
+  const [userId, setUserId] = useState(0);
 
   const [logged, setLogged] = useState(false);
 
   const [isLogged, setIsLogged] = useState(false);
 
-  const [purshased, setPurshased] = useState(0)
+  const [purshased, setPurshased] = useState(0);
+
+  const [search, setSearch] = useState("" as string);
+
+  const [loadingPurchase, setLoadingPurchase] = useState<boolean>(false);
 
   const [listToys, setListToys] = useState([
     {
@@ -52,6 +58,11 @@ export function AuthProvider({ children }: iAuthProps) {
     },
   ]);
 
+  const filter = listToys.filter((element) => {
+    const name = element.toy_name;
+    return name.toLowerCase().includes(search);
+  });
+
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
@@ -60,7 +71,7 @@ export function AuthProvider({ children }: iAuthProps) {
     async function loadUser() {
       if (token && userIdLocal !== null) {
         const userId = await JSON.parse(userIdLocal);
-        setUserId(userId.id)
+        setUserId(userId.id);
         try {
           const request = await api.get(`/users/${userId.id}`, {
             headers: { authorization: `Bearer ${token}` },
@@ -75,8 +86,8 @@ export function AuthProvider({ children }: iAuthProps) {
           console.log(err);
           return null;
         }
-      }else{
-        setIsLogged(false)
+      } else {
+        setIsLogged(false);
       }
     }
 
@@ -97,22 +108,23 @@ export function AuthProvider({ children }: iAuthProps) {
     }
 
     getToysFromAPI();
-
   }, [logged, purshased]);
 
-  async function toysPurshased(listCart: iToys[]){
+  async function toysPurshased(listCart: iToys[]) {
+    setLoadingPurchase(true);
+
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
     const userId = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
 
-    let count = 0
+    let count = 0;
 
-    let oneTimeToast = 0
+    let oneTimeToast = 0;
 
-    let number = listCart.length
+    let number = listCart.length;
 
     listCart.forEach(async (toy) => {
-      const {category, description, img, marks, price, toy_name} = toy
+      const { category, description, img, marks, price, toy_name } = toy;
       const data = {
         category: category,
         description: description,
@@ -120,30 +132,39 @@ export function AuthProvider({ children }: iAuthProps) {
         marks: marks,
         price: price,
         toy_name: toy_name,
-        userId: userId.id
-      }
-      
-      try{
-        const request = await toast.promise(api.post("/purchases_historic", data, {
-          headers:{
-            authorization: `Bearer ${token}`
-          }
-        }), {
-          loading: "Validando pagamento...",
-          error: "Falha na compra. Tente novamente!",
-          success: "Pagamento validado com sucesso!"
-        }, toastDesign)
+        userId: userId.id,
+      };
 
-        if(request){
-          count++
+      try {
+        const request = await toast.promise(
+          api.post("/purchases_historic", data, {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }),
+          {
+            loading: "Validando pagamento...",
+            error: "Falha na compra. Tente novamente!",
+            success: "Pagamento validado com sucesso!",
+          },
+          toastDesign
+        );
+
+        if (request) {
+          count++;
         }
-      }catch(err){
-        return null
+      } catch (err) {
+        setLoadingPurchase(false);
+        return null;
       }
-      if(count !== 0){
-        try{
-          await api.delete(`/toys/${toy.id}`, {headers:{authorization: `Bearer ${token}`}})
-          if(count === number && oneTimeToast === 0){
+      if (count !== 0) {
+        try {
+          await api.delete(`/toys/${toy.id}`, {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
+          if (count === number && oneTimeToast === 0) {
             toast.success("Compra realizada", {
               style: {
                 border: "1px solid #15da4d",
@@ -155,19 +176,32 @@ export function AuthProvider({ children }: iAuthProps) {
                 primary: "#15da4d",
                 secondary: "#F5F5F5",
               },
-            })
-            oneTimeToast++
-            setPurshased(purshased + 1)
+            });
+            oneTimeToast++;
+            setPurshased(purshased + 1);
           }
-        }catch(err){
-          return null
+        } catch (err) {
+          return null;
+        } finally {
+          setLoadingPurchase(false);
         }
       }
-    })
+    });
   }
 
   return (
-    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased, userId}}>
+    <AuthContext.Provider
+      value={{
+        setLogged,
+        isLogged,
+        listToys,
+        toysPurshased,
+        userId,
+        setSearch,
+        filter,
+        loadingPurchase,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

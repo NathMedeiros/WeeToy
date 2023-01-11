@@ -11,32 +11,24 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { StyledUserData } from "./style";
 
-export function UserData() {
-  const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-  const token = localStorage.getItem("@TOKEN: WeeToys");
-  const [userData, setUserData] = useState({} as iFormRegister);
-  const navigate = useNavigate();
+interface iUserData {
+  userId: string;
+  token: string;
+  userData: iFormRegister;
+}
 
+export function UserData({ userData, userId, token }: iUserData) {
   useEffect(() => {
-    async function loadUserData() {
-      try {
-        const request = await api.get(`/users/${user.id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        const { address, birth_date, cep, email, name } = request.data;
-        setUserData({ address, birth_date, cep, email, name });
-        setValue("address", address);
-        setValue("birth_date", birth_date);
-        setValue("cep", cep);
-        setValue("email", email);
-        setValue("name", name);
-      } catch (error) {
-        console.log(error);
-        navigate("/");
-      }
+    function updateForm() {
+      setValue("name", userData.name);
+      setValue("email", userData.email);
+      setValue("address", userData.address);
+      setValue("cep", userData.cep);
+      setValue("birth_date", userData.birth_date);
     }
-    loadUserData();
-  }, []);
+    updateForm();
+  }, [userData]);
+
   const {
     register,
     handleSubmit,
@@ -54,19 +46,29 @@ export function UserData() {
     },
   });
 
+  const [loadingData, setLoadingData] = useState<boolean>(false)
+
   async function patchUser(data: iFormRegister) {
+    setLoadingData(true)
+    console.log(data);
     try {
-      const request = await toast.promise(api.patch(`/users/${user.id}`, data, {
-        headers: { 
-          authorization: `Bearer ${token}` 
-        }
-      }), {
-        success: "Dados de usuário atualizados!",
-        error: "Falha no login. Tente novamente!",
-        loading: "Atualizando dados..."
-      }, toastDesign)
+      const request = await toast.promise(
+        api.patch(`/users/${userId}`, data, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }),
+        {
+          success: "Dados de usuário atualizados!",
+          error: "Falha no login. Tente novamente!",
+          loading: "Atualizando dados...",
+        },
+        toastDesign
+      );
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingData(false)
     }
   }
 
@@ -86,8 +88,20 @@ export function UserData() {
         />
         {errors && <span>{errors.name?.message}</span>}
         <Input
-          id="address"
+          id="email"
           placeholder="Digite seu email"
+          labelName="Email"
+          required={true}
+          inputType="text"
+          register={register("email")}
+          readOnly={true}
+          width="100%"
+          value={userData.email}
+        />
+        {errors && <span>{errors.email?.message}</span>}
+        <Input
+          id="address"
+          placeholder="Digite seu enderço"
           labelName="Endereço"
           required={true}
           inputType="email"
@@ -108,18 +122,6 @@ export function UserData() {
         />
         {errors && <span>{errors.cep?.message}</span>}
         <Input
-          id="email"
-          placeholder="Digite seu email"
-          labelName="Email"
-          required={true}
-          inputType="text"
-          register={register("email")}
-          readOnly={true}
-          width="100%"
-          value={userData.email}
-        />
-        {errors && <span>{errors.email?.message}</span>}
-        <Input
           id="date"
           placeholder="data"
           labelName="Data de Nasicmento"
@@ -136,8 +138,9 @@ export function UserData() {
           fontSize="12px"
           width="100%"
           styleButton="style3"
+          disabled={loadingData}
         >
-          Atualizar dados
+          {loadingData ? "Atualizando dados..." : "Atualizar dados"}
         </Button>
       </form>
     </StyledUserData>

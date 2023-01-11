@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 
 export function Announce() {
-  const { submitAnnounce } = useContext(ModalAnnounceContext);
+  const { submitAnnounce, announceLoading } = useContext(ModalAnnounceContext);
   const {
     register,
     handleSubmit,
@@ -134,7 +134,9 @@ export function Announce() {
               {errors.description?.message}
             </div>
           </div>
-          <button>Anunciar Produto</button>
+          <button disabled={announceLoading}>
+            {announceLoading ? "Anunciando produto..." : "Anunciar Produto"}
+          </button>
         </form>
       </Div>
     </motion.div>
