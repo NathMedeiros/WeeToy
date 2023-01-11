@@ -46,7 +46,10 @@ export function UserData({ userData, userId, token }: iUserData) {
     },
   });
 
+  const [loadingData, setLoadingData] = useState<boolean>(false)
+
   async function patchUser(data: iFormRegister) {
+    setLoadingData(true)
     console.log(data);
     try {
       const request = await toast.promise(
@@ -64,6 +67,8 @@ export function UserData({ userData, userId, token }: iUserData) {
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingData(false)
     }
   }
 
@@ -133,8 +138,9 @@ export function UserData({ userData, userId, token }: iUserData) {
           fontSize="12px"
           width="100%"
           styleButton="style3"
+          disabled={loadingData}
         >
-          Atualizar dados
+          {loadingData ? "Atualizando dados..." : "Atualizar dados"}
         </Button>
       </form>
     </StyledUserData>

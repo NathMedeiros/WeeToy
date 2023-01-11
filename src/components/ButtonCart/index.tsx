@@ -16,7 +16,7 @@ export function ButtonCart (){
 
     const {openLogin} = useContext(RegisterContext)
 
-    const {isLogged, toysPurshased} = useContext(AuthContext)
+    const {isLogged, toysPurshased, loadingPurchase } = useContext(AuthContext)
 
     const {listCart, count, total, setListCart} = useContext(CartContext)
 
@@ -84,7 +84,9 @@ export function ButtonCart (){
                                 <p>{`Quantidade: ${count}`}</p>
                                 <p>{`R$ ${total.toFixed(2).replace(".", ",")}`}</p>
                             </div>
-                            <Button styleButton="style4" onClick={()=>{toBuy()}}>Finalizar Compra</Button>
+                            <Button styleButton="style4" onClick={()=>{toBuy()}} disabled={loadingPurchase}>
+                                {loadingPurchase ? "Finalizando compra..." : "Finalizar Compra"}
+                            </Button>
                         </div>
                     )}
                 </ModalCartStyled>

@@ -15,7 +15,7 @@ import { iFormModal } from "../../interfaces";
 import { RegisterContext } from "../../context/RegisterContext";
 
 export function Login() {
-  const { submitLogin } = useContext(LoginContext);
+  const { submitLogin, loadingLogin } = useContext(LoginContext);
   const { openRegister, closeLogin } = useContext(RegisterContext);
 
   const {
@@ -66,7 +66,9 @@ export function Login() {
             />
             <p>{errors.password?.message}</p>
 
-            <button type="submit">Entrar</button>
+            <button type="submit" disabled={loadingLogin}>
+              {loadingLogin ? "Entrando..." : "Entrar"}
+            </button>
           </form>
           <button type="button" onClick={openRegister}>
             Cadastre-se
@@ -78,7 +80,7 @@ export function Login() {
 }
 
 export function Register() {
-  const { closeRegister, submitRegister } = useContext(RegisterContext);
+  const { closeRegister, submitRegister, loadingRegister } = useContext(RegisterContext);
 
   const {
     register,
@@ -150,7 +152,9 @@ export function Register() {
             />
             <p>{errors.confirmPass?.message}</p>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit" disabled={loadingRegister}>
+              {loadingRegister ? "Cadastrando..." : "Cadastrar"}
+            </button>
           </form>
         </section>
       </Div>

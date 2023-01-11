@@ -14,6 +14,7 @@ export interface iModalAnnounceContext {
   closeModal: () => void;
   submitAnnounce: (data: IDataNewAnnounce) => Promise<void>;
   isOpen: boolean;
+  announceLoading: boolean;
 }
 
 export interface IDataNewAnnounce {
@@ -30,6 +31,7 @@ export const ModalAnnounceContext = createContext({} as iModalAnnounceContext);
 
 export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [announceLoading, setAnnounceLoading] = useState<boolean>(false)
   const { loadAnnounces } = useContext(UserAnnounceContext);
 
   function openModal() {
@@ -41,6 +43,7 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   }
 
   async function submitAnnounce(data: IDataNewAnnounce) {
+    setAnnounceLoading(true)
     const token = localStorage.getItem("@TOKEN: WeeToys");
     if (token) {
       try {
@@ -57,6 +60,8 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
         }, 0)
       } catch (error) {
         console.error(error);
+      } finally {
+        setAnnounceLoading(false)
       }
     }
   }
@@ -64,7 +69,7 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
   return (
     <>
       <ModalAnnounceContext.Provider
-        value={{ openModal, closeModal, isOpen, submitAnnounce }}
+        value={{ openModal, closeModal, isOpen, submitAnnounce, announceLoading }}
       >
         {children}
       </ModalAnnounceContext.Provider>

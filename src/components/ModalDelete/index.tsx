@@ -4,7 +4,7 @@ import { ModalDeleteContext } from "./../../context/DeleteContext";
 import { motion } from "framer-motion";
 
 export const Delete = () => {
-  const { deleteNow } = useContext(ModalDeleteContext);
+  const { deleteNow, loadingDelete } = useContext(ModalDeleteContext);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,7 +14,9 @@ export const Delete = () => {
     >
       <Div>
         <p>Deseja realmente deletar?</p>
-        <button onClick={deleteNow}>Deletar</button>
+        <button onClick={deleteNow} disabled={loadingDelete}>
+          {loadingDelete ? "Deletando..." : "Deletar"}
+        </button>
       </Div>
     </motion.div>
   );

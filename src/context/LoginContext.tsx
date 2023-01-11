@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
@@ -13,6 +13,7 @@ export interface iModalProps {
 
 export interface iLoginContext {
   submitLogin: (data: iDataLogin) => Promise<void>;
+  loadingLogin: boolean;
 }
 
 export interface iDataLogin {
@@ -27,7 +28,10 @@ export function LoginProvider({ children }: iModalProps) {
   const { closeLogin } = useContext(RegisterContext);
   const {updateCartWithLogin} = useContext(CartContext)
 
+  const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
+
   async function submitLogin(data: iDataLogin) {
+    setLoadingLogin(true)
 
     try {
       
@@ -51,6 +55,8 @@ export function LoginProvider({ children }: iModalProps) {
       setTimeout(closeLogin, 2500);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingLogin(false)
     }
   }
 
@@ -59,6 +65,7 @@ export function LoginProvider({ children }: iModalProps) {
       <LoginContext.Provider
         value={{
           submitLogin,
+          loadingLogin
         }}
       >
         {children}
