@@ -16,7 +16,9 @@ export function Home() {
   const { openRegister, closeRegister, registerOpen } =
     useContext(RegisterContext);
 
-  const { listToys, isLogged, userId } = useContext(AuthContext);
+  const { filter } = useContext(AuthContext);
+
+  const { isLogged, userId } = useContext(AuthContext);
 
   return (
     <HomeStyled>
@@ -58,7 +60,7 @@ export function Home() {
         </section>
         <section className="sectionList">
           <ul className="listProducts">
-            {listToys.map((toy) => {
+            {filter.map((toy) => {
               if (toy.userId !== userId) {
                 return (
                   <CardProduct

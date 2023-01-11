@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import logo from "./../../assets/logoWeeToy.png";
 import imageUser from "./../../assets/user.png";
 import menu from "./../../assets/menu.png";
+import lupa from "./../../assets/lupa.png";
 import { Login } from "../Modal/auth";
 import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
@@ -14,16 +15,17 @@ import { RegisterContext } from "../../context/RegisterContext";
 import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
 
-interface iHeaderProps{
-  userPage?: boolean
+interface iHeaderProps {
+  userPage?: boolean;
 }
 
-export function Header({userPage}:iHeaderProps) {
+export function Header({ userPage }: iHeaderProps) {
   const { openLogin, closeLogin, loginOpen } = useContext(RegisterContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
-  const { isLogged, setLogged } = useContext(AuthContext);
+  const { isLogged, setLogged, setSearch } = useContext(AuthContext);
 
   const [linksMobile, setLinksMobile] = useState(false);
+  const [input, setInput] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -63,6 +65,14 @@ export function Header({userPage}:iHeaderProps) {
     }
   }
 
+  function openInput() {
+    if (input) {
+      setInput(false);
+    } else {
+      setInput(true);
+    }
+  }
+  console.log(input);
   return (
     <HeaderStyled>
       <Toaster />
@@ -73,11 +83,26 @@ export function Header({userPage}:iHeaderProps) {
         <div className="divLinksCart">
           <div className="linksHeader">
             {userPage ? (
-              <Link to="/" className="linkUser">Home</Link>
-            ):(
-              null
-            )}
-            <span>Categoria</span>
+              <Link to="/" className="linkUser">
+                Home
+              </Link>
+            ) : null}
+
+            {input ? (
+              <form>
+                <input
+                  type="text"
+                  placeholder="Pesquise..."
+                  onChange={(event) =>
+                    setSearch(event.target.value.toLowerCase())
+                  }
+                />
+              </form>
+            ) : null}
+
+            <button onClick={openInput} className="lupa">
+              <img src={lupa} alt="" />
+            </button>
             <span onClick={logedUser}>Anunciar</span>
             {isLogged === true ? (
               <div className="divUser">
@@ -127,11 +152,24 @@ export function Header({userPage}:iHeaderProps) {
       {linksMobile === true ? (
         <div className="linksHeaderMobile">
           {userPage ? (
-              <Link to="/" className="linkUser">Home</Link>
-            ):(
-              null
-            )}
-          <span>Categoria</span>
+            <Link to="/" className="linkUser">
+              Home
+            </Link>
+          ) : null}
+          {input ? (
+            <form>
+              <input
+                type="text"
+                placeholder="Pesquise..."
+                onChange={(event) =>
+                  setSearch(event.target.value.toLowerCase())
+                }
+              />
+            </form>
+          ) : null}
+          <button onClick={openInput} className="lupa">
+            <img src={lupa} alt="" />
+          </button>{" "}
           <span onClick={logedUser}>Anunciar</span>
           {isLogged === true ? (
             <div className="divUser">
