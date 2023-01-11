@@ -8,31 +8,15 @@ import { ModalDeleteContext } from "./../../context/DeleteContext";
 import { Delete } from "../ModalDelete";
 import { UserAnnounceContext } from "./../../context/UserAnnounceContext";
 
-import { iEditProductModal } from "../../interfaces";
+import { iEditProductModal, iUserToys } from "../../interfaces";
 
-export function MyAds() {
-  const [userAds, setUserAds] = useState([] as iEditProductModal[]);
+interface iMyAds {
+  userAds: iUserToys[];
+}
+
+export function MyAds({ userAds }: iMyAds) {
   const { isOpen, closeDelete } = useContext(ModalDeleteContext);
   const { loadUser } = useContext(UserAnnounceContext);
-
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-  //   const token = localStorage.getItem("@TOKEN: WeeToys");
-
-  //   async function getUserAds() {
-  //     try {
-  //       const request = await api.get(`/users/${user.id}`, {
-  //         headers: { authorization: `Bearer ${token}` },
-  //       });
-  //       setUserAds(request.data.toy);
-  //       console.log(request.data.toy);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   getUserAds();
-  // }, []);
 
   return (
     <MyAdsStyled>
@@ -41,7 +25,7 @@ export function MyAds() {
         <h2>Anúncios Ativos</h2>
 
         {userAds.length > 0 ||
-        (loadUser != undefined && loadUser.length > 0) ? (
+        (loadUser !== undefined && loadUser.length > 0) ? (
           loadUser === undefined ? (
             userAds.map((element) => (
               <CardMyProduct

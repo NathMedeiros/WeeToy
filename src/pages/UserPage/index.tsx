@@ -6,7 +6,7 @@ import imageChild from "./../../assets/imageChild.png";
 import Modal from "react-modal";
 import { EditProductContext } from "../../context/EditProductContext";
 import { UserData } from "../../components/UserData";
-import Historic from "../../components/UserHistory";
+import { Historic } from "../../components/UserHistory";
 import { MyAds } from "../../components/UserAds";
 import { UserNav } from "../../components/UserNav";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
@@ -46,7 +46,6 @@ export function UserPage({ children }: iUserPage) {
         );
         const { address, birth_date, cep, email, name } = request.data;
         setUserData(request.data);
-        console.log(request.data);
       } catch (error) {
         console.log(error);
         navigate("/");
@@ -88,7 +87,7 @@ export function UserPage({ children }: iUserPage) {
             {pageToRender === "Compras" && (
               <Historic historicList={userData.purchases_historic} />
             )}
-            {pageToRender === "Anúncios" && <MyAds />}
+            {pageToRender === "Anúncios" && <MyAds userAds={userData.toy} />}
           </div>
         </section>
       </main>

@@ -73,16 +73,8 @@ export interface iFormRegister {
   cep: string;
   email: string;
   birth_date: string;
-  purchases_historic: {
-    category: string;
-    description: string;
-    id: number;
-    img: string;
-    marks: string;
-    price: number;
-    toy_name: string;
-    userId: number;
-  }[];
+  purchases_historic: iUserToys[];
+  toy: iUserToys[];
 }
 
 export interface iEditProductModal {
@@ -93,4 +85,15 @@ export interface iEditProductModal {
   marks: string;
   description: string;
   id: number;
+}
+
+export interface iUserToys {
+  category: string;
+  description: string;
+  id: number;
+  img: string;
+  marks: string;
+  price: number;
+  toy_name: string;
+  userId: number;
 }

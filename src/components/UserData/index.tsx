@@ -18,6 +18,17 @@ interface iUserData {
 }
 
 export function UserData({ userData, userId, token }: iUserData) {
+  useEffect(() => {
+    function updateForm() {
+      setValue("name", userData.name);
+      setValue("email", userData.email);
+      setValue("address", userData.address);
+      setValue("cep", userData.cep);
+      setValue("birth_date", userData.birth_date);
+    }
+    updateForm();
+  }, [userData]);
+
   const {
     register,
     handleSubmit,
@@ -26,16 +37,17 @@ export function UserData({ userData, userId, token }: iUserData) {
   } = useForm<iFormRegister>({
     mode: "onSubmit",
     resolver: yupResolver(userDataSchema),
-    // defaultValues: {
-    //   address: userData.address,
-    //   birth_date: userData.birth_date,
-    //   cep: userData.cep,
-    //   email: userData.email,
-    //   name: userData.name,
-    // },
+    defaultValues: {
+      address: userData.address,
+      birth_date: userData.birth_date,
+      cep: userData.cep,
+      email: userData.email,
+      name: userData.name,
+    },
   });
 
   async function patchUser(data: iFormRegister) {
+    console.log(data);
     try {
       const request = await toast.promise(
         api.patch(`/users/${userId}`, data, {

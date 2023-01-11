@@ -3,23 +3,14 @@ import { StyledHistoric, UlHistoric } from "./style";
 import WeeToy from "../../assets/image.png";
 import { CardMyProduct } from "../CardMyProduct";
 import { api } from "../../request/api";
-import { iCardHistoryBuy } from "../../interfaces";
+import { iCardHistoryBuy, iUserToys } from "../../interfaces";
 import { CardHistoricBuy } from "../CardHistoricBuy";
 
 interface iHistoric {
-  historicList: {
-    category: string;
-    description: string;
-    id: number;
-    img: string;
-    marks: string;
-    price: number;
-    toy_name: string;
-    userId: number;
-  }[];
+  historicList: iUserToys[];
 }
 
-const Historic = ({ historicList }: iHistoric) => {
+export function Historic({ historicList }: iHistoric) {
   return (
     <StyledHistoric>
       <UlHistoric>
@@ -40,5 +31,4 @@ const Historic = ({ historicList }: iHistoric) => {
       </UlHistoric>
     </StyledHistoric>
   );
-};
-export default Historic;
+}
