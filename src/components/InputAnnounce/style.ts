@@ -13,7 +13,7 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    margin-bottom: 37px;
+    /* margin-bottom: 37px; */
 
     @media (max-width: 1200px) {
       margin-bottom: 0;
@@ -27,7 +27,7 @@ export const InputAnnounceStyle = styled.fieldset<iInputStyleProps>`
       margin-bottom: 10px;
       width: 245px;
       position: relative;
-      height: 70px;
+      height: 26px;
     }
     @media (max-width: 540px) {
       align-items: center;
