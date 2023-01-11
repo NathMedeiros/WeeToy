@@ -2,40 +2,48 @@ import React from "react";
 import { useContext } from "react";
 import Modal from "react-modal";
 import { CardModalContext } from "../../context/CardModalContext";
-import imgToy from "../../assets/image.png";
 import "../CardModal/style.css";
-import { Button } from "../Button";
 import { DivBuy, DivHeader } from "./style";
+import { AuthContext } from "../../context/AuthContext";
 
 Modal.setAppElement("#root");
 
 export function CardModal() {
-  const { cardOpen, closeCard } = useContext(CardModalContext);
-
+  const { cardOpen, setCardOpen } = useContext(CardModalContext);
+  const { listToys } = useContext(AuthContext);
+  const toyFilter = listToys.filter((elem) => {
+    return elem.id === cardOpen;
+  });
+  console.log(toyFilter);
   return (
     <div>
       <Modal
-        isOpen={cardOpen}
-        onRequestClose={closeCard}
+        isOpen={cardOpen ? true : false}
+        onRequestClose={() => setCardOpen(null)}
         contentLabel="Example Modal"
         overlayClassName="modal-overlay"
         className="modal-content-card"
       >
         <ul>
-          <li>
-            <DivHeader>
-              <img src={imgToy} alt="" />
-              <h3>Brinquedo WeeToy</h3>
-            </DivHeader>
-            <DivBuy>
-              <div>
-                <p>Marca: ****</p>
-                <p>Descrição: ****************</p>
-                <p>R$50,00</p>
-              </div>
-              <Button styleButton="style2">Comprar</Button>
-            </DivBuy>
-          </li>
+          {toyFilter.map((toy) => {
+            return (
+              <li key={toy.id}>
+                <DivHeader>
+                  <div>
+                    <img src={toy.img} alt="" />
+                    <h3>{toy.toy_name}</h3>
+                  </div>
+                  <button onClick={() => setCardOpen(null)}>X</button>
+                </DivHeader>
+
+                <DivBuy>
+                  <p>Marca: {toy.marks}</p>
+                  <p>Descrição: {toy.description}</p>
+                  <p>Preço: {`R$  ${toy.price.toFixed(2)}`}</p>
+                </DivBuy>
+              </li>
+            );
+          })}
         </ul>
       </Modal>
     </div>

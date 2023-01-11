@@ -7,6 +7,7 @@ import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
 import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export function Announce() {
   const { submitAnnounce, announceLoading } = useContext(ModalAnnounceContext);
@@ -47,38 +48,34 @@ export function Announce() {
   }
 
   return (
-    <Div>
-      <Toaster />
-      <p className="announceTitle">Anuncie seu produto, é fácil e rápido!</p>
-      <p className="subtitle">capriche na foto e na descrição do seu produto</p>
-      <form onSubmit={handleSubmit(getToy)}>
-        <div className="nameMark">
-          <InputAnnounce
-            id="image"
-            placeholder=""
-            labelName="Foto do brinquedo"
-            required={false}
-            inputType="text"
-            width="500px"
-            register={register("img")}
-          />
-          {errors.img?.message}
-          <InputAnnounce
-            id="mark"
-            placeholder=""
-            labelName="Marca (opcional)"
-            required={false}
-            inputType="text"
-            width="500px"
-            register={register("marks")}
-          />
-        </div>
-        <div className="divColl">
-          <div className="nameCategoryPriceDiv">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <Div>
+        <Toaster />
+        <p className="announceTitle">Anuncie seu produto, é fácil e rápido!</p>
+        <p className="subtitle">
+          capriche na foto e na descrição do seu produto
+        </p>
+        <form onSubmit={handleSubmit(getToy)}>
+          <div className="nameMark">
             <InputAnnounce
-              id="name"
+              id="image"
               placeholder=""
-              labelName="Nome"
+              labelName="Foto do brinquedo"
+              required={false}
+              inputType="text"
+              width="500px"
+              register={register("img")}
+            />
+            {errors.img?.message}
+            <InputAnnounce
+              id="mark"
+              placeholder=""
+              labelName="Marca (opcional)"
               required={false}
               inputType="text"
               width="500px"
@@ -117,11 +114,11 @@ export function Announce() {
             <label htmlFor="description">Descrição</label>
             <textarea {...register("description")} />
           </div>
-        </div>
-        <button disabled={announceLoading}>
-          {announceLoading ? "Anunciando produto..." : "Anunciar Produto"}
-        </button>
-      </form>
-    </Div>
+          <button disabled={announceLoading}>
+            {announceLoading ? "Anunciando produto..." : "Anunciar Produto"}
+          </button>
+        </form>
+      </Div>
+    </motion.div>
   );
 }

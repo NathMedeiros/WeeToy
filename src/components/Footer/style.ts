@@ -18,7 +18,7 @@ export const StyledFooter = styled.footer`
   }
   & h3 {
     font-weight: 700;
-    color: #237c6e;
+    color: #12201e;
   }
   & section {
     display: flex;

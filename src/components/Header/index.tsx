@@ -9,12 +9,16 @@ import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RegisterContext } from "../../context/RegisterContext";
 import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
 
-export function Header() {
+interface iHeaderProps{
+  userPage?: boolean
+}
+
+export function Header({userPage}:iHeaderProps) {
   const { openLogin, closeLogin, loginOpen } = useContext(RegisterContext);
   const { openModal, closeModal, isOpen } = useContext(ModalAnnounceContext);
   const { isLogged, setLogged } = useContext(AuthContext);
@@ -22,6 +26,7 @@ export function Header() {
   const [linksMobile, setLinksMobile] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function changeStatusLinksMobile() {
     if (linksMobile === false) {
@@ -35,8 +40,8 @@ export function Header() {
     localStorage.removeItem("@TOKEN: WeeToys");
     localStorage.removeItem("@USER: WeeToys");
     setLogged(false);
-    console.log(isLogged);
-    navigate(0);
+
+    location.pathname === "/" ? navigate(0) : navigate("/");
   }
 
   function logedUser() {
@@ -67,8 +72,12 @@ export function Header() {
         </Link>
         <div className="divLinksCart">
           <div className="linksHeader">
+            {userPage ? (
+              <Link to="/" className="linkUser">Home</Link>
+            ):(
+              null
+            )}
             <span>Categoria</span>
-            <span>Doações</span>
             <span onClick={logedUser}>Anunciar</span>
             {isLogged === true ? (
               <div className="divUser">
@@ -117,24 +126,28 @@ export function Header() {
       </div>
       {linksMobile === true ? (
         <div className="linksHeaderMobile">
-          <span>Categoria</span>
-            <span>Doações</span>
-            <span onClick={logedUser}>Anunciar</span>
-            {isLogged === true ? (
-              <div className="divUser">
-                <img src={imageUser} alt="Logo usuário" />
-                <div className="optionsUser">
-                  <Link to="/UserPage" className="linkUser">
-                    Ver perfil
-                  </Link>
-                  <span className="logout" onClick={logout}>
-                    Logout
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <span onClick={openLogin}>Login</span>
+          {userPage ? (
+              <Link to="/" className="linkUser">Home</Link>
+            ):(
+              null
             )}
+          <span>Categoria</span>
+          <span onClick={logedUser}>Anunciar</span>
+          {isLogged === true ? (
+            <div className="divUser">
+              <img src={imageUser} alt="Logo usuário" />
+              <div className="optionsUser">
+                <Link to="/UserPage" className="linkUser">
+                  Ver perfil
+                </Link>
+                <span className="logout" onClick={logout}>
+                  Logout
+                </span>
+              </div>
+            </div>
+          ) : (
+            <span onClick={openLogin}>Login</span>
+          )}
         </div>
       ) : null}
     </HeaderStyled>

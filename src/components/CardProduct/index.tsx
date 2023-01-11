@@ -7,11 +7,11 @@ import { CardProductStyled } from "./styled";
 
 export function CardProduct({ name, price, img, id }: iCardProductProps) {
   const { addProductToCart } = useContext(CartContext);
-  const { openCard } = useContext(CardModalContext);
+  const { modalDescription } = useContext(CardModalContext);
 
   return (
     <CardProductStyled>
-      <figure onClick={openCard}>
+      <figure onClick={() => modalDescription(id)}>
         <img src={img} alt="Imagem brinquedo" />
       </figure>
       <div className="infoToy">

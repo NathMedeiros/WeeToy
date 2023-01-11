@@ -29,6 +29,12 @@ export const InputStyle = styled.fieldset<iInputStyleProps>`
       border-radius: 0.5rem;
       border: none;
       padding: 0.75rem 0.75rem;
+
+      &:read-only {
+        background-color: #e5e5e5;
+        color: grey;
+        box-shadow: none;
+      }
     }
   }
 
