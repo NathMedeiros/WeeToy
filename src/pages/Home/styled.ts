@@ -44,7 +44,6 @@ export const HomeStyled = styled.div`
 
   .sectionList {
     padding: 30px 10px;
-    background-color: rgba(74, 189, 172, 0.4);
   }
 
   .listProducts {
