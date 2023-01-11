@@ -27,6 +27,7 @@ interface iAuthContext {
   userId: number;
   setSearch: Dispatch<SetStateAction<string>>;
   filter: iToys[];
+  loadingPurchase: boolean;
 }
 
 export const AuthContext = createContext({} as iAuthContext);
@@ -41,6 +42,8 @@ export function AuthProvider({ children }: iAuthProps) {
   const [purshased, setPurshased] = useState(0);
 
   const [search, setSearch] = useState("" as string);
+
+  const [loadingPurchase, setLoadingPurchase] = useState<boolean>(false);
 
   const [listToys, setListToys] = useState([
     {
@@ -108,6 +111,8 @@ export function AuthProvider({ children }: iAuthProps) {
   }, [logged, purshased]);
 
   async function toysPurshased(listCart: iToys[]) {
+    setLoadingPurchase(true);
+
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
     const userId = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
@@ -149,12 +154,15 @@ export function AuthProvider({ children }: iAuthProps) {
           count++;
         }
       } catch (err) {
+        setLoadingPurchase(false);
         return null;
       }
       if (count !== 0) {
         try {
           await api.delete(`/toys/${toy.id}`, {
-            headers: { authorization: `Bearer ${token}` },
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
           });
           if (count === number && oneTimeToast === 0) {
             toast.success("Compra realizada", {
@@ -174,6 +182,8 @@ export function AuthProvider({ children }: iAuthProps) {
           }
         } catch (err) {
           return null;
+        } finally {
+          setLoadingPurchase(false);
         }
       }
     });
@@ -189,6 +199,7 @@ export function AuthProvider({ children }: iAuthProps) {
         userId,
         setSearch,
         filter,
+        loadingPurchase,
       }}
     >
       {children}
