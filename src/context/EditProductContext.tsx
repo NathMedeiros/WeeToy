@@ -2,9 +2,10 @@ import { createContext, useState } from "react"
 import { toast } from "react-hot-toast";
 import { iEditProductModal } from "../interfaces"
 import { api } from "../request/api";
+import { toastDesign } from "../styles/toastPromise";
 
 interface iEditProductContext{
-    editProduct: (data: iEditProductModal) => void;
+    editProduct: (data: iEditProductModal) => Promise<void>;
     editProductLoading: boolean;
     openEditProduct: boolean;
     setOpenEditProduct: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,49 +29,29 @@ export function EditProductProvider({ children }: iEditProductProps) {
 
     async function editProduct(data: iEditProductModal){
         setEditProductLoading(true)
-        console.log(data)
-        const token = localStorage.getItem("@TOKEN: WeeToys")
         const { toy_name, price, img, category, marks, description, id } = data
+        const token = localStorage.getItem("@TOKEN: WeeToys")
+
         try {
-            await api.patch(`/toys/${id}`, {
+            const request = await toast.promise(api.patch(`/toys/${id}`, {
                 toy_name,
                 price,
                 img,
                 category,
                 marks,
                 description
-            }, 
+            },  
             {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
-            toast.success("O produto foi atualizado com sucesso!", {
-                style: {
-                  border: "0.0625rem solid #15da4d",
-                  padding: "1rem",
-                  color: "#15da4d",
-                  background: "#F5F5F5",
-                },
-                iconTheme: {
-                  primary: "#15da4d",
-                  secondary: "#F5F5F5",
-                },
-              })
+            }), {
+                loading: "Atualizando produto...",
+                success: "O produto foi atualizado com sucesso!",
+                error: "O produto não foi atualizado, tente novamente"
+            }, toastDesign) 
         } catch (error) {
             console.log(error)
-            toast.error("O produto não foi atualizado, tente novamente", {
-                style: {
-                  border: "0.0625rem solid #EB5757",
-                  padding: "1rem",
-                  color: "#EB5757",
-                  background: "#F5F5F5",
-                },
-                iconTheme: {
-                  primary: "#EB5757",
-                  secondary: "#F5F5F5",
-                },
-              })
         } finally {
             setModalInfo({
                 toy_name,
@@ -83,7 +64,7 @@ export function EditProductProvider({ children }: iEditProductProps) {
             })
             setEditProductLoading(false)
 
-            setInterval(() => {
+            setTimeout(() => {
                 setOpenEditProduct(false)
             }, 600)
         }

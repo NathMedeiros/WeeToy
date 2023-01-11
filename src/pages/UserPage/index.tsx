@@ -11,6 +11,7 @@ import { MyAds } from "../../components/UserAds";
 import { UserNav } from "../../components/UserNav";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
 import { Toaster } from "react-hot-toast";
+import { Footer } from "../../components/Footer";
 
 export function UserPage({ children }: iUserPage) {
   const { openEditProduct, setOpenEditProduct, modalInfo } =
@@ -55,6 +56,7 @@ export function UserPage({ children }: iUserPage) {
           </div>
         </section>
       </main>
+      <Footer />
     </StyledUserPage>
   );
 }

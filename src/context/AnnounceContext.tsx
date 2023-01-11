@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { api } from "./../request/api";
 import { toast } from "react-hot-toast";
 import { UserAnnounceContext } from "./UserAnnounceContext";
+import { toastDesign } from "../styles/toastPromise";
 
 export interface iModalAnnounceProps {
   children: React.ReactNode;
@@ -44,34 +45,17 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
     if (token) {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
-        const request = await api.post("/toys", data);
-        toast.success("Brinquedo anunciado com sucesso!", {
-          style: {
-            border: "1px solid #15da4d",
-            padding: "16px",
-            color: "#15da4d",
-            background: "#F5F5F5",
-          },
-          iconTheme: {
-            primary: "#15da4d",
-            secondary: "#F5F5F5",
-          },
-        });
+        const request = await toast.promise(api.post("/toys", data), {
+          loading: "Publicando anúncio...",
+          success: "Brinquedo anunciado com sucesso!",
+          error: "Ocorreu algum erro. Tente novamente!"
+        }, toastDesign)
         loadAnnounces();
-        setIsOpen(false);
+        
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 0)
       } catch (error) {
-        toast.error(`Ocorreu algum erro. Tente novamente!`, {
-          style: {
-            border: "1px solid #EB5757",
-            padding: "16px",
-            color: "#EB5757",
-            background: "#F5F5F5",
-          },
-          iconTheme: {
-            primary: "#EB5757",
-            secondary: "#F5F5F5",
-          },
-        });
         console.error(error);
       }
     }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { iFormRegister } from "../../interfaces";
 import { userDataSchema } from "../../pages/UserPage/userDataSchema";
 import { api } from "../../request/api";
+import { toastDesign } from "../../styles/toastPromise";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { StyledUserData } from "./style";
@@ -55,25 +56,17 @@ export function UserData() {
 
   async function patchUser(data: iFormRegister) {
     try {
-      const request = await api.patch(`/users/${user.id}`, data, {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      toast.success("Dados de usuário atualizados!");
-      console.log(request);
+      const request = await toast.promise(api.patch(`/users/${user.id}`, data, {
+        headers: { 
+          authorization: `Bearer ${token}` 
+        }
+      }), {
+        success: "Dados de usuário atualizados!",
+        error: "Falha no login. Tente novamente!",
+        loading: "Atualizando dados..."
+      }, toastDesign)
     } catch (error) {
       console.log(error);
-      toast.error(`Falha no login. Tente novamente!`, {
-        style: {
-          border: "1px solid #EB5757",
-          padding: "16px",
-          color: "#EB5757",
-          background: "#F5F5F5",
-        },
-        iconTheme: {
-          primary: "#EB5757",
-          secondary: "#F5F5F5",
-        },
-      });
     }
   }
 
