@@ -5,6 +5,7 @@ import { CardModalContext } from "../../context/CardModalContext";
 import "../CardModal/style.css";
 import { DivBuy, DivHeader } from "./style";
 import { AuthContext } from "../../context/AuthContext";
+import { motion } from "framer-motion";
 
 Modal.setAppElement("#root");
 
@@ -24,27 +25,36 @@ export function CardModal() {
         overlayClassName="modal-overlay"
         className="modal-content-card"
       >
-        <ul>
-          {toyFilter.map((toy) => {
-            return (
-              <li key={toy.id}>
-                <DivHeader>
-                  <div>
-                    <img src={toy.img} alt="" />
-                    <h3>{toy.toy_name}</h3>
-                  </div>
-                  <button onClick={() => setCardOpen(null)}>X</button>
-                </DivHeader>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <ul>
+            {toyFilter.map((toy) => {
+              return (
+                <li key={toy.id}>
+                  <DivHeader>
+                    <div>
+                      <img src={toy.img} alt="" />
+                      <h3>{toy.toy_name}</h3>
+                    </div>
+                    <button onClick={() => setCardOpen(null)}>X</button>
+                  </DivHeader>
 
-                <DivBuy>
-                  <p>Marca: {toy.marks}</p>
-                  <p>Descrição: {toy.description}</p>
-                  <p>Preço: {`R$  ${toy.price.toFixed(2)}`}</p>
-                </DivBuy>
-              </li>
-            );
-          })}
-        </ul>
+                  <DivBuy>
+                    <p>Marca: {toy.marks}</p>
+                    <p>Descrição: {toy.description}</p>
+                    <p>
+                      Preço:{`R$ ${toy.price.toFixed(2).replace(".", ",")}`}
+                    </p>
+                  </DivBuy>
+                </li>
+              );
+            })}
+          </ul>
+        </motion.div>
       </Modal>
     </div>
   );
