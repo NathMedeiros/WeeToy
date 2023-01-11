@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { ReactNode } from "react";
 import { iEditProductModal } from "../interfaces";
 import { api } from "../request/api";
 
@@ -9,7 +8,7 @@ interface iUserAnnounceProps {
 
 interface iUserAnnounceContext {
   loadUser: iEditProductModal[] | undefined;
-  loadAnnounces: () => void;
+  loadAnnounces: () => Promise<void>;
 }
 
 export const UserAnnounceContext = createContext({} as iUserAnnounceContext);
@@ -25,13 +24,12 @@ export function UserAnnounceProvider({ children }: iUserAnnounceProps) {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      console.log(request.data.toy);
       setLoadUser(request.data.toy);
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(loadUser);
+
   return (
     <UserAnnounceContext.Provider value={{ loadUser, loadAnnounces }}>
       {children}

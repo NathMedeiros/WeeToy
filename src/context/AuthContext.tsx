@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { api } from "./../request/api";
 import { toast } from "react-hot-toast";
+import { toastDesign } from "../styles/toastPromise";
 
 interface iAuthProps {
   children: React.ReactNode;
@@ -22,7 +23,7 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
-  toysPurshased: (listCart: iToys[]) => void,
+  toysPurshased: (listCart: iToys[]) => Promise<void>,
   userId: number
 }
 
@@ -121,23 +122,21 @@ export function AuthProvider({ children }: iAuthProps) {
       }
       
       try{
-        const request = await api.post("/purchases_historic", data, {headers:{authorization: `Bearer ${token}`}})
+        const request = await toast.promise(api.post("/purchases_historic", data, {
+          headers:{
+            authorization: `Bearer ${token}`
+          }
+        }), {
+          loading: "Validando pagamento...",
+          error: "Falha na compra. Tente novamente!",
+          success: "Pagamento validado com sucesso!"
+        }, toastDesign)
+
         if(request){
           count++
         }
       }catch(err){
-        toast.error(`Falha na compra. Tente novamente!`, {
-          style: {
-            border: "1px solid #EB5757",
-            padding: "16px",
-            color: "#EB5757",
-            background: "#F5F5F5",
-          },
-          iconTheme: {
-            primary: "#EB5757",
-            secondary: "#F5F5F5",
-          },
-        });
+        return null
       }
       if(count !== 0){
         try{
