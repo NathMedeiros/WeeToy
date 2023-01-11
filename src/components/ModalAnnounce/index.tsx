@@ -7,6 +7,7 @@ import { announceSchema } from "./announceSchema";
 import { IToyData } from "../../interfaces";
 import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export function Announce() {
   const { submitAnnounce } = useContext(ModalAnnounceContext);
@@ -47,79 +48,88 @@ export function Announce() {
   }
 
   return (
-    <Div>
-      <Toaster />
-      <p className="announceTitle">Anuncie seu produto, é fácil e rápido!</p>
-      <p className="subtitle">capriche na foto e na descrição do seu produto</p>
-      <form onSubmit={handleSubmit(getToy)}>
-        <div className="nameMark">
-          <InputAnnounce
-            id="image"
-            placeholder=""
-            labelName="Foto do brinquedo"
-            required={false}
-            inputType="text"
-            width="500px"
-            register={register("img")}
-          />
-          {errors.img?.message}
-          <InputAnnounce
-            id="mark"
-            placeholder=""
-            labelName="Marca (opcional)"
-            required={false}
-            inputType="text"
-            width="500px"
-            register={register("marks")}
-          />
-        </div>
-        <div className="divColl">
-          <div className="nameCategoryPriceDiv">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <Div>
+        <Toaster />
+        <p className="announceTitle">Anuncie seu produto, é fácil e rápido!</p>
+        <p className="subtitle">
+          capriche na foto e na descrição do seu produto
+        </p>
+        <form onSubmit={handleSubmit(getToy)}>
+          <div className="nameMark">
             <InputAnnounce
-              id="name"
+              id="image"
               placeholder=""
-              labelName="Nome"
+              labelName="Foto do brinquedo"
               required={false}
               inputType="text"
               width="500px"
-              register={register("toy_name")}
+              register={register("img")}
             />
-            {errors.toy_name?.message}
-            <div className="categoryPrice">
-              <div className="colDiv">
-                <label htmlFor="category">Categoria</label>
-                <select {...register("category")}>
-                  <option value=""></option>
-                  <option value="Bonecos">Bonecos</option>
-                  <option value="Pelúcias">Pelúcias</option>
-                  <option value="Carrinhos">Carrinhos</option>
-                  <option value="Quebra cabeças">Quebra cabeças</option>
-                  <option value="Instrumento musical">
-                    Instrumento musical
-                  </option>
-                  <option value="Outros">Outros</option>
-                </select>
-              </div>
-              {errors.category?.message}
+            {errors.img?.message}
+            <InputAnnounce
+              id="mark"
+              placeholder=""
+              labelName="Marca (opcional)"
+              required={false}
+              inputType="text"
+              width="500px"
+              register={register("marks")}
+            />
+          </div>
+          <div className="divColl">
+            <div className="nameCategoryPriceDiv">
               <InputAnnounce
-                id="Price"
-                placeholder="R$"
-                labelName="Preço"
+                id="name"
+                placeholder=""
+                labelName="Nome"
                 required={false}
-                inputType="number"
-                width="230px"
-                register={register("price")}
+                inputType="text"
+                width="500px"
+                register={register("toy_name")}
               />
-              {errors.price?.message}
+              {errors.toy_name?.message}
+              <div className="categoryPrice">
+                <div className="colDiv">
+                  <label htmlFor="category">Categoria</label>
+                  <select {...register("category")}>
+                    <option value=""></option>
+                    <option value="Bonecos">Bonecos</option>
+                    <option value="Pelúcias">Pelúcias</option>
+                    <option value="Carrinhos">Carrinhos</option>
+                    <option value="Quebra cabeças">Quebra cabeças</option>
+                    <option value="Instrumento musical">
+                      Instrumento musical
+                    </option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                </div>
+                {errors.category?.message}
+                <InputAnnounce
+                  id="Price"
+                  placeholder="R$"
+                  labelName="Preço"
+                  required={false}
+                  inputType="number"
+                  width="230px"
+                  register={register("price")}
+                />
+                {errors.price?.message}
+              </div>
+            </div>
+            <div className="colDiv">
+              <label htmlFor="description">Descrição</label>
+              <textarea {...register("description")} />
             </div>
           </div>
-          <div className="colDiv">
-            <label htmlFor="description">Descrição</label>
-            <textarea {...register("description")} />
-          </div>
-        </div>
-        <button>Anunciar Produto</button>
-      </form>
-    </Div>
+          <button>Anunciar Produto</button>
+        </form>
+      </Div>
+    </motion.div>
   );
 }

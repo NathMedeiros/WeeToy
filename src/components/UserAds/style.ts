@@ -19,7 +19,25 @@ export const UlAds = styled.ul`
   background-color: #fff;
   border-radius: var(--radius);
   max-width: 350px;
+  max-height: 430px;
   text-align: center;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar-track {
+      background-color: var(--color-grey-0);
+
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 10px;
+      background: var(--color-grey-0);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 10px;
+    }
 
   h2 {
     font-size: 2rem;
@@ -44,6 +62,7 @@ export const UlAds = styled.ul`
 
   @media (min-width: 620px) {
     margin: 0;
+    max-height: 600px;
     height: 100%;
     max-width: 1000px;
     width: 100%;
