@@ -118,15 +118,23 @@ export function Header() {
       {linksMobile === true ? (
         <div className="linksHeaderMobile">
           <span>Categoria</span>
-          <span>Doações</span>
-          <span onClick={logedUser}>Anunciar</span>
-          {isLogged === true ? (
-            <Link to="/UserPage">
-              <img src={imageUser} alt="Logo usuário" />
-            </Link>
-          ) : (
-            <span onClick={openLogin}>Login</span>
-          )}
+            <span>Doações</span>
+            <span onClick={logedUser}>Anunciar</span>
+            {isLogged === true ? (
+              <div className="divUser">
+                <img src={imageUser} alt="Logo usuário" />
+                <div className="optionsUser">
+                  <Link to="/UserPage" className="linkUser">
+                    Ver perfil
+                  </Link>
+                  <span className="logout" onClick={logout}>
+                    Logout
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <span onClick={openLogin}>Login</span>
+            )}
         </div>
       ) : null}
     </HeaderStyled>

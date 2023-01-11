@@ -128,6 +128,12 @@ export const HeaderStyled = styled.header`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+    }
+
+    .optionsUser{
+      right: 0;
+      top: 40px;
     }
   }
 `;
