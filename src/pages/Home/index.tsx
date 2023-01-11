@@ -10,6 +10,7 @@ import { RegisterContext } from "../../context/RegisterContext";
 import { AuthContext } from "../../context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { CardModal } from "../../components/CardModal";
+import { Footer } from "../../components/Footer";
 
 export function Home() {
   const { openRegister, closeRegister, registerOpen } =
@@ -75,6 +76,7 @@ export function Home() {
           </ul>
         </section>
       </main>
+      <Footer />
     </HomeStyled>
   );
 }
