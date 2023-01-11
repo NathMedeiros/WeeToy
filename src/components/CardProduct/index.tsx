@@ -16,7 +16,7 @@ export function CardProduct({ name, price, img, id }: iCardProductProps) {
       </figure>
       <div className="infoToy">
         <h3>{name}</h3>
-        <p>{`R$ ${price.toFixed(2)}`}</p>
+        <p>{`R$ ${price.toFixed(2).replace(".", ",")}`}</p>
         <Button
           styleButton="style2"
           onClick={() => {
