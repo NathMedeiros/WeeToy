@@ -82,7 +82,7 @@ export function ButtonCart (){
                             </ul>
                             <div className="totalCart">
                                 <p>{`Quantidade: ${count}`}</p>
-                                <p>{`R$ ${total.toFixed(2)}`}</p>
+                                <p>{`R$ ${total.toFixed(2).replace(".", ",")}`}</p>
                             </div>
                             <Button styleButton="style4" onClick={()=>{toBuy()}}>Finalizar Compra</Button>
                         </div>
