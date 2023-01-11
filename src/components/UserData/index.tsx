@@ -11,32 +11,13 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { StyledUserData } from "./style";
 
-export function UserData() {
-  const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-  const token = localStorage.getItem("@TOKEN: WeeToys");
-  const [userData, setUserData] = useState({} as iFormRegister);
-  const navigate = useNavigate();
+interface iUserData {
+  userId: string;
+  token: string;
+  userData: iFormRegister;
+}
 
-  useEffect(() => {
-    async function loadUserData() {
-      try {
-        const request = await api.get(`/users/${user.id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        const { address, birth_date, cep, email, name } = request.data;
-        setUserData({ address, birth_date, cep, email, name });
-        setValue("address", address);
-        setValue("birth_date", birth_date);
-        setValue("cep", cep);
-        setValue("email", email);
-        setValue("name", name);
-      } catch (error) {
-        console.log(error);
-        navigate("/");
-      }
-    }
-    loadUserData();
-  }, []);
+export function UserData({ userData, userId, token }: iUserData) {
   const {
     register,
     handleSubmit,
@@ -45,26 +26,30 @@ export function UserData() {
   } = useForm<iFormRegister>({
     mode: "onSubmit",
     resolver: yupResolver(userDataSchema),
-    defaultValues: {
-      address: userData.address,
-      birth_date: userData.birth_date,
-      cep: userData.cep,
-      email: userData.email,
-      name: userData.name,
-    },
+    // defaultValues: {
+    //   address: userData.address,
+    //   birth_date: userData.birth_date,
+    //   cep: userData.cep,
+    //   email: userData.email,
+    //   name: userData.name,
+    // },
   });
 
   async function patchUser(data: iFormRegister) {
     try {
-      const request = await toast.promise(api.patch(`/users/${user.id}`, data, {
-        headers: { 
-          authorization: `Bearer ${token}` 
-        }
-      }), {
-        success: "Dados de usuário atualizados!",
-        error: "Falha no login. Tente novamente!",
-        loading: "Atualizando dados..."
-      }, toastDesign)
+      const request = await toast.promise(
+        api.patch(`/users/${userId}`, data, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }),
+        {
+          success: "Dados de usuário atualizados!",
+          error: "Falha no login. Tente novamente!",
+          loading: "Atualizando dados...",
+        },
+        toastDesign
+      );
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Header } from "../../components/Header";
-import { iUserPage } from "../../interfaces";
+import { iFormRegister, iUserPage } from "../../interfaces";
 import { StyledUserPage } from "./style";
 import imageChild from "./../../assets/imageChild.png";
 import Modal from "react-modal";
@@ -12,16 +12,40 @@ import { UserNav } from "../../components/UserNav";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
 import { Toaster } from "react-hot-toast";
 import { Footer } from "../../components/Footer";
+import { api } from "../../request/api";
+import { useNavigate } from "react-router";
 
 export function UserPage({ children }: iUserPage) {
   const { openEditProduct, setOpenEditProduct, modalInfo } =
     useContext(EditProductContext);
 
   const [pageToRender, setPageToRender] = useState<string | null>("Meus Dados");
+  const [userData, setUserData] = useState({} as iFormRegister);
 
   function changePage(event: React.MouseEvent<HTMLButtonElement>) {
     setPageToRender(event.currentTarget.textContent);
   }
+
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
+  const token = localStorage.getItem("@TOKEN: WeeToys");
+
+  useEffect(() => {
+    async function loadUserData() {
+      try {
+        const request = await api.get(`/users/${user.id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        const { address, birth_date, cep, email, name } = request.data;
+        setUserData(request.data);
+        console.log(request.data);
+      } catch (error) {
+        console.log(error);
+        navigate("/");
+      }
+    }
+    loadUserData();
+  }, []);
 
   return (
     <StyledUserPage>
