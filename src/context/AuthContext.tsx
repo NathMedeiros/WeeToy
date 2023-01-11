@@ -23,7 +23,7 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
-  toysPurshased: (listCart: iToys[]) => void,
+  toysPurshased: (listCart: iToys[]) => Promise<void>,
   userId: number
 }
 

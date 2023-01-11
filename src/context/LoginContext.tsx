@@ -12,7 +12,7 @@ export interface iModalProps {
 }
 
 export interface iLoginContext {
-  submitLogin: (data: iDataLogin) => void;
+  submitLogin: (data: iDataLogin) => Promise<void>;
 }
 
 export interface iDataLogin {

@@ -8,7 +8,7 @@ interface iUserAnnounceProps {
 
 interface iUserAnnounceContext {
   loadUser: iEditProductModal[] | undefined;
-  loadAnnounces: () => void;
+  loadAnnounces: () => Promise<void>;
 }
 
 export const UserAnnounceContext = createContext({} as iUserAnnounceContext);
@@ -24,13 +24,12 @@ export function UserAnnounceProvider({ children }: iUserAnnounceProps) {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      console.log(request.data.toy);
       setLoadUser(request.data.toy);
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(loadUser);
+
   return (
     <UserAnnounceContext.Provider value={{ loadUser, loadAnnounces }}>
       {children}

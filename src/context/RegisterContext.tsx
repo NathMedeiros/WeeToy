@@ -10,7 +10,7 @@ export interface iRegisterContext {
   closeRegister: () => void;
   openLogin: () => void;
   closeLogin: () => void;
-  submitRegister: (data: iDataLogin) => void;
+  submitRegister: (data: iDataLogin) => Promise<void>;
   registerOpen: boolean;
   loginOpen: boolean;
 }

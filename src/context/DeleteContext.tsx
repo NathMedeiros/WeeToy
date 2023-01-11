@@ -13,7 +13,7 @@ interface iModalDeleteContext {
   isOpen: boolean;
   openDelete: () => void;
   closeDelete: () => void;
-  deleteNow: () => void;
+  deleteNow: () => Promise<void>;
 }
 
 export const ModalDeleteContext = createContext({} as iModalDeleteContext);

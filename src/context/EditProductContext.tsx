@@ -5,7 +5,7 @@ import { api } from "../request/api";
 import { toastDesign } from "../styles/toastPromise";
 
 interface iEditProductContext{
-    editProduct: (data: iEditProductModal) => void;
+    editProduct: (data: iEditProductModal) => Promise<void>;
     editProductLoading: boolean;
     openEditProduct: boolean;
     setOpenEditProduct: React.Dispatch<React.SetStateAction<boolean>>;

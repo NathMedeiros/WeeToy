@@ -12,7 +12,7 @@ export interface iModalAnnounceProps {
 export interface iModalAnnounceContext {
   openModal: () => void;
   closeModal: () => void;
-  submitAnnounce: (data: IDataNewAnnounce) => void;
+  submitAnnounce: (data: IDataNewAnnounce) => Promise<void>;
   isOpen: boolean;
 }
 
@@ -51,7 +51,10 @@ export function ModalAnnounceProvider({ children }: iModalAnnounceProps) {
           error: "Ocorreu algum erro. Tente novamente!"
         }, toastDesign)
         loadAnnounces();
-        setIsOpen(false);
+        
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 0)
       } catch (error) {
         console.error(error);
       }
