@@ -14,12 +14,14 @@ interface iModalDeleteContext {
   openDelete: () => void;
   closeDelete: () => void;
   deleteNow: () => Promise<void>;
+  loadingDelete: boolean;
 }
 
 export const ModalDeleteContext = createContext({} as iModalDeleteContext);
 
 export function ModalDeleteProvider({ children }: iModalDeleteProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState<boolean>(false)
   const { loadAnnounces } = useContext(UserAnnounceContext);
 
   function openDelete() {
@@ -31,16 +33,19 @@ export function ModalDeleteProvider({ children }: iModalDeleteProps) {
   }
 
   async function deleteNow() {
+    setLoadingDelete(true)
     
     const productId = localStorage.getItem("@ProductID: WeeToys");
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
     if (productId) {
       const id = JSON.parse(productId);
-      try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        
-        const request = await toast.promise(api.delete(`toys/${id}`), {
+      try {     
+        const request = await toast.promise(api.delete(`toys/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }), {
           loading: "Removendo anúncio...",
           error: "Falha ao remover anúncio. Tente novamente!",
           success: "Anúncio removido com sucesso!"
@@ -49,14 +54,16 @@ export function ModalDeleteProvider({ children }: iModalDeleteProps) {
         setIsOpen(false);
       } catch (error) {
         console.error(error);
-      } 
+      } finally {
+        setLoadingDelete(false)
+      }
     }
 
   }
   return (
     <>
       <ModalDeleteContext.Provider
-        value={{ isOpen, openDelete, closeDelete, deleteNow }}
+        value={{ isOpen, openDelete, closeDelete, deleteNow, loadingDelete }}
       >
         {children}
       </ModalDeleteContext.Provider>

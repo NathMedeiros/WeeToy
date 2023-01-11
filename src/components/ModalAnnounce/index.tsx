@@ -9,7 +9,7 @@ import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Toaster } from "react-hot-toast";
 
 export function Announce() {
-  const { submitAnnounce } = useContext(ModalAnnounceContext);
+  const { submitAnnounce, announceLoading } = useContext(ModalAnnounceContext);
   const {
     register,
     handleSubmit,
@@ -118,7 +118,9 @@ export function Announce() {
             <textarea {...register("description")} />
           </div>
         </div>
-        <button>Anunciar Produto</button>
+        <button disabled={announceLoading}>
+          {announceLoading ? "Anunciando produto..." : "Anunciar Produto"}
+        </button>
       </form>
     </Div>
   );

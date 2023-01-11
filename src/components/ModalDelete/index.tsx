@@ -3,11 +3,13 @@ import { Div } from "./style";
 import { ModalDeleteContext } from "./../../context/DeleteContext";
 
 export const Delete = () => {
-  const { deleteNow } = useContext(ModalDeleteContext);
+  const { deleteNow, loadingDelete } = useContext(ModalDeleteContext);
   return (
     <Div>
       <p>Deseja realmente deletar?</p>
-      <button onClick={deleteNow}>Deletar</button>
+      <button onClick={deleteNow} disabled={loadingDelete}>
+        {loadingDelete ? "Deletando..." : "Deletar"}
+      </button>
     </Div>
   );
 };
