@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledUserData = styled.div`
   margin: 0 0.4rem;
-
+  height: fit-content;
   & form {
     margin: 5rem auto;
     padding: 1rem;
@@ -13,8 +13,13 @@ export const StyledUserData = styled.div`
     border-radius: var(--radius);
     max-width: 350px;
 
-    & span + label {
+    & label {
       font-size: 0.85rem;
+    }
+
+    & span {
+      font-size: 0.7rem;
+      color: red;
     }
 
     & div {
