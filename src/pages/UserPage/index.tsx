@@ -10,7 +10,7 @@ import Historic from "../../components/UserHistory";
 import { MyAds } from "../../components/UserAds";
 import { UserNav } from "../../components/UserNav";
 import { ModalEditProduct } from "../../components/ModalEditProduct";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { Footer } from "../../components/Footer";
 import { api } from "../../request/api";
 import { useNavigate } from "react-router";
@@ -28,14 +28,22 @@ export function UserPage({ children }: iUserPage) {
 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-  const token = localStorage.getItem("@TOKEN: WeeToys");
+  const token = localStorage.getItem("@TOKEN: WeeToys")!;
 
   useEffect(() => {
     async function loadUserData() {
       try {
-        const request = await api.get(`/users/${user.id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
+        const request = await toast.promise(
+          api.get(`/users/${user.id}`, {
+            headers: { authorization: `Bearer ${token}` },
+          }),
+          {
+            loading: "Carregando dados do usuário",
+            success: "Dados carregados com sucesso!",
+            error: "Houve um erro...",
+          },
+          { id: "data-loading" }
+        );
         const { address, birth_date, cep, email, name } = request.data;
         setUserData(request.data);
         console.log(request.data);
@@ -74,8 +82,12 @@ export function UserPage({ children }: iUserPage) {
         <section className="content">
           <div className="divContent">
             <UserNav handleChange={changePage} />
-            {pageToRender === "Meus Dados" && <UserData />}
-            {pageToRender === "Compras" && <Historic />}
+            {pageToRender === "Meus Dados" && (
+              <UserData userData={userData} userId={user.id} token={token} />
+            )}
+            {pageToRender === "Compras" && (
+              <Historic historicList={userData.purchases_historic} />
+            )}
             {pageToRender === "Anúncios" && <MyAds />}
           </div>
         </section>

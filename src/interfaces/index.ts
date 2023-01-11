@@ -61,7 +61,7 @@ export interface iCardHistoryBuy {
   img: string;
   toy_name: string;
   price: number;
-  id: number
+  id: number;
 }
 export interface iUserPage {
   children: React.ReactNode;
@@ -73,6 +73,16 @@ export interface iFormRegister {
   cep: string;
   email: string;
   birth_date: string;
+  purchases_historic: {
+    category: string;
+    description: string;
+    id: number;
+    img: string;
+    marks: string;
+    price: number;
+    toy_name: string;
+    userId: number;
+  }[];
 }
 
 export interface iEditProductModal {

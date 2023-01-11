@@ -71,8 +71,20 @@ export function UserData({ userData, userId, token }: iUserData) {
         />
         {errors && <span>{errors.name?.message}</span>}
         <Input
-          id="address"
+          id="email"
           placeholder="Digite seu email"
+          labelName="Email"
+          required={true}
+          inputType="text"
+          register={register("email")}
+          readOnly={true}
+          width="100%"
+          value={userData.email}
+        />
+        {errors && <span>{errors.email?.message}</span>}
+        <Input
+          id="address"
+          placeholder="Digite seu enderço"
           labelName="Endereço"
           required={true}
           inputType="email"
@@ -92,18 +104,6 @@ export function UserData({ userData, userId, token }: iUserData) {
           value={userData.cep}
         />
         {errors && <span>{errors.cep?.message}</span>}
-        <Input
-          id="email"
-          placeholder="Digite seu email"
-          labelName="Email"
-          required={true}
-          inputType="text"
-          register={register("email")}
-          readOnly={true}
-          width="100%"
-          value={userData.email}
-        />
-        {errors && <span>{errors.email?.message}</span>}
         <Input
           id="date"
           placeholder="data"

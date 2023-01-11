@@ -14,26 +14,26 @@ export function MyAds() {
   const [userAds, setUserAds] = useState([] as iEditProductModal[]);
   const { isOpen, closeDelete } = useContext(ModalDeleteContext);
   const { loadUser } = useContext(UserAnnounceContext);
-  console.log(loadUser);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-    const token = localStorage.getItem("@TOKEN: WeeToys");
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
+  //   const token = localStorage.getItem("@TOKEN: WeeToys");
 
-    async function getUserAds() {
-      try {
-        const request = await api.get(`/users/${user.id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        setUserAds(request.data.toy);
-        console.log(request.data.toy);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  //   async function getUserAds() {
+  //     try {
+  //       const request = await api.get(`/users/${user.id}`, {
+  //         headers: { authorization: `Bearer ${token}` },
+  //       });
+  //       setUserAds(request.data.toy);
+  //       console.log(request.data.toy);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
 
-    getUserAds();
-  }, []);
+  //   getUserAds();
+  // }, []);
+
   return (
     <MyAdsStyled>
       <Toaster />

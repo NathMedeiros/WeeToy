@@ -6,27 +6,20 @@ import { api } from "../../request/api";
 import { iCardHistoryBuy } from "../../interfaces";
 import { CardHistoricBuy } from "../CardHistoricBuy";
 
-const Historic = () => {
-  const [historicList, setHistoricList] = useState([] as iCardHistoryBuy[]);
-  const user = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
-  const token = localStorage.getItem("@TOKEN: WeeToys");
+interface iHistoric {
+  historicList: {
+    category: string;
+    description: string;
+    id: number;
+    img: string;
+    marks: string;
+    price: number;
+    toy_name: string;
+    userId: number;
+  }[];
+}
 
-  useEffect(() => {
-    async function getMyProducts() {
-      try {
-        console.log(user.id, token);
-        const request = await api.get(`/users/${user.id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        console.log(request.data.purchases_historic);
-        setHistoricList(request.data.purchases_historic);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getMyProducts();
-  }, []);
-
+const Historic = ({ historicList }: iHistoric) => {
   return (
     <StyledHistoric>
       <UlHistoric>
