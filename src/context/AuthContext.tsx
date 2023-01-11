@@ -23,8 +23,9 @@ interface iAuthContext {
   setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   isLogged: boolean;
   listToys: iToys[];
-  toysPurshased: (listCart: iToys[]) => Promise<void>,
-  userId: number
+  toysPurshased: (listCart: iToys[]) => Promise<void>;
+  userId: number;
+  loadingPurchase: boolean;
 }
 
 export const AuthContext = createContext({} as iAuthContext);
@@ -51,6 +52,8 @@ export function AuthProvider({ children }: iAuthProps) {
       userId: 0,
     },
   ]);
+
+  const [loadingPurchase, setLoadingPurchase] = useState<boolean>(false)
 
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN: WeeToys");
@@ -101,6 +104,8 @@ export function AuthProvider({ children }: iAuthProps) {
   }, [logged, purshased]);
 
   async function toysPurshased(listCart: iToys[]){
+    setLoadingPurchase(true)
+  
     const token = localStorage.getItem("@TOKEN: WeeToys");
 
     const userId = JSON.parse(localStorage.getItem("@USER: WeeToys")!);
@@ -138,11 +143,15 @@ export function AuthProvider({ children }: iAuthProps) {
           count++
         }
       }catch(err){
+        setLoadingPurchase(false)
         return null
       }
       if(count !== 0){
         try{
-          await api.delete(`/toys/${toy.id}`, {headers:{authorization: `Bearer ${token}`}})
+          await api.delete(`/toys/${toy.id}`, {
+            headers:{
+              authorization: `Bearer ${token}`}
+            })
           if(count === number && oneTimeToast === 0){
             toast.success("Compra realizada", {
               style: {
@@ -161,13 +170,15 @@ export function AuthProvider({ children }: iAuthProps) {
           }
         }catch(err){
           return null
+        } finally {
+          setLoadingPurchase(false)
         }
       }
     })
   }
 
   return (
-    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased, userId}}>
+    <AuthContext.Provider value={{ setLogged, isLogged, listToys, toysPurshased, userId, loadingPurchase }}>
       {children}
     </AuthContext.Provider>
   );
