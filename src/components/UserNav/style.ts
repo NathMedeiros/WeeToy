@@ -20,14 +20,14 @@ export const StyledNav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 620px){
+  @media (min-width: 620px) {
     flex-direction: column;
     border-radius: 12px;
     justify-content: space-evenly;
     margin: 0;
     padding: 0 30px;
 
-    label{
+    label {
       font-size: var(--size-1);
     }
   }
