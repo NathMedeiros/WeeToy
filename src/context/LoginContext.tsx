@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import { api } from "../request/api";
+import { toastDesign } from "../styles/toastPromise";
 import { AuthContext } from "./AuthContext";
 import { CartContext } from "./CartContext";
 import { RegisterContext } from "./RegisterContext";
@@ -11,7 +12,7 @@ export interface iModalProps {
 }
 
 export interface iLoginContext {
-  submitLogin: (data: iDataLogin) => Promise<void>;
+  submitLogin: (data: iDataLogin) => void;
 }
 
 export interface iDataLogin {
@@ -27,8 +28,14 @@ export function LoginProvider({ children }: iModalProps) {
   const {updateCartWithLogin} = useContext(CartContext)
 
   async function submitLogin(data: iDataLogin) {
+
     try {
-      const request = await api.post("login", data);
+      
+      const request = await toast.promise(api.post("login", data), {
+        loading: "Logando...",
+        success: "Login bem sucedido!",
+        error: "Falha no login. Tente novamente!"
+      }, toastDesign)
 
       const response = request.data;
 
@@ -39,35 +46,11 @@ export function LoginProvider({ children }: iModalProps) {
       localStorage.setItem("@TOKEN: WeeToys", accessToken);
       localStorage.setItem("@USER: WeeToys", userJson);
 
-      toast.success("login bem sucedido", {
-        style: {
-          border: "1px solid #15da4d",
-          padding: "16px",
-          color: "#15da4d",
-          background: "#F5F5F5",
-        },
-        iconTheme: {
-          primary: "#15da4d",
-          secondary: "#F5F5F5",
-        },
-      });
       setLogged(true);
       updateCartWithLogin(user.id)
       setTimeout(closeLogin, 2500);
     } catch (error) {
       console.log(error);
-      toast.error(`Falha no login. Tente novamente!`, {
-        style: {
-          border: "1px solid #EB5757",
-          padding: "16px",
-          color: "#EB5757",
-          background: "#F5F5F5",
-        },
-        iconTheme: {
-          primary: "#EB5757",
-          secondary: "#F5F5F5",
-        },
-      });
     }
   }
 
