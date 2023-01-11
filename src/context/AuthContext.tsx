@@ -36,6 +36,8 @@ export function AuthProvider({ children }: iAuthProps) {
 
   const [isLogged, setIsLogged] = useState(false);
 
+  const [purshased, setPurshased] = useState(0)
+
   const [listToys, setListToys] = useState([
     {
       category: "",
@@ -95,7 +97,7 @@ export function AuthProvider({ children }: iAuthProps) {
 
     getToysFromAPI();
 
-  }, [logged]);
+  }, [logged, purshased]);
 
   async function toysPurshased(listCart: iToys[]){
     const token = localStorage.getItem("@TOKEN: WeeToys");
@@ -156,6 +158,7 @@ export function AuthProvider({ children }: iAuthProps) {
               },
             })
             oneTimeToast++
+            setPurshased(purshased + 1)
           }
         }catch(err){
           return null
