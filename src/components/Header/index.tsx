@@ -9,7 +9,7 @@ import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Announce } from "../ModalAnnounce";
 import { ButtonCart } from "../ButtonCart";
 import { AuthContext } from "../../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RegisterContext } from "../../context/RegisterContext";
 import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
@@ -26,6 +26,7 @@ export function Header({userPage}:iHeaderProps) {
   const [linksMobile, setLinksMobile] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function changeStatusLinksMobile() {
     if (linksMobile === false) {
@@ -39,8 +40,8 @@ export function Header({userPage}:iHeaderProps) {
     localStorage.removeItem("@TOKEN: WeeToys");
     localStorage.removeItem("@USER: WeeToys");
     setLogged(false);
-    console.log(isLogged);
-    navigate(0);
+
+    location.pathname === "/" ? navigate(0) : navigate("/");
   }
 
   function logedUser() {
@@ -144,9 +145,9 @@ export function Header({userPage}:iHeaderProps) {
                 </span>
               </div>
             </div>
-            ) : (
-              <span onClick={openLogin}>Login</span>
-            )}
+          ) : (
+            <span onClick={openLogin}>Login</span>
+          )}
         </div>
       ) : null}
     </HeaderStyled>
