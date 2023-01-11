@@ -16,6 +16,8 @@ export const Global = createGlobalStyle`
         font-family: 'Inter', sans-serif;
         width: 100%;
         min-height: 100vh;
+  background-color: #4abdac40;
+
     }
 
     button{
@@ -34,7 +36,3 @@ export const Global = createGlobalStyle`
         }
     }
 `;
-
-
-
-
