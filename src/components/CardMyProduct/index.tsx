@@ -32,7 +32,7 @@ export function CardMyProduct({
           <img src={img} alt={toy_name} />
         </div>
         <div>
-          <span>{toy_name}</span>
+          <span>{toy_name[0].toUpperCase() + toy_name.substring(1)}</span>
           <span>Preço R$ {price.toFixed(2).replace(".", ",")}</span>
         </div>
       </div>
