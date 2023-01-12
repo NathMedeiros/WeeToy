@@ -15,7 +15,7 @@ export function CardProduct({ name, price, img, id }: iCardProductProps) {
         <img src={img} alt="Imagem brinquedo" />
       </figure>
       <div className="infoToy">
-        <h3>{name[0].toUpperCase() + name.substring(1)}</h3>
+        <h3>{name}</h3>
         <p>{`R$ ${price.toFixed(2).replace(".", ",")}`}</p>
         <Button
           styleButton="style2"
