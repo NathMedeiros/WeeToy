@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { MyAdsStyled, UlAds } from "./style";
-import { api } from "../../request/api";
 import { CardMyProduct } from "../CardMyProduct";
 import { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
@@ -8,7 +7,7 @@ import { ModalDeleteContext } from "./../../context/DeleteContext";
 import { Delete } from "../ModalDelete";
 import { UserAnnounceContext } from "./../../context/UserAnnounceContext";
 
-import { iEditProductModal, iUserToys } from "../../interfaces";
+import { iUserToys } from "../../interfaces";
 
 interface iMyAds {
   userAds: iUserToys[];

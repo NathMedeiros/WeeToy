@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { StyledHistoric, UlHistoric } from "./style";
-import WeeToy from "../../assets/image.png";
-import { CardMyProduct } from "../CardMyProduct";
-import { api } from "../../request/api";
-import { iCardHistoryBuy, iUserToys } from "../../interfaces";
+import { iUserToys } from "../../interfaces";
 import { CardHistoricBuy } from "../CardHistoricBuy";
 
 interface iHistoric {

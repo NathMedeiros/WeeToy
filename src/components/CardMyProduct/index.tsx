@@ -1,7 +1,6 @@
 import { iEditProductModal } from "../../interfaces";
 import { CardMyProductStyle } from "./style";
 import editPencil from "../../assets/editPencil.svg";
-import trashIcon from "../../assets/trash.svg";
 import { ModalDeleteContext } from "./../../context/DeleteContext";
 import trash from "../../assets/trash.svg";
 import { useContext } from "react";

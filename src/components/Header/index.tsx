@@ -72,7 +72,7 @@ export function Header({ userPage }: iHeaderProps) {
       setInput(true);
     }
   }
-  console.log(input);
+
   return (
     <HeaderStyled>
       <Toaster />
