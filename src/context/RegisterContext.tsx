@@ -54,7 +54,7 @@ export function RegisterProvider({ children }: iModalProps) {
     try {
       const request = await toast.promise(api.post("/register", data), {
         loading: "Registrando...",
-        error: "Falha no registro. Tente novamente!",
+        error: "Esse email já existe. Tente novamente!",
         success: "Cadastro realizado com sucesso!"
       }, toastDesign)
 

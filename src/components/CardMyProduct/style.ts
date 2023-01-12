@@ -53,7 +53,7 @@ export const CardMyProductStyle = styled.li`
     }
   }
 
-  @media (min-width: 620px) {
+  @media (min-width: 880px) {
     border-radius: 0.75rem;
 
     & > div:nth-child(1) {
