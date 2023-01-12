@@ -88,21 +88,20 @@ export function Header({ userPage }: iHeaderProps) {
               </Link>
             ) : null}
 
-            {input ? (
-              <form>
-                <input
-                  type="text"
-                  placeholder="Pesquise..."
-                  onChange={(event) =>
-                    setSearch(event.target.value.toLowerCase())
-                  }
-                />
-              </form>
-            ) : null}
+            <div className="input-search">
+              <input
+                className={input ? "show-input" : "hide-input"}
+                type="text"
+                placeholder="Pesquise..."
+                onChange={(event) =>
+                  setSearch(event.target.value.toLowerCase())
+                }
+              />
+              <button onClick={openInput} className="lupa">
+                <img src={lupa} alt="" />
+              </button>
+            </div>
 
-            <button onClick={openInput} className="lupa">
-              <img src={lupa} alt="" />
-            </button>
             <span onClick={logedUser}>Anunciar</span>
             {isLogged === true ? (
               <div className="divUser">
@@ -156,20 +155,19 @@ export function Header({ userPage }: iHeaderProps) {
               Home
             </Link>
           ) : null}
-          {input ? (
-            <form>
-              <input
-                type="text"
-                placeholder="Pesquise..."
-                onChange={(event) =>
-                  setSearch(event.target.value.toLowerCase())
-                }
-              />
-            </form>
-          ) : null}
-          <button onClick={openInput} className="lupa">
-            <img src={lupa} alt="" />
-          </button>{" "}
+
+          <div className="input-search">
+            <input
+              className={input ? "show-input" : "hide-input"}
+              type="text"
+              placeholder="Pesquise..."
+              onChange={(event) => setSearch(event.target.value.toLowerCase())}
+            />
+            <button onClick={openInput} className="lupa">
+              <img src={lupa} alt="" />
+            </button>{" "}
+          </div>
+
           <span onClick={logedUser}>Anunciar</span>
           {isLogged === true ? (
             <div className="divUser">
