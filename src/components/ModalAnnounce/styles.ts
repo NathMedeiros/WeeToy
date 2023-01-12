@@ -10,10 +10,6 @@ export const Div = styled.div`
   max-height: 95vh;
   overflow: auto;
 
-  fieldset {
-    /* margin-top: 30px; */
-  }
-
   p {
     font-size: 0.7rem;
     color: red;
@@ -57,7 +53,7 @@ export const Div = styled.div`
     display: flex;
     gap: 2.75rem;
     justify-content: space-around;
-    /* margin-top: 1.875rem; */
+
     margin-top: 30px;
   }
 
@@ -70,7 +66,6 @@ export const Div = styled.div`
     border: none;
     overflow: hidden;
     height: 3rem;
-    /* margin-bottom: 2.3125rem; */
   }
   label {
     font-size: 16px;
@@ -168,7 +163,7 @@ export const Div = styled.div`
 
     select {
       width: 15.3125rem;
-      /* margin-bottom: 10px; */
+
       padding: 0;
     }
 
@@ -186,7 +181,7 @@ export const Div = styled.div`
     textarea {
       width: 15.3125rem;
       height: 12.4375rem;
-      /* margin-bottom: 14px; */
+
       box-sizing: border-box;
     }
     button {
@@ -201,7 +196,6 @@ export const Div = styled.div`
     .announceTitle {
       font-size: 26px;
       line-height: 22px;
-      /* margin-bottom: 3.375rem; */
     }
     .subtitle {
       display: none;
@@ -250,7 +244,6 @@ export const Div = styled.div`
     }
 
     select {
-      /* margin-bottom: 2.5rem; */
       width: 15.3125rem;
       padding: 0;
     }
@@ -283,12 +276,11 @@ export const Div = styled.div`
     textarea {
       width: 15.3125rem;
       height: 5.4375rem;
-      /* margin-bottom: 1.1875rem; */
     }
     .announceTitle {
       font-size: 18px;
       line-height: 22px;
-      /* margin-bottom: 3.375rem; */
+
       margin-bottom: 40px;
     }
     .subtitle {
@@ -340,7 +332,6 @@ export const Div = styled.div`
     textarea {
       width: 100%;
       height: 5.4375rem;
-      /* margin-bottom: 1.1875rem; */
     }
     button {
       width: 100%;
