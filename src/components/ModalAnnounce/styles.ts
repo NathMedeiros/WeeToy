@@ -3,10 +3,27 @@ import styled from "styled-components";
 export const Div = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   border-radius: 0.75rem;
   padding: 1rem;
+  max-height: 95vh;
+  overflow: auto;
+
+  fieldset {
+    /* margin-top: 30px; */
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .messageDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
   .announceTitle {
     font-family: "Seymour One", sans-serif;
@@ -32,7 +49,8 @@ export const Div = styled.div`
     display: flex;
     gap: 2.75rem;
     justify-content: space-around;
-    margin-top: 1.875rem;
+    /* margin-top: 1.875rem; */
+    margin-top: 30px;
   }
 
   select {
@@ -44,7 +62,7 @@ export const Div = styled.div`
     border: none;
     overflow: hidden;
     height: 3rem;
-    margin-bottom: 2.3125rem;
+    /* margin-bottom: 2.3125rem; */
   }
   label {
     font-size: 16px;
@@ -69,7 +87,7 @@ export const Div = styled.div`
 
   .divColl {
     display: flex;
-
+    margin-top: 20px;
     justify-content: space-between;
     width: 100%;
   }
@@ -99,6 +117,7 @@ export const Div = styled.div`
     font-weight: 400;
     font-size: 2.25rem;
     line-height: 2.8125rem;
+    margin-top: 20px;
 
     color: #fc4a1a;
   }
@@ -141,7 +160,7 @@ export const Div = styled.div`
 
     select {
       width: 15.3125rem;
-      margin-bottom: 10px;
+      /* margin-bottom: 10px; */
       padding: 0;
     }
 
@@ -159,7 +178,7 @@ export const Div = styled.div`
     textarea {
       width: 15.3125rem;
       height: 12.4375rem;
-      margin-bottom: 14px;
+      /* margin-bottom: 14px; */
       box-sizing: border-box;
     }
     button {
@@ -174,7 +193,7 @@ export const Div = styled.div`
     .announceTitle {
       font-size: 26px;
       line-height: 22px;
-      margin-bottom: 3.375rem;
+      /* margin-bottom: 3.375rem; */
     }
     .subtitle {
       display: none;
@@ -182,16 +201,30 @@ export const Div = styled.div`
     .divColl {
       gap: 3rem;
     }
+    .colDiv {
+      margin-bottom: 20px;
+    }
   }
 
   @media (max-width: 700px) {
     .nameMark {
       flex-direction: column;
-      gap: 0.9375rem;
+      gap: 1.9375rem;
       justify-content: center;
       align-items: center;
       margin-bottom: 0.9375rem;
       margin-top: 0rem;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .colDiv {
+      margin-top: 20px;
+      position: relative;
+      align-items: center;
+      margin-bottom: 0;
     }
 
     .divColl {
@@ -204,14 +237,21 @@ export const Div = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 0px;
-      width: 80%;
+      gap: 50px;
+      width: 100%;
     }
 
     select {
-      margin-bottom: 2.5rem;
+      /* margin-bottom: 2.5rem; */
       width: 15.3125rem;
       padding: 0;
+    }
+    label {
+      position: absolute;
+      left: 0;
+      top: -30px;
+      margin-left: 0;
+      margin-bottom: 0;
     }
 
     form {
@@ -235,12 +275,13 @@ export const Div = styled.div`
     textarea {
       width: 15.3125rem;
       height: 5.4375rem;
-      margin-bottom: 1.1875rem;
+      /* margin-bottom: 1.1875rem; */
     }
     .announceTitle {
       font-size: 18px;
       line-height: 22px;
-      margin-bottom: 3.375rem;
+      /* margin-bottom: 3.375rem; */
+      margin-bottom: 40px;
     }
     .subtitle {
       display: none;
@@ -248,10 +289,27 @@ export const Div = styled.div`
     .divColl {
       gap: 0rem;
     }
+    .messageDiv {
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .price {
+      margin-bottom: 50px;
+      width: 100%;
+    }
   }
 
   @media (max-width: 540px) {
     padding: 0;
+    fieldset {
+      height: 30px;
+    }
+    .messageDiv {
+      gap: 3px;
+      margin-bottom: 0;
+    }
     select {
       width: 100%;
 
@@ -260,10 +318,10 @@ export const Div = styled.div`
     }
     .categoryPrice {
       width: 100%;
+
+      gap: 0px;
     }
-    .colDiv {
-      width: 100%;
-    }
+
     .announceTitle {
       font-size: 15px;
       line-height: 17px;
@@ -271,7 +329,7 @@ export const Div = styled.div`
     textarea {
       width: 100%;
       height: 5.4375rem;
-      margin-bottom: 1.1875rem;
+      /* margin-bottom: 1.1875rem; */
     }
     button {
       width: 100%;
@@ -293,11 +351,17 @@ export const Div = styled.div`
     }
     .nameMark {
       width: 100%;
+      gap: 30px;
     }
     .colDiv {
       width: 100%;
+      margin-bottom: 30px;
+      margin-top: 30px;
     }
     .nameCategoryPriceDiv {
+      width: 100%;
+    }
+    .price {
       width: 100%;
     }
   }

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Div } from "./styles";
 import { InputAnnounce } from "../InputAnnounce/index";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { announceSchema } from "./announceSchema";
+import { announceSchema } from "../../schema/announceSchema";
 import { IToyData } from "../../interfaces";
 import { ModalAnnounceContext } from "../../context/AnnounceContext";
 import { Toaster } from "react-hot-toast";
@@ -60,18 +60,20 @@ export function Announce() {
         <p className="subtitle">
           capriche na foto e na descrição do seu produto
         </p>
-        <form onSubmit={handleSubmit(getToy)}>
+        <form onSubmit={handleSubmit(getToy)} noValidate>
           <div className="nameMark">
-            <InputAnnounce
-              id="image"
-              placeholder=""
-              labelName="Foto do brinquedo"
-              required={false}
-              inputType="text"
-              width="500px"
-              register={register("img")}
-            />
-            {errors.img?.message}
+            <div className="messageDiv">
+              <InputAnnounce
+                id="image"
+                placeholder=""
+                labelName="Foto do brinquedo"
+                required={false}
+                inputType="url"
+                width="500px"
+                register={register("img")}
+              />
+              {errors.img?.message}
+            </div>
             <InputAnnounce
               id="mark"
               placeholder=""
@@ -79,40 +81,58 @@ export function Announce() {
               required={false}
               inputType="text"
               width="500px"
-              register={register("toy_name")}
+              register={register("marks")}
             />
-            {errors.toy_name?.message}
-            <div className="categoryPrice">
-              <div className="colDiv">
-                <label htmlFor="category">Categoria</label>
-                <select {...register("category")}>
-                  <option value=""></option>
-                  <option value="Bonecos">Bonecos</option>
-                  <option value="Pelúcias">Pelúcias</option>
-                  <option value="Carrinhos">Carrinhos</option>
-                  <option value="Quebra cabeças">Quebra cabeças</option>
-                  <option value="Instrumento musical">
-                    Instrumento musical
-                  </option>
-                  <option value="Outros">Outros</option>
-                </select>
-              </div>
-              {errors.category?.message}
-              <InputAnnounce
-                id="Price"
-                placeholder="R$"
-                labelName="Preço"
-                required={false}
-                inputType="number"
-                width="230px"
-                register={register("price")}
-              />
-              {errors.price?.message}
-            </div>
           </div>
-          <div className="colDiv">
-            <label htmlFor="description">Descrição</label>
-            <textarea {...register("description")} />
+          <div className="divColl">
+            <div className="nameCategoryPriceDiv">
+              <div className="messageDiv">
+                <InputAnnounce
+                  id="name"
+                  placeholder=""
+                  labelName="Nome"
+                  required={false}
+                  inputType="text"
+                  width="500px"
+                  register={register("toy_name")}
+                />
+                {errors.toy_name?.message}
+              </div>
+              <div className="categoryPrice">
+                <div className="colDiv">
+                  <label htmlFor="category">Categoria</label>
+                  <select {...register("category")}>
+                    <option value=""></option>
+                    <option value="Bonecos">Bonecos</option>
+                    <option value="Pelúcias">Pelúcias</option>
+                    <option value="Carrinhos">Carrinhos</option>
+                    <option value="Quebra cabeças">Quebra cabeças</option>
+                    <option value="Instrumento musical">
+                      Instrumento musical
+                    </option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                  {errors.category?.message}
+                </div>
+                <div className="price">
+                  <InputAnnounce
+                    id="Price"
+                    placeholder="R$"
+                    labelName="Preço"
+                    required={false}
+                    inputType="number"
+                    width="230px"
+                    register={register("price")}
+                  />
+                  {errors.price?.message}
+                </div>
+              </div>
+            </div>
+            <div className="colDiv">
+              <label htmlFor="description">Descrição</label>
+              <textarea {...register("description")} />
+              {errors.description?.message}
+            </div>
           </div>
           <button disabled={announceLoading}>
             {announceLoading ? "Anunciando produto..." : "Anunciar Produto"}
