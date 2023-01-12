@@ -26,6 +26,7 @@ export const StyledNav = styled.nav`
     justify-content: space-evenly;
     margin: 0;
     padding: 0 30px;
+    height: 100%;
 
     label {
       font-size: var(--size-1);
