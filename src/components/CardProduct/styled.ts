@@ -4,12 +4,12 @@ export const CardProductStyled = styled.li`
   width: 224px;
   border-radius: 12px;
   background-color: #fff;
+  transition: 0.4s ease;
 
   :hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
       var(--color-primary) 0px 5px 9px -5px;
     transform: scale(1.1);
-    transition: transform 0.4s ease;
   }
 
   & figure {

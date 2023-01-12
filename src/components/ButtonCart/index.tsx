@@ -30,9 +30,9 @@ export function ButtonCart (){
         setIsOpen(false)
     }
 
-    function toBuy(){
+    async function toBuy(){
         if(isLogged === true){
-            toysPurshased(listCart)
+            await toysPurshased(listCart)
             setListCart([{
                 category: "",
                 description: "",

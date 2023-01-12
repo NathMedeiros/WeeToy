@@ -8,5 +8,5 @@ export const userDataSchema = yup.object().shape({
     .matches(/^[0-9]{5}-[0-9]{3}$/, "CEP inválido!")
     .required("CEP obrigatório!"),
   email: yup.string().email().required(),
-  birth_date: yup.date().required("Data de nascimento obrigatória!"),
+  birth_date: yup.string().required("Data de nascimento obrigatória!"),
 });
