@@ -80,7 +80,8 @@ export function Login() {
 }
 
 export function Register() {
-  const { closeRegister, submitRegister, loadingRegister } = useContext(RegisterContext);
+  const { closeRegister, submitRegister, loadingRegister } =
+    useContext(RegisterContext);
 
   const {
     register,

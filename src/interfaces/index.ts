@@ -46,7 +46,7 @@ export interface IToyData {
   marks: string;
   toy_name: string;
   category: string;
-  price: number;
+  price: number | null;
   description: string;
 }
 

@@ -62,8 +62,8 @@ export const Div = styled.div`
   }
 
   p {
+    font-size: 0.7rem;
     color: red;
-    font-weight: 600;
   }
 
   @media (max-width: 600px) {
