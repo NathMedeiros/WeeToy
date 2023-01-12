@@ -21,6 +21,10 @@ export const DivHeader = styled.div`
     margin-right: 20px;
   }
 
+  button:hover{
+    background-color: #ebe8e8;
+  }
+
   img {
     width: 130px;
     margin-left: 20px;
