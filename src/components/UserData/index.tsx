@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast, Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { iFormRegister } from "../../interfaces";
 import { userDataSchema } from "../../pages/UserPage/userDataSchema";
 import { api } from "../../request/api";

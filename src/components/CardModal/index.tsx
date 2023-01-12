@@ -15,7 +15,7 @@ export function CardModal() {
   const toyFilter = listToys.filter((elem) => {
     return elem.id === cardOpen;
   });
-  console.log(toyFilter);
+  
   return (
     <div>
       <Modal

@@ -1,6 +1,5 @@
 import { iCardProductProps } from "../../interfaces";
 import { CartProductStyled } from "./styled";
-
 import trash from "./../../assets/trashCart.png"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
