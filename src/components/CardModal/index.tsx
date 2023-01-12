@@ -38,7 +38,7 @@ export function CardModal() {
                   <DivHeader>
                     <div>
                       <img src={toy.img} alt="" />
-                      <h3>{toy.toy_name}</h3>
+                      <h3>{toy.toy_name[0].toUpperCase() + toy.toy_name.substring(1)}</h3>
                     </div>
                     <button onClick={() => setCardOpen(null)}>X</button>
                   </DivHeader>

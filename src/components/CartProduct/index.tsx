@@ -12,7 +12,7 @@ export function CartProduct({name, price, img, id}: iCardProductProps){
         <CartProductStyled>
             <img src={img} alt="Imagem Brinquedo" className="imageToy"/>
             <div>
-                <h3>{name}</h3>
+                <h3>{name[0].toUpperCase() + name.substring(1)}</h3>
                 <p>{`R$ ${price.toFixed(2).replace(".", ",")}`}</p>
             </div>
             <button onClick={()=>{removeProductFromCart(id)}}>
