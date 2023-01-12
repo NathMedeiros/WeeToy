@@ -20,7 +20,7 @@ export const CardMyProductStyle = styled.li`
       align-items: center;
       width: 4.625rem;
       height: 4.625rem;
-      background-color: #d8d8d8;
+      background-color: #FFF;
 
       img {
         max-width: 100%;
