@@ -27,8 +27,8 @@ export const HeaderStyled = styled.header`
   }
 
   .lupa img {
-    width: 28px;
-    height: 22px;
+    width: 30px;
+    height: 26px;
     object-fit: contain;
   }
 
@@ -37,12 +37,13 @@ export const HeaderStyled = styled.header`
   }
 
   form input {
-    width: 100%;
-    height: 30px;
+    width: 177%;
+    height: 40px;
     padding: 5px;
     border-radius: 8px;
-    border: solid 2px var(--color-primary);
+    border: none;
     color: #000;
+    outline: none;
   }
 
   input::placeholder {
