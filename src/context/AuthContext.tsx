@@ -98,6 +98,7 @@ export function AuthProvider({ children }: iAuthProps) {
         const { data } = await api.get("/toys");
 
         const arrayToys: iToys[] = data.map((toy: iToys) => {
+          toy.toy_name = toy.toy_name[0].toUpperCase() + toy.toy_name.substring(1)
           return toy;
         });
 
