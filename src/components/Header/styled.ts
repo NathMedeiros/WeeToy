@@ -26,24 +26,47 @@ export const HeaderStyled = styled.header`
     position: relative;
   }
 
+  & .input-search {
+    width: 30%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+    & > button {
+      position: relative;
+      background-color: transparent;
+      z-index: 10;
+    }
+    & > input {
+      height: 40px;
+      padding: 5px;
+      border-radius: 8px;
+      border: none;
+      color: #000;
+      outline: none;
+      position: absolute;
+      left: -185px;
+
+      @media (max-width: 710px) {
+        bottom: -40px;
+        left: -100px;
+      }
+    }
+
+    & > .hide-input {
+      display: none;
+      transition: 1s;
+    }
+    & > .show-input {
+      display: block;
+      transition: 1s;
+    }
+  }
+
   .lupa img {
     width: 30px;
     height: 26px;
     object-fit: contain;
-  }
-
-  form {
-    width: 30%;
-  }
-
-  form input {
-    width: 177%;
-    height: 40px;
-    padding: 5px;
-    border-radius: 8px;
-    border: none;
-    color: #000;
-    outline: none;
   }
 
   input::placeholder {
@@ -160,6 +183,21 @@ export const HeaderStyled = styled.header`
     .optionsUser {
       right: 0;
       top: 40px;
+    }
+
+    & .input-search {
+      width: fit-content;
+
+      & > input {
+        width: 200px;
+        padding-left: 35px;
+        left: 0;
+        bottom: -2px;
+
+        @media (max-width: 520px) {
+          bottom: -40px;
+        }
+      }
     }
   }
 `;

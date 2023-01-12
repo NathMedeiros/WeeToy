@@ -45,11 +45,10 @@ export function UserData({ userData, userId, token }: iUserData) {
     },
   });
 
-  const [loadingData, setLoadingData] = useState<boolean>(false)
+  const [loadingData, setLoadingData] = useState<boolean>(false);
 
   async function patchUser(data: iFormRegister) {
-    setLoadingData(true)
-    console.log(data);
+    setLoadingData(true);
     try {
       const request = await toast.promise(
         api.patch(`/users/${userId}`, data, {
@@ -67,7 +66,7 @@ export function UserData({ userData, userId, token }: iUserData) {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoadingData(false)
+      setLoadingData(false);
     }
   }
 
