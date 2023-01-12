@@ -47,4 +47,14 @@ export const StyledFooter = styled.footer`
       }
     }
   }
+
+  @media (max-width: 540px) {
+    & > section {
+      flex-direction: column;
+
+      & > div > h3 {
+        margin-top: 20px;
+      }
+    }
+  }
 `;
