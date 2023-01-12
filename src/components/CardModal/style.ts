@@ -24,6 +24,7 @@ export const DivHeader = styled.div`
   img {
     width: 130px;
     margin-left: 20px;
+    border-radius: 0.375rem;
   }
 `;
 
