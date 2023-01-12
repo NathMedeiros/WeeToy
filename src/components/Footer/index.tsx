@@ -1,6 +1,5 @@
 import { StyledFooter } from "./style";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
+import GitHubIcon from "@mui/icons-material/GitHub";
 export function Footer() {
   return (
     <StyledFooter>
@@ -22,28 +21,28 @@ export function Footer() {
           <h3>Redes Sociais</h3>
 
           <a target="blank" href="https://github.com/Brunohgs21">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Bruno
           </a>
 
           <a target="blank" href="https://github.com/DiegoAndreLeffa">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Diego
           </a>
           <a target="blank" href="https://github.com/gyo-almeida">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Gyovanna
           </a>
           <a target="blank" href="https://github.com/NathMedeiros">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Nathalia
           </a>
           <a target="blank" href="https://github.com/Lelouching">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Jhonata
           </a>
           <a target="blank" href="https://github.com/ricardocza">
-            <LinkedInIcon color="primary" />
+            <GitHubIcon color="action" />
             Ricardo
           </a>
         </div>
