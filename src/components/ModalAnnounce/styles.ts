@@ -14,9 +14,17 @@ export const Div = styled.div`
     /* margin-top: 30px; */
   }
 
+  p {
+    font-size: 0.7rem;
+    color: red;
+  }
+
   .price {
     display: flex;
     flex-direction: column;
+    & > fieldset + p {
+      margin-top: 10px;
+    }
   }
 
   .messageDiv {
@@ -31,7 +39,7 @@ export const Div = styled.div`
     font-weight: 400;
     font-size: 2.25rem;
     line-height: 2.8125rem;
-
+    margin-bottom: 20px;
     color: #000000;
   }
 
@@ -298,6 +306,9 @@ export const Div = styled.div`
     .price {
       margin-bottom: 50px;
       width: 100%;
+      & > fieldset + p {
+        text-align: center;
+      }
     }
   }
 

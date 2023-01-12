@@ -8,6 +8,9 @@ export const announceSchema = yup.object().shape({
     .url("Precisa ser um link de imagem")
     .required("Adicione uma imagem"),
   marks: yup.string().optional(),
-  price: yup.number().required("Coloque um preço"),
+  price: yup
+    .number()
+    .typeError("Coloque um preço")
+    .min(1, "Adicione um valor maior que zero"),
   toy_name: yup.string().required("Coloque um nome"),
 });

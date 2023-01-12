@@ -22,7 +22,7 @@ export function Announce() {
       marks: "",
       toy_name: "",
       category: "",
-      price: 0,
+      price: null,
       description: "",
     },
   });
@@ -36,7 +36,7 @@ export function Announce() {
       const { category, price, marks, toy_name, img, description } = data;
       const newAnnounce = {
         category: category,
-        price: price,
+        price: price!,
         marks: marks,
         toy_name: toy_name,
         img: img,
@@ -72,7 +72,7 @@ export function Announce() {
                 width="500px"
                 register={register("img")}
               />
-              {errors.img?.message}
+              <p>{errors.img?.message}</p>
             </div>
             <InputAnnounce
               id="mark"
@@ -96,7 +96,7 @@ export function Announce() {
                   width="500px"
                   register={register("toy_name")}
                 />
-                {errors.toy_name?.message}
+                <p>{errors.toy_name?.message}</p>
               </div>
               <div className="categoryPrice">
                 <div className="colDiv">
@@ -112,7 +112,7 @@ export function Announce() {
                     </option>
                     <option value="Outros">Outros</option>
                   </select>
-                  {errors.category?.message}
+                  <p>{errors.category?.message}</p>
                 </div>
                 <div className="price">
                   <InputAnnounce
@@ -124,14 +124,14 @@ export function Announce() {
                     width="230px"
                     register={register("price")}
                   />
-                  {errors.price?.message}
+                  <p>{errors.price?.message}</p>
                 </div>
               </div>
             </div>
             <div className="colDiv">
               <label htmlFor="description">Descrição</label>
               <textarea {...register("description")} />
-              {errors.description?.message}
+              <p>{errors.description?.message}</p>
             </div>
           </div>
           <button disabled={announceLoading}>
